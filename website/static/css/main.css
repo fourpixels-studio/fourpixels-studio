@@ -1,0 +1,37 @@
+.s-expertise {
+  background-color: #121212;
+  color: #484949;
+}
+.s-expertise h2 {
+  color: #e8f3f1;
+}
+.s-expertise h3 {
+  color: #e8f3f1;
+}
+.fw-bold {
+  font-weight: 800;
+}
+.text-white {
+  color: #fff;
+}
+.link_hover {
+  text-decoration: none;
+  color: #30d5c8;
+  cursor: pointer;
+  position: relative;
+  display: inline-block;
+}
+.link_hover:hover {
+  text-decoration: underline solid #005b53 4px;
+  color: #005b53;
+  text-underline-offset: 12px;
+  /* content: ""; 
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #30d5c8; /* Set your desired background color 
+  z-index: -1; /* Place the background behind the text 
+  pointer-events: none; /* Allow interactions with the underlying content */
+}
