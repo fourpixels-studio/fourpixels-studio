@@ -10,8 +10,10 @@ from django.conf import settings
 
 def index(request):
     page_name = "- Masters of the Digital Realm"
+    blogs = Blog.objects.all()
     context = {
         'page_name': page_name,
+        'blogs': blogs,
     }
     return render(request, 'index.html', context)
 
