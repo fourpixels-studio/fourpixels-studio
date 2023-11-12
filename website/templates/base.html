@@ -120,12 +120,14 @@
         ================================================== -->
       <header class="s-header">
         <div class="row s-header__inner width-sixteen-col">
-          <div class="s-header__block">
+          <div class="col s-header__block">
             <div class="s-header__logo">
               <a class="logo" href="{% url 'index' %}">
                 <img
-                  src="{% static 'images/bartena-logo.png' %}"
-                  alt="Homepage"
+                  style="height: 60px; width: 40px"
+                  class="img-fluid"
+                  src="{% static 'images/icons/4pixels-icon.svg' %}"
+                  alt="Four Pixels Logo"
                 />
               </a>
             </div>
@@ -134,7 +136,7 @@
           </div>
           <!-- end s-header__block -->
 
-          <nav class="s-header__nav">
+          <nav class="col float-start s-header__nav">
             <ul class="s-header__menu-links">
               <li><a href="{% url 'about' %}">About</a></li>
               <li><a href="{% url 'index' %}">Services</a></li>

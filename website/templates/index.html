@@ -290,128 +290,27 @@
       <div class="column xl-12">
         <div class="clients-list">
           <div class="clients-list__item">
-            <a href="www.amscins.com">
-              <img
-                width="510"
-                height="175"
-                src="{% static 'images/clients/amscins.svg' %}"
-                alt=""
-              />
+            <a href="https://www.amscins.com/">
+              <img src="{% static 'images/clients/amscins.png' %}" alt="" />
             </a>
           </div>
           <div class="clients-list__item">
-            <a href="www.lukustore.nl">
-              <img
-                width="510"
-                height="175"
-                src="{% static 'images/clients/lukustorenl.svg' %}"
-                alt=""
-              />
+            <a href="https://www.lukustore.nl">
+              <img src="{% static 'images/clients/lukustorenl.png' %}" alt="" />
             </a>
           </div>
           <div class="clients-list__item">
-            <a href="www.codeblackintl.com">
-              <img
-                width="510"
-                height="75"
-                src="{% static 'images/clients/codeblack.svg' %}"
-                alt=""
-              />
+            <a href="https://www.codeblackintl.com">
+              <img src="{% static 'images/clients/codeblack.png' %}" alt="" />
+            </a>
+          </div>
+          <div class="clients-list__item">
+            <a href="https://4ourpixels.github.io/African-Spice-Kitchen/">
+              <img src="{% static 'images/clients/ask.png' %}" alt="" />
             </a>
           </div>
         </div>
         <!-- end clients-list -->
-      </div>
-      <!-- end column -->
-    </div>
-    <!-- end row -->
-
-    <div class="row s-clients__content-block width-sixteen-col">
-      <div class="column xl-12 testimonials">
-        <div class="swiper-container testimonials__slider home-slider">
-          <div class="swiper-wrapper">
-            <div class="testimonials__slide swiper-slide">
-              <p>
-                Molestiae incidunt consequatur quis ipsa autem nam sit enim
-                magni. Voluptas tempore rem. Explicabo a quaerat sint autem
-                dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga
-                rem nihil nostrum. Laudantium quia consequatur molestias.
-              </p>
-              <div class="testimonials__author">
-                <img
-                  src="{% static 'images/avatars/user-01.jpg' %}"
-                  alt="Author image"
-                  class="testimonials__avatar"
-                />
-                <cite class="testimonials__cite">
-                  <strong>John Rockefeller</strong>
-                  <span>Standard Oil Co.</span>
-                </cite>
-              </div>
-            </div>
-            <div class="testimonials__slide swiper-slide">
-              <p>
-                Nisi dolores quaerat fuga rem nihil nostrum. Molestiae incidunt
-                consequatur quis ipsa autem nam sit enim magni. Voluptas tempore
-                rem. Laudantium quia consequatur molestias. Explicabo a quaerat
-                sint autem dolore ducimus ut consequatur neque.
-              </p>
-              <div class="testimonials__author">
-                <img
-                  src="{% static 'images/avatars/user-04.jpg' %}"
-                  alt="Author image"
-                  class="testimonials__avatar"
-                />
-                <cite class="testimonials__cite">
-                  <strong>Andrew Carnegie</strong>
-                  <span>Carnegie Steel Co.</span>
-                </cite>
-              </div>
-            </div>
-            <div class="testimonials__slide swiper-slide">
-              <p>
-                Voluptas tempore rem. Molestiae incidunt consequatur quis ipsa
-                autem nam sit enim magni. Explicabo a quaerat sint autem dolore
-                ducimus ut consequatur neque. Nisi dolores quaerat fuga rem
-                nihil nostrum. Laudantium quia consequatur molestias.
-              </p>
-              <div class="testimonials__author">
-                <img
-                  src="{% static 'images/avatars/user-06.jpg' %}"
-                  alt="Author image"
-                  class="testimonials__avatar"
-                />
-                <cite class="testimonials__cite">
-                  <strong>Henry Ford</strong>
-                  <span>Ford Motor Co.</span>
-                </cite>
-              </div>
-            </div>
-            <div class="testimonials__slide swiper-slide">
-              <p>
-                Molestiae incidunt consequatur quis ipsa autem nam sit enim
-                magni. Voluptas tempore rem. Explicabo a quaerat sint autem
-                dolore ducimus ut consequatur neque. Nisi dolores quaerat fuga
-                rem nihil nostrum. Laudantium quia consequatur molestias.
-              </p>
-              <div class="testimonials__author">
-                <img
-                  src="{% static 'images/avatars/user-02.jpg' %}"
-                  alt="Author image"
-                  class="testimonials__avatar"
-                />
-                <cite class="testimonials__cite">
-                  <strong>John Morgan</strong>
-                  <span>JP Morgan & Co.</span>
-                </cite>
-              </div>
-            </div>
-          </div>
-          <!-- end swiper-wrapper -->
-
-          <div class="swiper-pagination"></div>
-        </div>
-        <!--end testimonials__slider -->
       </div>
       <!-- end column -->
     </div>
@@ -457,24 +356,21 @@
 
       <div class="grid-full s-journal__content-main grid-list-items">
         <!-- start blog card -->
+        {% for blog in blogs %}
         <div class="grid-list-items__item blog-card">
           <div class="blog-card__header">
             <div class="blog-card__cat-links">
-              <a href="#">Website</a>
+              <a href="#">{{ blog.category }}</a>
             </div>
             <h3 class="blog-card__title">
-              <a href="#"
-                >Elevate Your Online Presence with Fullstack Web Development.</a
-              >
+              <a href="#">{{ blog.title }}</a>
             </h3>
           </div>
           <div class="blog-card__text">
-            <p>
-              In today's digital age, having a strong online presence is
-              paramount for businesses and individuals alike.
-            </p>
+            <p>{{ blog.summary|safe }}</p>
           </div>
         </div>
+        {% endfor %}
         <!-- end blog-card -->
       </div>
       <!-- end grid-list-items -->
