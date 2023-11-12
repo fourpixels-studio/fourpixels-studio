@@ -360,10 +360,14 @@
         <div class="grid-list-items__item blog-card">
           <div class="blog-card__header">
             <div class="blog-card__cat-links">
-              <a href="#">{{ blog.category }}</a>
+              <a href="{% url 'blog_detail' slug=blog.slug%}"
+                >{{ blog.category }}</a
+              >
             </div>
             <h3 class="blog-card__title">
-              <a href="#">{{ blog.title }}</a>
+              <a href="{% url 'blog_detail' slug=blog.slug%}"
+                >{{ blog.title }}</a
+              >
             </h3>
           </div>
           <div class="blog-card__text">
