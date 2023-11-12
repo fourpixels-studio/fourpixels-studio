@@ -23,3 +23,20 @@ def about(request):
         'page_name': page_name,
     }
     return render(request, 'about.html', context)
+
+def blog_detail(request, slug):
+    recent_blogs = Blog.objects.order_by('-pk')
+    blog = get_object_or_404(Blog, slug=slug)
+    page_name = f"- {blog.title}"
+    tags = [
+        item.strip()
+        for item in blog.tags.split(',')
+        if item.strip()
+    ]
+    context = {
+        'page_name': page_name,
+        'recent_blogs': recent_blogs,
+        'blog': blog,
+        'tags': tags,
+    }
+    return render(request, 'blog.html', context)
