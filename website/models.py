@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from django.utils.dateformat import DateFormat
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Blog(models.Model):
@@ -24,3 +25,38 @@ class Blog(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+        
+class Customer(models.Model):
+    user = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE)
+    first_name = models.CharField(max_length=200, null=True, blank=True)
+    last_name = models.CharField(max_length=200, null=True, blank=True)
+    username = models.CharField(max_length=50, null=True, blank=True)
+    email = models.EmailField(default='', null=True, blank=True)
+
+    profile_pic = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="customer-images/",
+        default='image.jpg',
+    )
+
+    def __str__(self):
+        return self.username
+
+
+def create_customer(sender, instance, created, **kwargs):
+    if created:
+        Customer.objects.create(
+            user=instance, name=instance.username, email=instance.email)
+
+
+models.signals.post_save.connect(create_customer, sender=User)
+
+class Newsletter(models.Model):
+    customer = models.ForeignKey(
+        Customer, on_delete=models.SET_NULL, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+
+    def __str__(self):
+        return self.email
