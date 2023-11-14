@@ -23,8 +23,34 @@ def index(request):
 
 def about(request):
     page_name = "- About Us"
+    tags = MessageTag.objects.all()
+    about_object = AboutSection.objects.all()
+    
+    tag1 = tags[0].tag
+    tag2 = tags[1].tag
+    
+    about_our_story = about_object[0].content_1
+    about_our_mission = about_object[0].content_2
+    about_our_vision = about_object[0].content_3
+    about_our_team = about_object[0].content_4
+    
+    services_masters = about_object[1].content_1
+    services_websites = about_object[1].content_2
+    services_graphic_design = about_object[1].content_3
+    services_motion_graphics = about_object[1].content_4
+    
     context = {
         'page_name': page_name,
+        'tag1': tag1,
+        'tag2': tag2,
+        'about_our_story': about_our_story, 
+        'about_our_mission': about_our_mission, 
+        'about_our_vision': about_our_vision, 
+        'about_our_team': about_our_team, 
+        'services_masters': services_masters,
+        'services_websites': services_websites,
+        'services_graphic_design': services_graphic_design,
+        'services_motion_graphics': services_motion_graphics,
     }
     return render(request, 'about.html', context)
 

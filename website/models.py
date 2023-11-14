@@ -60,3 +60,21 @@ class Newsletter(models.Model):
 
     def __str__(self):
         return self.email
+
+# About Us
+
+class AboutSection(models.Model):
+    question = models.CharField(max_length=255, blank=True, null=True)
+    content_1 = models.TextField(blank=True, null=True)
+    content_2 = models.TextField(blank=True, null=True)
+    content_3 = models.TextField(blank=True, null=True)
+    content_4 = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return f"{self.question}"
+
+class MessageTag(models.Model):
+    tag = models.TextField(blank=True, null=True)
+    
+    def __str__(self):
+        return self.tag

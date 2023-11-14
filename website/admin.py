@@ -4,3 +4,5 @@ from .models import *
 admin.site.register(Blog)
 admin.site.register(Newsletter)
 admin.site.register(Customer)
+admin.site.register(AboutSection)
+admin.site.register(MessageTag)
