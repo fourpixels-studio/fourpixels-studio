@@ -39,6 +39,24 @@ def about(request):
     services_graphic_design = about_object[1].content_3
     services_motion_graphics = about_object[1].content_4
     
+    testimonial_form = TestimonialForm()
+    
+    if request.method == 'POST':
+        testimonial_form = TestimonialForm(request.POST)
+        if testimonial_form.is_valid():
+            testimonial_form.save()
+            name = testimonial_form.cleaned_data.get('name')
+            department = testimonial_form.cleaned_data.get('department')
+            testimonial = testimonial_form.cleaned_data.get('testimonial')
+            print(
+                f"==== NEW TESTIMONIAL ====\n\nFrom: {name}\nCompany/Department: {department}\nTestimonial: {testimonial}\n\n")
+            messages.success(
+                request, ('Thank you!'))
+            return redirect('about')
+        else:
+            testimonial_form = TestimonialForm()
+
+    
     context = {
         'page_name': page_name,
         'tag1': tag1,
@@ -51,6 +69,7 @@ def about(request):
         'services_websites': services_websites,
         'services_graphic_design': services_graphic_design,
         'services_motion_graphics': services_motion_graphics,
+        'testimonial_form': testimonial_form,
     }
     return render(request, 'about.html', context)
 
@@ -69,7 +88,16 @@ def blog_detail(request, slug):
         'blog': blog,
         'tags': tags,
     }
-    return render(request, 'blog.html', context)
+    return render(request, 'blog_detail.html', context)
+
+def blog_list(request):
+    recent_blogs = Blog.objects.order_by('-pk')
+    page_name = f"- Blogs"
+    context = {
+        'page_name': page_name,
+        'recent_blogs': recent_blogs,
+    }
+    return render(request, 'blog_list.html', context)
 
 
 def newsletter(request):

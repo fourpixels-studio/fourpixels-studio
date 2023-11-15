@@ -60,3 +60,16 @@ class CustomerForm(ModelForm):
             self.fields['profile_pic'].widget.attrs['class'] = 'form-control'
             self.fields['password1'].widget.attrs['class'] = 'form-control'
             self.fields['password2'].widget.attrs['class'] = 'form-control'
+
+
+class TestimonialForm(forms.ModelForm):
+    class Meta:
+        model = Testimonial
+        fields = ("__all__")
+
+        def __init__(self, *args, **kwagrs):
+            super(TestimonialForm, self).__init__(*args, **kwagrs)
+            self.fields['name'].widget.attrs['class'] = 'form-control'
+            self.fields['department'].widget.attrs['class'] = 'form-control'
+            self.fields['email'].widget.attrs['class'] = 'form-control'
+            self.fields['testimonial'].widget.attrs['class'] = 'form-control'
