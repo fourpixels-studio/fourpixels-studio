@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<!-- # site main content
+        ================================================== -->
+<section id="content" class="s-content">
+  <section class="s-pageheader pageheader">
+    <div class="row">
+      <div class="column xl-12">
+        <h1 class="page-title">
+          <span class="page-title__small-type text-pretitle">My Blog</span>
+          Recent Writings
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="s-pagecontent pagecontent">
+    <div class="row">
+      <div class="column xl-12 grid-block">
+        <div class="grid-full">
+          <h3 class="text-white text-center">{{ blog.title }}</h3>
+        </div>
+      </div>
+      <!-- end grid-block-->
+    </div>
+    <div class="row my-4">
+      <h6 class="mb-3 text-white">{{ blog.introduction|safe }}</h6>
+      <p class="mb-3 text-white">{{ blog.paragraph_1|safe }}</p>
+      <p class="mb-3 text-white">{{ blog.paragraph_2|safe }}</p>
+      <p class="mb-3 text-white">{{ blog.paragraph_3|safe }}</p>
+      <p class="lead mb-3 text-white">{{ blog.conclusion|safe }}</p>
+    </div>
+    <!-- end row -->
+  </section>
+</section>
+<!-- s-content-->
+
+<!-- # cta
+        ================================================== -->
+<section id="cta" class="s-cta">
+  <div class="row row-x-center text-center">
+    <div class="column xl-8 lg-12">
+      <div class="s-cta__content">
+        <h2 class="text-display-title">
+          Get started with a consultation today.
+        </h2>
+        <p class="lead">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis rem,
+          esse doloribus sint eaque at debitis enim vitae minus expedita ratione
+          dignissimos sit nostrum optio sequi. Ipsa at beatae quam.
+        </p>
+        <a href="contact.html" class="btn btn--primary">Let's Work Together</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end s-cta -->
+{% endblock %}
