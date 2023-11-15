@@ -35,3 +35,21 @@
   z-index: -1; /* Place the background behind the text 
   pointer-events: none; /* Allow interactions with the underlying content */
 }
+.brand-logo {
+  height: 70px;
+  object-fit: cover;
+  width: 100%;
+}
+.text--primary {
+  color: #30d5c8;
+}
+.bg--primary {
+  background-color: #30d5c8;
+}
+
+.text-primary-2 {
+  color: #3f7d75;
+}
+.bg-primary-2 {
+  background-color: #3f7d75;
+}
