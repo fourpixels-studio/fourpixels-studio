@@ -41,6 +41,9 @@ def about(request):
     
     testimonial_form = TestimonialForm()
     
+    # Testimonials
+    testimonials = Testimonial.objects.order_by('-pk')
+    
     if request.method == 'POST':
         testimonial_form = TestimonialForm(request.POST)
         if testimonial_form.is_valid():
@@ -49,7 +52,7 @@ def about(request):
             department = testimonial_form.cleaned_data.get('department')
             testimonial = testimonial_form.cleaned_data.get('testimonial')
             print(
-                f"==== NEW TESTIMONIAL ====\n\nFrom: {name}\nCompany/Department: {department}\nTestimonial: {testimonial}\n\n")
+                f"==== NEW TESTIMONIAL ====\n\nFrom: {name}\nCompany/Department: {department}\nTestimonial: {testimonial}\n\n==== END OF NEW TESTIMONIAL ====")
             messages.success(
                 request, ('Thank you!'))
             return redirect('about')
@@ -70,6 +73,7 @@ def about(request):
         'services_graphic_design': services_graphic_design,
         'services_motion_graphics': services_motion_graphics,
         'testimonial_form': testimonial_form,
+        'testimonials': testimonials,
     }
     return render(request, 'about.html', context)
 
