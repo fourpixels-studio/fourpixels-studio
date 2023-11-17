@@ -1,12 +1,12 @@
 {% extends 'base.html' %} {% load static %} {% block body %}
 <!-- # site main content
         ================================================== -->
-<section id="content" class="s-content">
+<section id="content" class="bg-white s-content">
   <section class="s-pageheader pageheader">
     <div class="row">
       <div class="column xl-12">
         <h1 class="page-title">
-          <span class="page-title__small-type text-pretitle">My Blog</span>
+          <span class="page-title__small-type text-pretitle">Blog</span>
           Recent Writings
         </h1>
       </div>
@@ -14,22 +14,40 @@
   </section>
 
   <section class="s-pagecontent pagecontent">
-    <div class="row">
-      <div class="column xl-12 grid-block">
-        <div class="grid-full">
-          <h3 class="text-white text-center">{{ blog.title }}</h3>
-        </div>
+    <!-- start pageintro -->
+    {% for blog in recent_blogs %}
+    <div class="row pageintro">
+      <div class="column xl-6 lg-12">
+        <a
+          href="{% url 'blog_detail' slug=blog.slug %}"
+          class="text-display-title"
+          >{{ blog.title }}</a
+        >
       </div>
-      <!-- end grid-block-->
+      <div class="column xl-6 lg-12 u-flexitem-x-right">
+        <p class="lead">{{ blog.summary }}</p>
+      </div>
     </div>
-    <div class="row my-4">
-      <h6 class="mb-3 text-white">{{ blog.introduction|safe }}</h6>
-      <p class="mb-3 text-white">{{ blog.paragraph_1|safe }}</p>
-      <p class="mb-3 text-white">{{ blog.paragraph_2|safe }}</p>
-      <p class="mb-3 text-white">{{ blog.paragraph_3|safe }}</p>
-      <p class="lead mb-3 text-white">{{ blog.conclusion|safe }}</p>
+    {% endfor %}
+    <!-- end pageintro -->
+
+    <div class="row pagemedia">
+      <div class="column xl-12">
+        <figure class="page-media">
+          <img
+            src="{% static 'images/sample-1200.jpg' %}"
+            srcset="
+              {% static 'images/sample-2400.jpg' %} 2400w,
+              {% static 'images/sample-1200.jpg' %} 1200w,
+              {% static 'images/sample-600.jpg' %}   600w
+            "
+            sizes="(max-width: 2400px) 100vw, 2400px"
+            alt=""
+          />
+        </figure>
+      </div>
     </div>
-    <!-- end row -->
+    <!-- end pagemedia -->
   </section>
 </section>
 <!-- s-content-->
