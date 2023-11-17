@@ -12,6 +12,17 @@ from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 
+# Email Logic Start
+from django.core.mail import send_mail, EmailMessage
+from django.conf import settings
+
+# Amapiano Slots Logic
+from django.db.models import Count
+from django.http import JsonResponse
+import uuid
+import os
+# Email Logic End
+
 def index(request):
     page_name = "- Masters of the Digital Realm"
     blogs = Blog.objects.all()
@@ -101,6 +112,9 @@ def contact(request):
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
+            # Get the email from the form/user
+            email = contact_form.cleaned_data.get('email')
+            
             contact_form.save()
             name = contact_form.cleaned_data.get('name')
             message = contact_form.cleaned_data.get('message')
@@ -109,6 +123,23 @@ def contact(request):
             user = contact_form.cleaned_data.get('user')
             print(
                 f"==== NEW CONTACT ====\n\nFrom: {name} - User: {user}\nMessage: {message}\nEmail: {email}\nPhone Number: {phone_number}\n\n==== END OF NEW CONTACT ====")
+            
+            # Send mail utility start
+            subject = 'Thank You for Reaching Out to Four Pixels'
+            message = f"Hi {name},\n\nThank you for reaching out to Four Pixels! We're thrilled to receive your message and appreciate your interest in our creative studio.\n\nOur team is dedicated to transforming ideas into captivating digital experiences, and we're excited about the possibility of collaborating with you.\n\nWe have received your inquiry and will review it carefully. Expect to hear back from us within the next 1hr with more information or to schedule a discussion about your project.\n\nIn the meantime, feel free to explore our portfolio to get a sense of our creative capabilities. If you have any additional information or specific details you'd like to share, please reply to this email, and we'll ensure it's factored into our conversation.\n\nThank you once again for considering Four Pixels. We look forward to the opportunity to create something extraordinary together.\n\nBest regards,\n\nMoses Bartena\nVisual Identity Designer\nFour Pixels Creative Studio\nhello@fourpixels.com"
+            from_email = '4ourpixels@gmail.com'
+            recepient_list = [email]
+
+            # Create an EmailMessage instance
+            email_message = EmailMessage(
+                subject,
+                message,
+                from_email,
+                recepient_list,
+            )
+            email_message.send()
+            # Send mail utility end
+            
             messages.success(
                 request, (f'Thank you {name}! We have received your message!'))
             return redirect('contact')
@@ -136,6 +167,7 @@ def contact(request):
     }
     return render(request, 'contact.html', context)
 
+# Services start
 def services(request):
     page_name = "- Services"
     tags = MessageTag.objects.all()
@@ -193,8 +225,11 @@ def services(request):
         'testimonials': testimonials,
     }
     return render(request, 'services.html', context)
+# Services end
 
+# Blog Logic Start
 
+# Function to get previous and next blog in the blog detail
 def get_previous_and_next_blog(blog):
     blogs = Blog.objects.order_by('-pub_date')
     blog_index = list(blogs).index(blog)
@@ -210,6 +245,7 @@ def get_previous_and_next_blog(blog):
 
     return previous_blog, next_blog
 
+# Function to render out blog details
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     
@@ -225,6 +261,7 @@ def blog_detail(request, slug):
 
     return render(request, 'blog_detail.html', context)
 
+# Function to render out all blogs
 def blog_list(request):
     recent_blogs = Blog.objects.order_by('-pk')
     page_name = f"- Blogs"
@@ -234,7 +271,9 @@ def blog_list(request):
     }
     return render(request, 'blog_list.html', context)
 
+# Blog Logic End
 
+# Newsletter blog Start
 def newsletter(request):
     page_name = "- Newsletter"
 
@@ -261,3 +300,4 @@ def newsletter(request):
     }
 
     return render(request, 'newsletter.html', context)
+# Newsletter blog end
