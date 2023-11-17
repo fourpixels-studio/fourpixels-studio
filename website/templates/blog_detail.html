@@ -1,38 +1,153 @@
 {% extends 'base.html' %} {% load static %} {% block body %}
 <!-- # site main content
         ================================================== -->
-<section id="content" class="s-content">
-  <section class="s-pageheader pageheader">
+<article id="content" class="s-content entry">
+  <div class="s-pageheader entry__header">
     <div class="row">
       <div class="column xl-12">
-        <h1 class="page-title">
-          <span class="page-title__small-type text-pretitle">My Blog</span>
-          Recent Writings
-        </h1>
-      </div>
-    </div>
-  </section>
+        <h1 class="entry__title">{{ blog.title }}</h1>
+        <!-- end entry__title -->
 
-  <section class="s-pagecontent pagecontent">
-    <div class="row">
-      <div class="column xl-12 grid-block">
-        <div class="grid-full">
-          <h3 class="text-white text-center">{{ blog.title }}</h3>
+        <div class="entry__meta">
+          <div class="entry__meta-date">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <circle
+                cx="12"
+                cy="12"
+                r="7.25"
+                stroke="currentColor"
+                stroke-width="1.5"
+              ></circle>
+              <path
+                stroke="currentColor"
+                stroke-width="1.5"
+                d="M12 8V12L14 14"
+              ></path>
+            </svg>
+            {{ blog.pub_date|date:"M d, Y" }}
+          </div>
+          <div class="entry__meta-cat">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M19.25 17.25V9.75C19.25 8.64543 18.3546 7.75 17.25 7.75H4.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25Z"
+              ></path>
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M13.5 7.5L12.5685 5.7923C12.2181 5.14977 11.5446 4.75 10.8127 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V11"
+              ></path>
+            </svg>
+            <span class="cat-links">
+              <a href="">{{ blog.category }}</a>
+            </span>
+          </div>
         </div>
+        <!-- end entry__meta -->
       </div>
-      <!-- end grid-block-->
     </div>
-    <div class="row my-4">
-      <h6 class="mb-3 text-white">{{ blog.introduction|safe }}</h6>
-      <p class="mb-3 text-white">{{ blog.paragraph_1|safe }}</p>
-      <p class="mb-3 text-white">{{ blog.paragraph_2|safe }}</p>
-      <p class="mb-3 text-white">{{ blog.paragraph_3|safe }}</p>
-      <p class="lead mb-3 text-white">{{ blog.conclusion|safe }}</p>
+  </div>
+  <!-- end entry__header -->
+
+  <div class="bg-white s-pagecontent entry__content">
+    <div class="row entry__media">
+      <div class="column xl-12">
+        <figure class="featured-image">
+          <img
+            src="{% static 'images/thumbs/single/standard-1200.jpg' %}"
+            srcset="
+              {% static 'images/thumbs/single/standard-2400.jpg' %} 2400w,
+              {% static 'images/thumbs/single/standard-1200.jpg' %} 1200w,
+              {% static 'images/thumbs/single/standard-600.jpg' %}   600w
+            "
+            sizes="(max-width: 2400px) 100vw, 2400px"
+            alt=""
+          />
+        </figure>
+      </div>
     </div>
-    <!-- end row -->
-  </section>
-</section>
-<!-- s-content-->
+    <!-- end entry__media -->
+
+    <div class="row entry__primary width-narrower">
+      <div class="column xl-12">
+        <p style="color: #ffffff" class="lead">
+          {{ blog.introduction|safe|linebreaks }}
+        </p>
+
+        <p class="drop-cap">{{ blog.paragraph_1|safe|linebreaks }}</p>
+
+        <p>{{ blog.paragraph_2|safe|linebreaks }}</p>
+
+        <figure class="alignwide">
+          <img
+            src="{% static 'images/sample-1200.jpg' %}"
+            srcset="
+              {% static 'images/sample-2400.jpg' %} 2400w,
+              {% static 'images/sample-1200.jpg' %} 1200w,
+              {% static 'images/sample-600.jpg' %}   600w
+            "
+            sizes="(max-width: 2400px) 100vw, 2400px"
+            alt=""
+          />
+        </figure>
+
+        <p>{{ blog.paragraph_3|safe|linebreaks }}</p>
+
+        <h2>Conclusion</h2>
+
+        <p>{{ blog.conclusion|safe|linebreaks }}</p>
+
+        <!-- <blockquote>
+          <p>
+            For God so loved the world, that he gave his only Son, that whoever
+            believes in him should not perish but have eternal life. For God did
+            not send his Son into the world to condemn the world, but in order
+            that the world might be saved through him.
+          </p>
+          <cite>John 3:16-17 ESV</cite>
+        </blockquote> -->
+
+        <div class="post-nav">
+          <div class="post-nav__prev">
+            {% if previous_blog %}
+            <a
+              href="{% url 'blog_detail' slug=previous_blog.slug %}"
+              rel="prev"
+            >
+              <span>Prev</span>
+              {{ previous_blog.title }}
+            </a>
+            {% else %}
+            <a href="{% url 'blog_list'  %}" rel="prev">
+              <span>All</span>
+              Check more blogs
+            </a>
+            {% endif %}
+          </div>
+          <div class="post-nav__next">
+            {% if next_blog %}
+            <a href="{% url 'blog_detail' slug=next_blog.slug %}" rel="next">
+              <span>Next</span>
+              {{ next_blog.title }}
+            </a>
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- end post-nav -->
+      </div>
+      <!-- end column-->
+    </div>
+    <!-- end entry__primary -->
+  </div>
+  <!-- end entry__content -->
+</article>
+<!-- s-content entry-->
 
 <!-- # cta
         ================================================== -->
@@ -43,12 +158,10 @@
         <h2 class="text-display-title">
           Get started with a consultation today.
         </h2>
-        <p class="lead">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis rem,
-          esse doloribus sint eaque at debitis enim vitae minus expedita ratione
-          dignissimos sit nostrum optio sequi. Ipsa at beatae quam.
-        </p>
-        <a href="contact.html" class="btn btn--primary">Let's Work Together</a>
+        <p class="lead">{{ tag2 }}</p>
+        <a href="{% url 'contact' %}" class="btn btn--primary"
+          >Let's Work Together</a
+        >
       </div>
     </div>
   </div>
