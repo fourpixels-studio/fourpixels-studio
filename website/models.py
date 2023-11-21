@@ -84,7 +84,21 @@ class Testimonial(models.Model):
     department = models.CharField(max_length=200, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     testimonial = models.TextField(blank=True, null=True)
+    post_testimonial = models.BooleanField(default=True, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     
     def __str__(self):
         return f"{self.name}' Testimonial - Posted On: {self.pub_date.strftime('%A, %B %d, %Y')}"
+
+class Contact(models.Model):
+    user = models.OneToOneField(
+        User, null=True, blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=200, null=True, blank=True)
+    message = models.TextField(null=True, blank=True)
+    phone_number = models.CharField(max_length=20, null=True, blank=True)
+    email = models.EmailField(default='', null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+
+    def __str__(self):
+        return f'Lead Name: {self.name}'

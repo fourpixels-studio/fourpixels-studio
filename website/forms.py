@@ -73,3 +73,19 @@ class TestimonialForm(forms.ModelForm):
             self.fields['department'].widget.attrs['class'] = 'form-control'
             self.fields['email'].widget.attrs['class'] = 'form-control'
             self.fields['testimonial'].widget.attrs['class'] = 'form-control'
+            self.fields['post_testimonial'].widget.attrs['class'] = 'form-check-input'
+
+
+
+class ContactForm(ModelForm):
+    class Meta:
+        model = Contact
+        fields = ("__all__")
+        exclude = ['user']
+
+        def __init__(self, *args, **kwagrs):
+            super(ContactForm, self).__init__(*args, **kwagrs)
+            self.fields['name'].widget.attrs['class'] = 'form-control'
+            self.fields['message'].widget.attrs['class'] = 'form-control'
+            self.fields['phone_number'].widget.attrs['class'] = 'form-control'
+            self.fields['email'].widget.attrs['class'] = 'form-control'

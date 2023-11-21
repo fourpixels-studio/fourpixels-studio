@@ -225,6 +225,24 @@ def services(request):
         'testimonials': testimonials,
     }
     return render(request, 'services.html', context)
+
+def services_web_development(request):
+    page_name = "- Web & App Development Services"
+    
+    about_object = AboutSection.objects.all()
+    web_development_heading = about_object[2].question
+    web_development = about_object[2].content_1
+    web_development = about_object[2].content_1
+
+    # Testimonials
+    testimonials = Testimonial.objects.order_by('-pk')
+    
+    context = {
+        'page_name': page_name,
+        'testimonials': testimonials,
+        'web_development_heading': web_development_heading,
+    }
+    return render(request, 'services_web_development.html', context)
 # Services end
 
 # Blog Logic Start
