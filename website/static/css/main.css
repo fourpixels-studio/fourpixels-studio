@@ -53,3 +53,18 @@
 .bg-primary-2 {
   background-color: #3f7d75;
 }
+.text--white {
+  color: #fff;
+}
+.dark-mode {
+  color: #fff;
+  background-color: black;
+}
+.light-mode {
+  background-color: #fff;
+  color: black;
+}
+
+.link_unstyled {
+  color: #484949;
+}
