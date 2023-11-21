@@ -319,3 +319,13 @@ def newsletter(request):
 
     return render(request, 'newsletter.html', context)
 # Newsletter blog end
+
+# DJ G400 Start
+def djg400(request):
+    page_name = f"- DJ G400"
+    context = {
+        'page_name': page_name,
+    }
+    return render(request, 'djg400.html', context)
+
+# DJ G400 End
