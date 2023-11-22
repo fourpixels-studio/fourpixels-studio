@@ -323,8 +323,10 @@ def newsletter(request):
 # DJ G400 Start
 def djg400(request):
     page_name = f"- DJ G400"
+    merchandise = Merchandise.objects.order_by("-pk")
     context = {
         'page_name': page_name,
+        'merchandise': merchandise,
     }
     return render(request, 'djg400.html', context)
 
