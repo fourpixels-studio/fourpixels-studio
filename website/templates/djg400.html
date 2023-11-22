@@ -90,8 +90,8 @@
   <section class="s-testimonials">
     <div class="s-testimonials__header row row-x-center text-center">
       <div class="column xl-8 lg-12">
-        <p class="text-pretitle text-primary-2">Testimonials</p>
-        <h3>Reviews From Real Clients</h3>
+        <p class="text-pretitle text-primary-2">Merchandise</p>
+        <h3>Cool threads from Arap Trap!</h3>
       </div>
     </div>
     <!--end s-testimonials__header -->
@@ -100,19 +100,17 @@
       <div class="column xl-12 testimonials">
         <div class="swiper-container testimonials__slider page-slider">
           <div class="swiper-wrapper">
-            {% for testimonial in testimonials %}
+            {% for merch in merchandise %}
             <div class="testimonials__slide swiper-slide">
-              <p>{{ testimonial.testimonial|safe }}</p>
               <div class="testimonials__author">
                 <img
-                  src="{% static 'images/avatars/user-01.jpg' %}"
-                  alt="{{ testimonial.author }} image"
-                  class="testimonials__avatar"
+                  src="{{ merch.image.url }}"
+                  alt="{{ merch.name }}'s' image"
+                  height="800"
+                  width="100%"
+                  class="img-fluid"
                 />
-                <cite class="testimonials__cite">
-                  <strong>{{ testimonial.name }}</strong>
-                  <span>{{ testimonial.department }}</span>
-                </cite>
+                <p class="text-center">{{ merch.name }}</p>
               </div>
             </div>
             {% endfor %}
