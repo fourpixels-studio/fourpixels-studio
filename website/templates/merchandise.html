@@ -1,0 +1,144 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<!-- # site main content
+        ================================================== -->
+<section id="content" class="s-content">
+  <section class="s-pageheader pageheader">
+    <div class="row">
+      <div class="column xl-12">
+        <h1 class="page-title">
+          <span class="page-title__small-type text-pretitle"
+            >Threads from Arap Trap!</span
+          >
+          Merch
+        </h1>
+      </div>
+    </div>
+  </section>
+  <!--pageheader -->
+
+  <section class="s-pagecontent pagecontent">
+    <div class="row pageintro">
+      <div class="column xl-6 lg-12">
+        <h2 class="text-display-title text-primary-2">
+          Arap Trap's Merchandise Store
+        </h2>
+      </div>
+      <div class="column xl-6 lg-12 u-flexitem-x-right">
+        <p class="lead text-secondary">
+          Shop the latest collection of urban, modern, and fresh merchandise
+          inspired by Arap Trap's unique style.
+        </p>
+      </div>
+    </div>
+    <!-- pageintro -->
+
+    <div class="row pagemedia">
+      <div class="column xl-12">
+        <figure class="page-media">
+          <img
+            src="{% static 'images/thumbs/single/g400-1200.jpg' %}"
+            srcset="
+              {% static 'images/thumbs/single/merchandise-2400.jpg' %} 2400w,
+              {% static 'images/thumbs/single/merchandise-1200.jpg' %} 1200w,
+              {% static 'images/thumbs/single/merchandise-600.jpg' %}   600w
+            "
+            sizes="(max-width: 2400px) 100vw, 2400px"
+            alt=""
+          />
+        </figure>
+      </div>
+    </div>
+    <!-- pagemedia -->
+
+    <div
+      class="row d-flex pagemain align-items-center d-flex justify-content-center"
+    >
+      <div class="col-sm-6 text-center text-white col-md-4">
+        <h2 class="text-primary-2">Hoodies</h2>
+        {% for merch in merchandise %}
+        <small>{{ merch.name }}</small><br />
+        <img
+          height="30px"
+          width="auto"
+          src="{{ merch.image.url }}"
+          alt="{{ merch.name }}' Thumbnail"
+          class="img-fluid"
+        />
+        {% endfor %}
+      </div>
+
+      <div class="col-sm-6 text-center text-white col-md-4">
+        <h2 class="text-primary-2">T-Shirts</h2>
+        {% for merch in merchandise %}
+        <small>{{ merch.name }}</small><br />
+        <img
+          height="30px"
+          width="auto"
+          src="{{ merch.image.url }}"
+          alt="{{ merch.name }}' Thumbnail"
+          class="img-fluid"
+        />
+        {% endfor %}
+      </div>
+
+      <div class="col-sm-6 text-center text-white col-md-4">
+        <h2 class="text-primary-2">Popular</h2>
+        {% for merch in merchandise %}
+        <small>{{ merch.name }}</small><br />
+        <img
+          height="30px"
+          width="auto"
+          src="{{ merch.image.url }}"
+          alt="{{ merch.name }}' Thumbnail"
+          class="img-fluid"
+        />
+        {% endfor %}
+      </div>
+    </div>
+    <!-- end pagemain -->
+  </section>
+  <!-- pagecontent -->
+
+  <section class="s-testimonials">
+    <div class="s-testimonials__header row row-x-center text-center">
+      <div class="column xl-8 lg-12">
+        <p class="text-pretitle text-primary-2">Merchandise</p>
+        <h3>Cool threads from Arap Trap!</h3>
+      </div>
+    </div>
+    <!--end s-testimonials__header -->
+
+    <div class="row s-testimonials__content">
+      <div class="column xl-12 testimonials">
+        <div class="swiper-container testimonials__slider page-slider">
+          <div class="swiper-wrapper">
+            {% for merch in merchandise %}
+            <div class="testimonials__slide swiper-slide">
+              <div class="testimonials__author">
+                <img
+                  src="{{ merch.image.url }}"
+                  alt="{{ merch.name }}'s' image"
+                  height="800"
+                  width="100%"
+                  class="img-fluid"
+                />
+                <p class="text-center">{{ merch.name }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- end swiper-wrapper -->
+
+          <div class="swiper-pagination"></div>
+        </div>
+        <!--end testimonials__slider -->
+      </div>
+      <!-- testimonials -->
+    </div>
+    <!--end s-testimonials__content -->
+  </section>
+  <!-- end s-testimonials -->
+</section>
+<!-- s-content-->
+{% endblock %}
