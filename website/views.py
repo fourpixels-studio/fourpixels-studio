@@ -330,4 +330,14 @@ def djg400(request):
     }
     return render(request, 'djg400.html', context)
 
+# Merchandise
+def merchandise(request):
+    page_name = f"- Merch"
+    merchandise = Merchandise.objects.order_by("-pk")
+    context = {
+        'page_name': page_name,
+        'merchandise': merchandise,
+    }
+    return render(request, 'merchandise.html', context)
+
 # DJ G400 End
