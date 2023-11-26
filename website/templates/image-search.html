@@ -1,0 +1,57 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<link rel="stylesheet" href="{% static 'css/image-search.css' %}" />
+<div style="margin-top: 14rem" class="container">
+  <h3 class="text-center my-5 text-white" id="search-query-display">
+    Search for beautiful, free images and photos that you can download and use
+    for any project.
+  </h3>
+  <form id="search-form" class="d-flex input-group">
+    <input
+      id="search-box"
+      class="form-control me-2"
+      type="text"
+      placeholder="Search for images"
+    />
+    <button class="btn btn--primary" type="submit">Search</button>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row justify-content-center" id="search-result"></div>
+</div>
+<button
+  type="submit"
+  class="btn text-center text-center mx-auto btn-primary-outline my-5"
+  id="show-more-btn"
+>
+  Show more
+</button>
+
+<small class="text--secondary my-5 text-center"
+  >Images provided by Unsplash API</small
+>
+
+<script src="{% static 'js/image-search.js' %}"></script>
+<script>
+  const accessToken = "YOUR_ACCESS_TOKEN";
+  const userId = "YOUR_USER_ID";
+
+  fetch(
+    `https://graph.instagram.com/${userId}/media?fields=id,media_url&access_token=${accessToken}`
+  )
+    .then((response) => response.json())
+    .then((data) => {
+      // Process the response data
+      const media = data.data;
+      media.forEach((item) => {
+        // Create an image element for each media item
+        const img = document.createElement("img");
+        img.src = item.media_url;
+        document.body.appendChild(img); // Append the image to the body or any other container element
+      });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+</script>
+{% endblock %}
