@@ -268,6 +268,8 @@ def get_previous_and_next_blog(blog):
 # Function to render out blog details
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
+    meta_description = blog.meta_description
+    meta_keywords = blog.meta_keywords
     
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
@@ -277,6 +279,8 @@ def blog_detail(request, slug):
         'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
         'previous_blog': previous_blog,
         'next_blog': next_blog,
+        "meta_description": meta_description,
+        "meta_keywords": meta_keywords,
     }
 
     return render(request, 'blog_detail.html', context)
@@ -347,11 +351,13 @@ def merchandise(request):
 # Image Search Start
 def image_search(request):
     title_tag = "- Search for beautiful, free images and photos that you can download and use for any project."
-    meta_description = "Join the Lukustore.nl community! Sign up for an account to access exclusive offers, stay updated on the latest Kenyan fashion trends, and be part of our socially-conscious shopping experience. Register now for a personalized shopping journey that celebrates diversity and style."
-    meta_keywords = "Luku Store.nl Signup, Account Registration, Exclusive Offers, Fashion Updates, Socially-conscious Shopping, Personalized Account, Kenyan Fashion, Streetwear, Community Membership, Stay Connected, Diverse Style."
-   
+    blog = get_object_or_404(Blog, pk=4)
+    meta_description = blog.meta_description
+    meta_keywords = blog.meta_keywords
     context = {
         'title_tag': title_tag,
+        'meta_description': meta_description,
+        'meta_keywords': meta_keywords,
     }
     return render(request, 'image-search.html', context)
 # Image Search End

@@ -17,6 +17,8 @@ class Blog(models.Model):
     blog_image = models.ImageField(default="blog.jpg", blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
+    meta_description = models.TextField(blank=True, null=True)
+    meta_keywords = models.TextField(blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     
     def __str__(self):
