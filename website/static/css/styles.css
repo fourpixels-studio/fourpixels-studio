@@ -969,8 +969,7 @@ body {
 }
 
 body {
-  /* background-color: var(--color-body); */
-  background-color: #000;
+  background-color: var(--color-body);
   -webkit-overflow-scrolling: touch;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;

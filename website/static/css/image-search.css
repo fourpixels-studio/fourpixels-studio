@@ -16,3 +16,10 @@
   text-decoration: none;
   color: inherit;
 }
+
+/* Media query for small screens */
+@media screen and (max-width: 767px) {
+  #search-result {
+    grid-template-columns: 1fr 1fr;
+  }
+}

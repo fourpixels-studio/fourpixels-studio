@@ -24,7 +24,6 @@ async function searchImages() {
   results.map((result) => {
     const image = document.createElement("img");
     image.src = result.urls.small;
-    image.classList = "col-sm-12";
     // Get the link of the result and open a new page when the user clicks on it
     const imageLink = document.createElement("a");
     imageLink.href = result.links.html;
@@ -36,7 +35,7 @@ async function searchImages() {
   // Show button displays after (12) images are retrieved
   showMoreBtn.style.display = "block";
   // Update the content of the search query display element
-  searchQueryDisplay.textContent = `Showing results for "${keyword}"`;
+  searchQueryDisplay.textContent = `Showing "${keyword}" results`;
   // Capitalize the first letter of the keyword
   const capitalizedKeyword = keyword.charAt(0).toUpperCase() + keyword.slice(1);
 
