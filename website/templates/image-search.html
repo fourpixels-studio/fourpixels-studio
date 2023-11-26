@@ -32,26 +32,4 @@
 >
 
 <script src="{% static 'js/image-search.js' %}"></script>
-<script>
-  const accessToken = "YOUR_ACCESS_TOKEN";
-  const userId = "YOUR_USER_ID";
-
-  fetch(
-    `https://graph.instagram.com/${userId}/media?fields=id,media_url&access_token=${accessToken}`
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      // Process the response data
-      const media = data.data;
-      media.forEach((item) => {
-        // Create an image element for each media item
-        const img = document.createElement("img");
-        img.src = item.media_url;
-        document.body.appendChild(img); // Append the image to the body or any other container element
-      });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-</script>
 {% endblock %}
