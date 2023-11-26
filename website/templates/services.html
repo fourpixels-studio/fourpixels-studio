@@ -40,20 +40,27 @@
         <div class="grid-full grid-list-items list-items show-ctr">
           <div class="grid-list-items__item list-items__item">
             <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Web/App Development</h3>
+              <h3 class="list-items__item-title">Applications</h3>
             </div>
             <div class="list-items__item-text">
               <p>
-                We craft custom web and app solutions tailored just for you.
-                Ready to take your online presence to the next level?
+                We develop web applications solutions tailored just for you.
               </p>
 
               <ul class="list-services">
-                <li><a href="" class="link_unstyled">Portfolio</a></li>
-                <li><a href="" class="link_unstyled">Blogs</a></li>
+                <li>
+                  <a href="{% url 'image_compression' %}" class="link_unstyled"
+                    >Image Compression</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'image_search' %}" class="link_unstyled"
+                    >Image Search</a
+                  >
+                </li>
                 <li>
                   <a
-                    href="{% url 'services_web_development' %}"
+                    href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}"
                     class="link_unstyled"
                     >Read More</a
                   >
@@ -61,44 +68,6 @@
               </ul>
             </div>
           </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Graphic Design</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Stunning logos, unforgettable branding, and print materials that
-                leave a lasting impression.
-              </p>
-
-              <ul class="list-services">
-                <li>Lorem Ipsum</li>
-                <li>voluptatibus Earum</li>
-                <li>Cumque Ducimus</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Digital Art</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Transform your content into visual magic with our mesmerizing
-                motion graphics. From videos to presentations, we make your
-                ideas dance!
-              </p>
-
-              <ul class="list-services">
-                <li>Eaque velit</li>
-                <li>Asperiores</li>
-                <li>Cumque Ducimus</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
           <div class="grid-list-items__item list-items__item">
             <div class="list-items__item-header">
               <h3 class="list-items__item-title">Groove With DJ G400!</h3>
