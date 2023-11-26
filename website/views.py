@@ -24,16 +24,18 @@ import os
 # Email Logic End
 
 def index(request):
-    page_name = "- Masters of the Digital Realm"
+    title_tag = "- Masters of the Digital Realm"
+    meta_descriprion = "Masters of the digital realm, blending creativity and technology into mind-blowing experiences. Graphic gurus, web whisperers, and visual/audio virtuosos. Elevate your online presence with custom web/app development, stunning graphic design, mesmerizing digital art, and epic DJ services."
+    meta_keywords = "digital realm, creativity, technology, website development, app development, graphic design, digital art, DJ services, online presence"
     blogs = Blog.objects.all()
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'blogs': blogs,
     }
     return render(request, 'index.html', context)
 
 def about(request):
-    page_name = "- About Us"
+    title_tag = "- About Us"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -73,7 +75,7 @@ def about(request):
 
     
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -90,7 +92,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 def contact(request):
-    page_name = "- Contact Us"
+    title_tag = "- Contact Us"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -151,7 +153,7 @@ def contact(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -169,7 +171,7 @@ def contact(request):
 
 # Services start
 def services(request):
-    page_name = "- Services"
+    title_tag = "- Services"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -210,7 +212,7 @@ def services(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -227,7 +229,7 @@ def services(request):
     return render(request, 'services.html', context)
 
 def services_web_development(request):
-    page_name = "- Web & App Development Services"
+    title_tag = "- Web & App Development Services"
     
     about_object = AboutSection.objects.all()
     web_development_heading = about_object[2].question
@@ -238,7 +240,7 @@ def services_web_development(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'testimonials': testimonials,
         'web_development_heading': web_development_heading,
     }
@@ -270,7 +272,7 @@ def blog_detail(request, slug):
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
     context = {
-        'page_name': f"- {blog.title}",
+        'title_tag': f"- {blog.title}",
         'blog': blog,
         'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
         'previous_blog': previous_blog,
@@ -282,9 +284,9 @@ def blog_detail(request, slug):
 # Function to render out all blogs
 def blog_list(request):
     recent_blogs = Blog.objects.order_by('-pk')
-    page_name = f"- Blogs"
+    title_tag = f"- Blogs"
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'recent_blogs': recent_blogs,
     }
     return render(request, 'blog_list.html', context)
@@ -293,7 +295,7 @@ def blog_list(request):
 
 # Newsletter blog Start
 def newsletter(request):
-    page_name = "- Newsletter"
+    title_tag = "- Newsletter"
 
     if request.method == 'POST':
         newsletter_form = NewsletterForm(request.POST)
@@ -313,7 +315,7 @@ def newsletter(request):
         newsletter_form = NewsletterForm()
 
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'newsletter_form': newsletter_form,
     }
 
@@ -322,22 +324,34 @@ def newsletter(request):
 
 # DJ G400 Start
 def djg400(request):
-    page_name = f"- DJ G400"
+    title_tag = f"- DJ G400"
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'merchandise': merchandise,
     }
     return render(request, 'djg400.html', context)
 
 # Merchandise
 def merchandise(request):
-    page_name = f"- Merch"
+    title_tag = f"- Merch"
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
-        'page_name': page_name,
+        'title_tag': title_tag,
         'merchandise': merchandise,
     }
     return render(request, 'merchandise.html', context)
 
 # DJ G400 End
+
+# Image Search Start
+def image_search(request):
+    title_tag = "- Search for beautiful, free images and photos that you can download and use for any project."
+    meta_description = "Join the Lukustore.nl community! Sign up for an account to access exclusive offers, stay updated on the latest Kenyan fashion trends, and be part of our socially-conscious shopping experience. Register now for a personalized shopping journey that celebrates diversity and style."
+    meta_keywords = "Luku Store.nl Signup, Account Registration, Exclusive Offers, Fashion Updates, Socially-conscious Shopping, Personalized Account, Kenyan Fashion, Streetwear, Community Membership, Stay Connected, Diverse Style."
+   
+    context = {
+        'title_tag': title_tag,
+    }
+    return render(request, 'image-search.html', context)
+# Image Search End
