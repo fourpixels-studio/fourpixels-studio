@@ -16,13 +16,11 @@ from django.conf import settings
 from django.core.mail import send_mail, EmailMessage
 from django.conf import settings
 
-# Amapiano Slots Logic
-from django.db.models import Count
-from django.http import JsonResponse
-import uuid
-import os
-# Email Logic End
+# Image Compression Logic Start
+from django.http import HttpResponse
+from PIL import Image
 
+# Image Compression Logic End
 def index(request):
     title_tag = "- Masters of the Digital Realm"
     meta_descriprion = "Masters of the digital realm, blending creativity and technology into mind-blowing experiences. Graphic gurus, web whisperers, and visual/audio virtuosos. Elevate your online presence with custom web/app development, stunning graphic design, mesmerizing digital art, and epic DJ services."
@@ -361,3 +359,56 @@ def image_search(request):
     }
     return render(request, 'image-search.html', context)
 # Image Search End
+
+# Image Compression Start
+def image_compression(request):
+    title_tag = "- Easily compress images"
+    
+    meta_description = ""
+    meta_keywords = ""
+    
+    context = {
+        'title_tag': title_tag,
+        'meta_description': meta_description,
+        'meta_keywords': meta_keywords,
+    }
+    
+    if request.method == 'POST':
+        # Get the uploaded file from the request
+        uploaded_file = request.FILES['image']
+
+        file_name = uploaded_file
+        # Open the uploaded image using PIL
+        image = Image.open(uploaded_file)
+        
+        default_size = int(1024)
+        user_size = int(request.POST.get('compression_size', default_size))
+        
+        if user_size == 512:
+            selected_size = int(512)
+        elif user_size == 2048:
+            selected_size = int(2048)
+        else:
+            selected_size = default_size
+
+        # Perform image compression
+        max_image_size = selected_size  # Maximum width or height in pixels
+        aspect_ratio = image.width / image.height
+        new_width = int(max_image_size * aspect_ratio)
+        new_height = max_image_size
+        resized_image = image.resize((new_width, new_height))
+
+        # Create a response object with the compressed image
+        response = HttpResponse(content_type='image/png')
+        resized_image.save(response, 'PNG')
+
+        # Set the appropriate headers for file download
+        response['Content-Disposition'] = f'attachment; filename="compressed_{file_name}.png"'
+        
+        # Add a success message to be displayed in the template
+        context['success_message'] = f'The image "{file_name}" was compressed successfully!'
+
+        return response
+
+    return render(request, 'image-compression.html', context)
+# Image Compression End
