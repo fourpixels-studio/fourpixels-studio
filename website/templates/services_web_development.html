@@ -7,8 +7,10 @@
     <div class="row">
       <div class="column xl-12">
         <h1 class="page-title">
-          <span class="page-title__small-type text-pretitle">Services</span>
-          {{ web_development_heading|safe }}
+          <span class="page-title__small-type text-pretitle"
+            >Services / Portfolio</span
+          >
+          Web/App Development
         </h1>
       </div>
     </div>
@@ -36,197 +38,47 @@
     <div class="row">
       <div class="column xl-12 grid-block">
         <div class="grid-full grid-list-items list-items show-ctr">
+          <!-- end list-items__item -->
+          {% for client in clients %}
           <div class="grid-list-items__item list-items__item">
             <div class="list-items__item-header">
-              <h3 class="list-items__item-title">
-                Amsterdam Scientific Instruments
-              </h3>
+              <h3 class="list-items__item-title">{{ client.company_name }}</h3>
             </div>
             <div class="list-items__item-text">
-              <p>
-                A website for customized detector solutions for researchers.
-                <br />
-                <br />
-                <a class="small link_unstyled" href="https://amscins.com/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
+              <p>{{ client.description }}</p>
 
+              {% if client.blog_link %}
               <ul class="list-services">
-                <li>Django</li>
-                <li>Python</li>
-                <li>SASS</li>
+                <li>
+                  <i class="fa-solid fa-link"></i>
+                  <a
+                    class="small link_unstyled"
+                    href="{{ client.website_link }}"
+                    >Try App</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="small link_unstyled"
+                    href="{% url 'blog_detail' slug=client.blog_link|safe %}"
+                    ><i class="fa-solid fa-link"></i> {{ client.app_link }}</a
+                  >
+                </li>
               </ul>
+              {% else %}
+              <ul class="list-services">
+                <li>
+                  <a
+                    class="small link_unstyled"
+                    href="{{ client.website_link }}"
+                    ><i class="fa-solid fa-link"></i> {{ client.link_name }}</a
+                  >
+                </li>
+              </ul>
+              {% endif %}
             </div>
           </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Luku Store.nl</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Clothing store based in the Netherlands. <br />
-                <br />
-                <a class="small link_unstyled" href="https://lukustore.nl/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>Django</li>
-                <li>Sqlite Database</li>
-                <li>Figma/Phototshop</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Code Black International</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Website for a movement that purposes to Entertain, Connect and
-                Impact the world through diverse creative works & beyond.
-                <br />
-                <br />
-                <a class="small link_unstyled" href="https://codeblackintl.com/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>Python</li>
-                <li>Linux</li>
-                <li>Spotify</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">DJ G400!</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Watch and download epic playlists, banging mixes, dazzling
-                outfits form Arap Trap.
-                <br />
-                <br />
-                <a
-                  class="small link_unstyled"
-                  href="https://4ourpixels.com/djg400.html#allMixes"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>Serato</li>
-                <li>YouTube</li>
-                <li>Spotify</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">African Spice Kitchen</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                Bringing the vibrant and diverse flavors of Kenyan cuisine to
-                the world.
-                <br />
-                <br />
-                <a
-                  class="small link_unstyled"
-                  href="https://4ourpixels.4ourpixels.github.io/African-Spice-Kitchen/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>Javascript</li>
-                <li>API</li>
-                <li>JSON</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Vom Saj Kennels</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                A pet service company operating in Kenya and neighboring
-                countries.
-                <br />
-                <br />
-                <a
-                  class="small link_unstyled"
-                  href="https://4ourpixels.github.io/Vom-Saj-Kennels/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>Bootstrap</li>
-                <li>GitHub</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Dream Pixels</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                A website to search for free stock images using Unsplash's free
-                image search Api.
-                <br />
-                <br />
-                <a
-                  class="small link_unstyled"
-                  href="https://4ourpixels.github.io/Vom-Saj-Kennels/gallery.html"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>API</li>
-                <li>Javascript</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
-          <div class="grid-list-items__item list-items__item">
-            <div class="list-items__item-header">
-              <h3 class="list-items__item-title">Four Pixels Chess Academy</h3>
-            </div>
-            <div class="list-items__item-text">
-              <p>
-                A free website to learn and master the game of chess with our
-                expert instructors. Includes a student management system
-                dashboard.
-                <br />
-                <br />
-                <a
-                  class="small link_unstyled"
-                  href="https://4ourpixels.github.io/School-Website/"
-                  ><i class="fa-solid fa-link"></i> View website</a
-                >
-              </p>
-
-              <ul class="list-services">
-                <li>LocalStorage</li>
-                <li>Javascript</li>
-              </ul>
-            </div>
-          </div>
-          <!-- end list-items__item -->
+          {% endfor %}
         </div>
         <!-- grid-list-items -->
       </div>
