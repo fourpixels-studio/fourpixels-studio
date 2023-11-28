@@ -47,14 +47,28 @@
             <div class="list-items__item-text">
               <p>{{ client.description }}</p>
 
-              {% if client.blog_link %}
+              {% if client.slug == 'pixa-scout' %}
               <ul class="list-services">
                 <li>
-                  <i class="fa-solid fa-link"></i>
+                  <a class="small link_unstyled" href="{% url 'image_search' %}"
+                    ><i class="fa-solid fa-link"></i> {{ client.link_name }}</a
+                  >
+                </li>
+                <li>
                   <a
                     class="small link_unstyled"
-                    href="{{ client.website_link }}"
-                    >Try App</a
+                    href="{% url 'blog_detail' slug=client.blog_link|safe %}"
+                    ><i class="fa-solid fa-link"></i> {{ client.app_link }}</a
+                  >
+                </li>
+              </ul>
+              {% elif client.slug == 'pixel-press' %}
+              <ul class="list-services">
+                <li>
+                  <a
+                    class="small link_unstyled"
+                    href="{% url 'image_compression' %}"
+                    ><i class="fa-solid fa-link"></i> {{ client.link_name }}</a
                   >
                 </li>
                 <li>
