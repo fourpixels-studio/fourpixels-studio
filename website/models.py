@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.dateformat import DateFormat
 from django.contrib.auth.models import User
-
+from django.urls import reverse
 # Create your models here.
 class Blog(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
@@ -119,4 +119,25 @@ class Merchandise(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
-# Merchandise End
+        
+# Client Portoflio End
+class ClientPortoflio(models.Model):
+    company_name = models.CharField(max_length=100, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    website_link = models.TextField(blank=True, null=True)
+    link_name = models.CharField(max_length=40,blank=True, null=True)
+    blog_link = models.TextField(blank=True, null=True)
+    app_link = models.TextField(blank=True, null=True)
+    
+    slug = models.SlugField(unique=True, null=True, blank=True)
+    
+    def __str__(self):
+        return self.company_name
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.company_name)
+        super().save(*args, **kwargs)
+        
+    def get_website_url(self):
+        return self.website_link
+# Client Portoflio End

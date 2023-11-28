@@ -231,14 +231,14 @@ def services_web_development(request):
     
     about_object = AboutSection.objects.all()
     web_development_heading = about_object[2].question
-    web_development = about_object[2].content_1
-    web_development = about_object[2].content_1
+    clients = ClientPortoflio.objects.all()
 
     # Testimonials
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
         'title_tag': title_tag,
+        'clients': clients,
         'testimonials': testimonials,
         'web_development_heading': web_development_heading,
     }
