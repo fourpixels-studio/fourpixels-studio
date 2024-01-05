@@ -18,4 +18,5 @@ urlpatterns = [
     path("blog/<slug:slug>/", views.blog_detail, name="blog_detail"),
     path("blogs/", views.blog_list, name="blog_list"),
     path('newsletter/', views.newsletter, name='newsletter'),
+    path('download-success/<int:pk>/', views.downloadSuccess, name='download-success'),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
