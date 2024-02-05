@@ -1,22 +1,21 @@
-from django.urls import path, re_path
-from .import views
-from django.conf import settings
-from django.conf.urls.static import static
-from django.shortcuts import redirect
+from django.urls import path
+from .views import index, about, contact, djg400, services, newsletter, merchandise, services_web_development, blog_detail, blog_list, downloadSuccess
+from .image_search import image_search
+from .image_compression import image_compression
 
 
 urlpatterns = [
-    path("", views.index, name="index"),
-    path("about/", views.about, name="about"),
-    path("contact/", views.contact, name="contact"),
-    path("djg400/", views.djg400, name="djg400"),
-    path("services/", views.services, name="services"),
-    path("services/app/image-search/", views.image_search, name="image_search"),
-    path("services/app/image-compression/", views.image_compression, name="image_compression"),
-    path("djg400/merchandise/", views.merchandise, name="merchandise"),
-    path("services/web-app-development/", views.services_web_development, name="services_web_development"),
-    path("blog/<slug:slug>/", views.blog_detail, name="blog_detail"),
-    path("blogs/", views.blog_list, name="blog_list"),
-    path('newsletter/', views.newsletter, name='newsletter'),
-    path('download-success/<int:pk>/', views.downloadSuccess, name='download-success'),
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("", index, name="index"),
+    path("about/", about, name="about"),
+    path("contact/", contact, name="contact"),
+    path("djg400/", djg400, name="djg400"),
+    path("services/", services, name="services"),
+    path("services/app/image-search/", image_search, name="image_search"),
+    path("services/app/image-compression/", image_compression, name="image_compression"),
+    path("djg400/merchandise/", merchandise, name="merchandise"),
+    path("services/web-app-development/", services_web_development, name="services_web_development"),
+    path("blog/<slug:slug>/", blog_detail, name="blog_detail"),
+    path("blogs/", blog_list, name="blog_list"),
+    path('newsletter/', newsletter, name='newsletter'),
+    path('download-success/<int:pk>/', downloadSuccess, name='download-success'),
+]

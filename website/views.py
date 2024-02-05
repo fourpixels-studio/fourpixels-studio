@@ -1,28 +1,15 @@
-from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
-from django.urls import reverse
 from .forms import *
 from django.contrib import messages
 from .models import *
-from django.http import JsonResponse
-import json
-import datetime
-# from .forms import *
-from django.core.paginator import Paginator
-from django.contrib.auth.decorators import login_required
-from django.conf import settings
 
 # Email Logic Start
-from django.core.mail import send_mail, EmailMessage
-from django.conf import settings
+from django.core.mail import EmailMessage
 
-# Image Compression Logic Start
-from django.http import HttpResponse
-from PIL import Image
 
 # Image Compression Logic End
 def index(request):
-    title_tag = "- Masters of the Digital Realm"
+    title_tag = "Masters of the Digital Realm"
     meta_descriprion = "Masters of the digital realm, blending creativity and technology into mind-blowing experiences. Graphic gurus, web whisperers, and visual/audio virtuosos. Elevate your online presence with custom web/app development, stunning graphic design, mesmerizing digital art, and epic DJ services."
     meta_keywords = "digital realm, creativity, technology, website development, app development, graphic design, digital art, DJ services, online presence"
     blogs = Blog.objects.all()
@@ -33,7 +20,6 @@ def index(request):
     return render(request, 'index.html', context)
 
 def about(request):
-    title_tag = "- About Us"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -73,7 +59,7 @@ def about(request):
 
     
     context = {
-        'title_tag': title_tag,
+        'title_tag': "About Us",
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -90,7 +76,7 @@ def about(request):
     return render(request, 'about.html', context)
 
 def contact(request):
-    title_tag = "- Contact Us"
+    title_tag = "Contact Us"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -169,7 +155,7 @@ def contact(request):
 
 # Services start
 def services(request):
-    title_tag = "- Services"
+    title_tag = "Services"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -227,8 +213,7 @@ def services(request):
     return render(request, 'services.html', context)
 
 def services_web_development(request):
-    title_tag = "- Web & App Development Services"
-    
+    title_tag = "Web & App Development Services"
     about_object = AboutSection.objects.all()
     web_development_heading = about_object[2].question
     clients = ClientPortoflio.objects.all()
@@ -251,7 +236,6 @@ def services_web_development(request):
 def get_previous_and_next_blog(blog):
     blogs = Blog.objects.order_by('-pub_date')
     blog_index = list(blogs).index(blog)
-
     previous_blog = None
     next_blog = None
 
@@ -272,7 +256,7 @@ def blog_detail(request, slug):
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
     context = {
-        'title_tag': f"- {blog.title}",
+        'title_tag': blog.title,
         'blog': blog,
         'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
         'previous_blog': previous_blog,
@@ -286,9 +270,8 @@ def blog_detail(request, slug):
 # Function to render out all blogs
 def blog_list(request):
     recent_blogs = Blog.objects.order_by('-pk')
-    title_tag = f"- Blogs"
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Blogs",
         'recent_blogs': recent_blogs,
     }
     return render(request, 'blog_list.html', context)
@@ -297,8 +280,6 @@ def blog_list(request):
 
 # Newsletter blog Start
 def newsletter(request):
-    title_tag = "- Newsletter"
-
     if request.method == 'POST':
         newsletter_form = NewsletterForm(request.POST)
         if newsletter_form.is_valid():
@@ -317,7 +298,7 @@ def newsletter(request):
         newsletter_form = NewsletterForm()
 
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Newsletter",
         'newsletter_form': newsletter_form,
     }
 
@@ -326,89 +307,31 @@ def newsletter(request):
 
 # DJ G400 Start
 def djg400(request):
-    title_tag = f"- DJ G400"
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
-        'title_tag': title_tag,
+        'title_tag': "DJ G400",
         'merchandise': merchandise,
     }
     return render(request, 'djg400.html', context)
 
 # Merchandise
 def merchandise(request):
-    title_tag = f"- Merch"
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Merchandise",
         'merchandise': merchandise,
     }
     return render(request, 'merchandise.html', context)
 
 # DJ G400 End
 
-# Image Search Start
-def image_search(request):
-    title_tag = "- Search for beautiful, free images and photos that you can download and use for any project."
-    blog = get_object_or_404(Blog, pk=4)
-    meta_description = blog.meta_description
-    meta_keywords = blog.meta_keywords
-    context = {
-        'title_tag': title_tag,
-        'meta_description': meta_description,
-        'meta_keywords': meta_keywords,
-    }
-    return render(request, 'image-search.html', context)
-# Image Search End
-
-# Image Compression Start
-def image_compression(request):
-    title_tag = "- Easily compress images"
-    
-    meta_description = ""
-    meta_keywords = ""
+def downloadSuccess(request, pk):
+    item = get_object_or_404(Object, pk=pk)
+    item.download_count = item.download_count + 1
+    item.save()
     
     context = {
-        'title_tag': title_tag,
-        'meta_description': meta_description,
-        'meta_keywords': meta_keywords,
+        'title_tag': "Success!",
+        'item': item,
     }
-    
-    if request.method == 'POST':
-        # Get the uploaded file from the request
-        uploaded_file = request.FILES['image']
-
-        file_name = uploaded_file
-        # Open the uploaded image using PIL
-        image = Image.open(uploaded_file)
-        
-        default_size = int(1024)
-        user_size = int(request.POST.get('compression_size', default_size))
-        
-        if user_size == 512:
-            selected_size = int(512)
-        elif user_size == 2048:
-            selected_size = int(2048)
-        else:
-            selected_size = default_size
-
-        # Perform image compression
-        max_image_size = selected_size  # Maximum width or height in pixels
-        aspect_ratio = image.width / image.height
-        new_width = int(max_image_size * aspect_ratio)
-        new_height = max_image_size
-        resized_image = image.resize((new_width, new_height))
-
-        # Create a response object with the compressed image
-        response = HttpResponse(content_type='image/png')
-        resized_image.save(response, 'PNG')
-
-        # Set the appropriate headers for file download
-        response['Content-Disposition'] = f'attachment; filename="compressed_{file_name}.png"'
-        
-        # Add a success message to be displayed in the template
-        context['success_message'] = f'The image "{file_name}" was compressed successfully!'
-
-        return response
-
-    return render(request, 'image-compression.html', context)
-# Image Compression End
+    return render(request, 'download-success.html', context)

@@ -27,6 +27,22 @@ class Blog(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+    @property
+    def get_blog_url(self):
+        return f"www.4ourpixels.com/{self.slug}/"
+    
+    @property
+    def get_og_image_url(self):
+        if self.cover_image:
+            return self.cover_image.url
+        else:
+            default_image_path = 'images/logo.jpg'
+            return static(default_image_path)
+    @property
+    def get_url(self):
+        return reverse("blog_detail", kwargs={
+            "slug": self.slug,
+        })
         
 class Customer(models.Model):
     user = models.OneToOneField(
@@ -88,7 +104,7 @@ class Testimonial(models.Model):
     testimonial = models.TextField(blank=True, null=True)
     post_testimonial = models.BooleanField(default=True, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    
+    image = models.ImageField(default="testimonial.jpg", upload_to="testimonial-images/", blank=True, null=True)
     def __str__(self):
         return f"{self.name}' Testimonial - Posted On: {self.pub_date.strftime('%A, %B %d, %Y')}"
 
