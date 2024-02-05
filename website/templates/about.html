@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% load static %} {% block body %}
 <!-- # site main content
         ================================================== -->
-<section id="content" class="s-content">
+<section id="content" class="bg-black s-content">
   <section class="s-pageheader pageheader">
     <div class="row">
       <div class="column xl-12">
@@ -46,10 +46,17 @@
 
     <div class="row width-narrower pagemain">
       <div class="column xl-12 text-white">
-        <h2 class="text-primary-2">How We Got Here</h2>
-        <p>{{ about_our_story }}</p>
+        <h2 class="text-primary-2">Bridging Art and Function</h2>
+        <p>
+          With a skilled team of graphic designers, web developers, and
+          multimedia editors, we channel creativity to fuel exceptional digital
+          design. Our focus is transforming abstract ideas into visually
+          compelling, user-friendly digital experiences that inspire. At Four
+          Pixels, we merge innovation and artistry for impactful online
+          engagement.
+        </p>
 
-        <h2 class="u-add-bottom text-primary-2">Our Values & Beliefs</h2>
+        <h2 class="u-add-bottom text-primary-2">Mission and Vision</h2>
 
         <div class="grid-list-items list-items">
           <div class="grid-list-items__item list-items__item u-remove-bottom">
@@ -58,15 +65,10 @@
                 Our Mission
               </h6>
             </div>
-            <p>{{ about_our_mission }}</p>
-          </div>
-          <div class="grid-list-items__item list-items__item u-remove-bottom">
-            <div class="list-items__item-header">
-              <h6 class="list-items__item-small-title text-primary-2">
-                The Team
-              </h6>
-            </div>
-            <p>{{ about_our_vision }}</p>
+            <p>
+              To inspire and engage people worldwide through contemporary art,
+              believing in its power to unite and positively influence society.
+            </p>
           </div>
           <div class="grid-list-items__item list-items__item u-remove-bottom">
             <div class="list-items__item-header">
@@ -74,45 +76,32 @@
                 Our Vision
               </h6>
             </div>
-            <p>{{ about_our_team }}</p>
+            <p>
+              To establish ourselves as a major force in the field of modern
+              art, pushing the limits of creativity and improving the world, one
+              pixel at a time.
+            </p>
           </div>
         </div>
         <!--grid-list-items -->
 
-        <h2 class="text-primary-2">Why Work With Me</h2>
+        <h2 class="text-primary-2">Our Team</h2>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque
-          temporibus culpa perferendis expedita assumenda mollitia magnam,
-          facilis voluptates voluptatum animi numquam quas ea praesentium
-          quaerat maxime sunt odit inventore itaque est et autem sequi nulla.
-          Distinctio obcaecati nesciunt asperiores dolorum tenetur voluptates,
-          nemo alias doloremque. Quos cumque ipsum laudantium odio vero aut odit
-          nostrum aliquam? Nostrum in facilis, minus fuga quasi voluptas
-          explicabo possimus incidunt, expedita tempora eius rem nobis sequi.
-          Doloribus esse sint suscipit quam nisi blanditiis voluptate explicabo.
+          We are a small, devoted group of creative artists led by
+          <a class="link_hover" href="/djg400">Moses Bartena.</a> United by our
+          love for contemporary art, we believe in the impact we can create
+          together. Our journey has been one of persistence, determination, and
+          continuous learning.
         </p>
-
+        <h2 class="text-primary-2">Let's Create Together</h2>
         <p>
-          Quibusdam quis autem voluptatibus earum vel ex error ea magni. Rerum
-          quam quos. Aut asperiores sit mollitia. Rem neque et voluptatem eos
-          quia sed eligendi et. Eaque velit eligendi ut magnam. Cumque ducimus
-          laborum doloribus facere maxime vel earum quidem enim suscipit.
-          Numquam, corporis accusamus commodi saepe nostrum nesciunt nisi rem
-          necessitatibus unde laboriosam molestias, quam ipsa voluptatum sed ex
-          cumque facilis assumenda maiores tempore reiciendis enim accusantium?
-        </p>
-
-        <h2 class="text-primary-2">A Few More Words About Myself</h2>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Et assumenda
-          debitis aut quidem ad voluptates quibusdam soluta temporibus, eveniet
-          nobis tempore sunt, provident sapiente accusamus dignissimos
-          voluptatum fugiat nulla dicta nihil molestiae aspernatur error in. Ut
-          quo porro voluptatum delectus asperiores culpa non cum facere minima
-          nesciunt assumenda, praesentium reprehenderit accusamus, quam repellat
-          nobis nemo? Ut magnam unde culpa pariatur possimus sunt fugiat ea
-          maxime praesentium eaque quo odio sed eligendi harum dolor,
-          repellendus reprehenderit facere nihil quam. Saepe, magni.
+          Whether you're looking for a stunning website, eye-catching graphics,
+          a vibrant social media presence, a memorable DJ experience, or
+          captivating multimedia content, Four Pixels is your creative partner.
+          <br />
+          <br />
+          Join us on our journey to reshape the business one pixel at a time.
+          Together, let's make art that inspires and transforms.
         </p>
       </div>
       <!-- end grid-block-->
@@ -125,7 +114,7 @@
     <div class="s-testimonials__header row row-x-center text-center">
       <div class="column xl-8 lg-12">
         <p class="text-pretitle text-primary-2">Testimonials</p>
-        <h3>Reviews From Real Clients</h3>
+        <h3>Reviews From Previous Collaborations</h3>
       </div>
     </div>
     <!--end s-testimonials__header -->
@@ -162,34 +151,53 @@
     <!--end s-testimonials__content -->
     <div class="container mt-5">
       <form
+        enctype="multipart/form-data"
         method="POST"
         action="{% url 'about' %}"
         class="row justify-content-center align-items-center"
       >
-        <div class="col-8">
+        <h3 class="text-primary-2 text-center">Leave a comment...</h3>
+        <div class="col-lg-8 col-sm-12">
           {% csrf_token %}
-          <h5>{{ testimonial_form.non_field_errors }}</h5>
-          <div class="col">
-            {% for field in testimonial_form %}
-            <div class="form-group mb-3">
-              <label class="form-label">Enter {{ field.name }}</label><br />
-              {{ field }}
+          <div class="row">
+            <input name="name" type="text" placeholder="Name" required />
+            <input
+              name="department"
+              type="text"
+              placeholder="Company/Department"
+            />
+            <input name="email" type="email" placeholder="Email" required />
+            <input
+              name="testimonial"
+              type="text"
+              placeholder="Testimonial"
+              required
+            />
+            <input
+              placeholder="Upload image"
+              name="image"
+              type="file"
+              class="form-control"
+            />
+          </div>
+          <div class="row">
+            <div class="form-check ps-0" type="radio">
+              {{ testimonial_form.post_testimonial }} Post testimonial
             </div>
-            {% endfor %}
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" />
-            <label class="form-check-label" for="gridCheck"
-              >Post Testimonial</label
+            <button
+              type="submit"
+              class="btn btn--primary u-fullwidth contact-btn"
             >
+              Post
+            </button>
           </div>
-          <button
-            type="submit"
-            value="Add Testimonial"
-            class="btn btn--primary"
-          >
-            Post
-          </button>
+        </div>
+        <div id="newsletter_message" class="mc-status">
+          {% if messages %} {% for message in messages %}
+          <div class="{{ message.tags }} text-pretitle text-center">
+            {{ message }}
+          </div>
+          {% endfor %} {% endif %}
         </div>
       </form>
     </div>
@@ -208,7 +216,7 @@
           Get started with a consultation today.
         </h2>
         <p class="lead">{{ tag2 }}</p>
-        <a href="contact.html" class="btn btn--primary">Let's Work Together</a>
+        <a href="{% url 'contact' %}" class="btn btn--primary">Get in Touch</a>
       </div>
     </div>
   </div>
@@ -218,11 +226,9 @@
 <script>
   var form_fields = document.getElementsByTagName("input");
 
-  form_fields[1].placeholder = "Name goes here";
-  form_fields[2].placeholder = "Department/Company";
-  form_fields[3].placeholder = "email@gmail.com";
-  form_fields[4].className += "form-check-input";
-  form_fields[4].className += "form-check-label";
+  form_fields[1].placeholder = "Name";
+  form_fields[2].placeholder = "Company or Department";
+  form_fields[3].placeholder = "email-address@gmail.com";
   for (var field in form_fields) {
     form_fields[field].className += "form-control";
   }

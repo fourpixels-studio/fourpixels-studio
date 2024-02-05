@@ -73,7 +73,7 @@
         />
 
         <div class="section-header grid-section-split__header">
-          <div class="text-pretitle">About</div>
+          <div class="text-pretitle">About Us</div>
           <h2 class="fw-bold text-display-title">
             Transforming Ideas into Timeless Treasures.
           </h2>
@@ -82,10 +82,10 @@
 
         <div class="s-about__content-main grid-section-split__primary">
           <p class="attention-getter">
-            With a skilled team of graphic designers, web developers, and
-            multimedia editors, we channel creativity to fuel exceptional
-            digital design. Our focus is transforming abstract ideas into
-            visually compelling, user-friendly digital experiences that inspire.
+            We specialize in bridging the gap between art and function, turning
+            visions into reality. Our collaborative approach empowers brands to
+            establish a unique and compelling digital presence, leaving a
+            lasting impression.
           </p>
           <p class="attention-getter">
             At <span class="link_hover">Four Pixels,</span> we merge innovation
@@ -190,9 +190,13 @@
               <div class="grid-list-items__text list-items__item-text">
                 <p>
                   We craft custom web and app solutions tailored just for you.
-                  Ready to take your online presence to the next level?
+                  Ready to take your online presence to the next level? <br />
+                  <span
+                    ><a class="text-muted link_hover" href="{% url 'index' %}"
+                      >Let's go!</a
+                    ></span
+                  >
                 </p>
-                <a href="{% url 'index' %}" class="link_hover">Read More</a>
               </div>
             </div>
             <!-- Graphic Design -->
@@ -203,9 +207,13 @@
               <div class="grid-list-items__text list-items__item-text">
                 <p>
                   Stunning logos, unforgettable branding, and print materials
-                  that leave a lasting impression.
+                  that leave a lasting impression. <br />
+                  <span
+                    ><a class="text-muted link_hover" href="{% url 'index' %}"
+                      >Read more</a
+                    ></span
+                  >
                 </p>
-                <a href="{% url 'index' %}" class="link_hover">Read More</a>
               </div>
             </div>
             <!-- Digital Art -->
@@ -217,11 +225,13 @@
                 <p>
                   Transform your content into visual magic with our mesmerizing
                   motion graphics. From videos to presentations, we make your
-                  ideas dance!
+                  ideas dance! <br />
+                  <span
+                    ><a class="text-muted link_hover" href="{% url 'index' %}"
+                      >Read more</a
+                    ></span
+                  >
                 </p>
-                <a href="{% url 'index' %}" class="link_hover"
-                  >Let's create something epic!</a
-                >
               </div>
             </div>
             <!-- Groove With DJ G400 -->
@@ -231,12 +241,14 @@
               </div>
               <div class="grid-list-items__text list-items__item-text">
                 <p>
-                  We're your one-stop party shop for epic playlists, banging
-                  mixes, dazzling outfits, and unforgettable DJ services.
+                  Your one-stop party shop for epic playlists, banging mixes,
+                  dazzling outfits, and unforgettable DJ services. <br />
+                  <span
+                    ><a class="text-muted link_hover" href="{% url 'djg400' %}"
+                      >Check out DJ G400</a
+                    ></span
+                  >
                 </p>
-                <a href="{% url 'djg400' %}" class="link_hover"
-                  >Check out DJ G400</a
-                >
               </div>
             </div>
           </div>
@@ -272,12 +284,10 @@
 
         <div class="grid-section-split__primary">
           <p class="lead">
-            Bridging the gap between art and function to deliver transformative
-            solutions. Our collaboration has empowered these brands to
-            seamlessly merge creativity and functionality, creating a unique and
-            compelling digital presence. Together, we've turned visions into
-            reality, elevating their online impact and leaving a lasting
-            impression.
+            Our collaboration has empowered these brands to seamlessly merge
+            creativity and functionality, creating a unique and compelling
+            digital presence. Together, we've turned visions into reality,
+            elevating their online impact and leaving a lasting impression.
           </p>
         </div>
         <!-- end grid-section-split__primary -->
@@ -370,9 +380,7 @@
     <div class="column xl-12 grid-block">
       <div class="grid-full section-header text-center">
         <div class="text-pretitle">Recent Articles</div>
-        <h2 class="text-display-title fw-bold">
-          Latest articles from our blog.
-        </h2>
+        <h2 class="text-display-title fw-bold">Latest in our journal.</h2>
       </div>
       <!-- end section-header -->
 
@@ -382,18 +390,15 @@
         <div class="grid-list-items__item blog-card">
           <div class="blog-card__header">
             <div class="blog-card__cat-links">
-              <a href="{% url 'blog_detail' slug=blog.slug%}"
-                >{{ blog.category }}</a
-              >
+              <a href="{{ blog.get_url }}">{{ blog.category }}</a>
             </div>
             <h3 class="blog-card__title">
-              <a href="{% url 'blog_detail' slug=blog.slug%}"
-                >{{ blog.title }}</a
-              >
+              <a href="{{ blog.get_url }}">{{ blog.title }}</a>
             </h3>
           </div>
           <div class="blog-card__text">
-            <p>{{ blog.summary|safe }}</p>
+            <p>{{ blog.summary|safe|truncatewords:15 }}</p>
+            <a href="{{ blog.get_url }}">Read more</a>
           </div>
         </div>
         {% endfor %}

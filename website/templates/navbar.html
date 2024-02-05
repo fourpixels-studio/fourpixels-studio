@@ -1,0 +1,61 @@
+{% load static %}
+<header class="s-header fixed-top">
+  <div class="row s-header__inner width-sixteen-col">
+    <div class="col s-header__block">
+      <div class="s-header__logo">
+        <a class="logo" href="{% url 'index' %}">
+          <img
+            style="height: 60px; width: 40px"
+            class="img-fluid"
+            src="{% static 'images/icons/4pixels-icon.svg' %}"
+            alt="Four Pixels Logo"
+          />
+        </a>
+      </div>
+
+      <a class="s-header__menu-toggle" href="#0"><span>Menu</span></a>
+    </div>
+    <!-- end s-header__block -->
+
+    <nav class="col float-start s-header__nav">
+      <ul class="s-header__menu-links">
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'services' %}">Services</a></li>
+        <li><a href="{% url 'blog_list' %}">Journal</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+      <!-- s-header__menu-links -->
+
+      <div class="s-header__contact">
+        <a
+          href="{% url 'contact' %}"
+          class="btn btn--primary s-header__contact-btn"
+          >Let's Work Together</a
+        >
+      </div>
+      <!-- s-header__contact -->
+    </nav>
+    <!-- end s-header__nav -->
+  </div>
+  <!-- end s-header__inner -->
+  {% if messages %}
+  <div class="container rounded bg--primary p-0">
+    {% for message in messages %}
+    <div
+      role="alert"
+      class="alert {{ message.tags }} text-center text-black  alert-dismissable fade show"
+    >
+      {{ message }}
+      <span
+        ><button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button
+      ></span>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</header>
