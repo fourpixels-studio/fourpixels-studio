@@ -335,3 +335,7 @@ def downloadSuccess(request, pk):
         'item': item,
     }
     return render(request, 'download-success.html', context)
+
+
+def artworks(request):
+    return render(request, 'artworks.html', {'title_tag': "Artworks"})
