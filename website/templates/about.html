@@ -6,7 +6,7 @@
     <div class="row">
       <div class="column xl-12">
         <h1 class="page-title fw-bold">
-          <span class="page-title__small-type text-pretitle">About</span>
+          <span class="page-title__small-type text-pretitle">About Us</span>
           Four Pixels
         </h1>
       </div>
@@ -168,20 +168,19 @@
             />
             <input name="email" type="email" placeholder="Email" required />
             <input
+              id="testimonial"
               name="testimonial"
               type="text"
               placeholder="Testimonial"
               required
             />
-            <input
-              placeholder="Upload image"
-              name="image"
-              type="file"
-              class="form-control"
-            />
+            <label for="testimonial" class="form-label mb-2"
+              >Upload image/avatar</label
+            >
+            <input name="image" type="file" class="form-control" />
           </div>
           <div class="row">
-            <div class="form-check ps-0" type="radio">
+            <div class="form-check" type="radio">
               {{ testimonial_form.post_testimonial }} Post testimonial
             </div>
             <button
@@ -228,9 +227,10 @@
 
   form_fields[1].placeholder = "Name";
   form_fields[2].placeholder = "Company or Department";
-  form_fields[3].placeholder = "email-address@gmail.com";
-  for (var field in form_fields) {
-    form_fields[field].className += "form-control";
-  }
+  form_fields[3].placeholder = "youremail@email.com";
+  form_fields[5].classList += "form-control";
+  // for (var field in form_fields) {
+  //form_fields[field].className += "form-control";
+  //}
 </script>
 {% endblock %}

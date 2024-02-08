@@ -1,0 +1,150 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+
+<!-- # site main content
+        ================================================== -->
+<section id="content" class="bg-white s-content">
+  <section class="s-pageheader pageheader">
+    <div class="row">
+      <div class="column xl-12">
+        <h1 class="page-title">
+          <span class="page-title__small-type text-pretitle">Home / Apps</span>
+          Applications
+        </h1>
+      </div>
+    </div>
+  </section>
+  <!-- pageheader -->
+
+  <section class="s-pagecontent pagecontent">
+    <div class="row">
+      <div class="column xl-12 grid-block">
+        <div class="grid-full grid-list-items list-items show-ctr">
+          <div class="grid-list-items__item list-items__item">
+            <div class="list-items__item-header">
+              <h3 class="list-items__item-title">Pixel Press</h3>
+            </div>
+            <div class="list-items__item-text">
+              <p>
+                Meet Pixel Press – the Python-powered image compression app.
+                Simply upload your images, and our efficient technology quickly
+                compresses them without compromising quality. Download the
+                optimized images for faster web performance. Pixel Press
+                streamlines image compression for a seamless and user-friendly
+                experience.
+              </p>
+
+              <ul class="list-services">
+                <li>
+                  <a href="{% url 'image_compression' %}" class="link_unstyled"
+                    >Try it now</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}"
+                    class="link_unstyled"
+                    >Read about this</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="grid-list-items__item list-items__item">
+            <div class="list-items__item-header">
+              <h3 class="list-items__item-title">Pixa Scout</h3>
+            </div>
+            <div class="list-items__item-text">
+              <p>
+                With this Image Search Web App, we've created a user-friendly
+                interface for accessing high-quality images. Using asynchronous
+                Javascript programming and fueled by the Unsplash API, search
+                for beautiful and free high quality images that you can download
+                and use for any project.
+              </p>
+              <ul class="list-services">
+                <li>
+                  <a href="{% url 'image_search' %}" class="link_unstyled"
+                    >Try it now</a
+                  >
+                </li>
+                <li>
+                  <a
+                    href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}"
+                    class="link_unstyled"
+                    >Read this blog</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- end list-items__item -->
+        </div>
+        <!-- grid-list-items -->
+      </div>
+      <!-- end grid-block-->
+    </div>
+    <!-- end row -->
+  </section>
+  <!-- pagecontent -->
+
+  <section class="s-testimonials">
+    <div class="s-testimonials__header row row-x-center text-center">
+      <div class="column xl-8 lg-12">
+        <p class="text-pretitle text-primary-2">Testimonials</p>
+        <h3>Reviews From Previous Collaborations</h3>
+      </div>
+    </div>
+    <!--end s-testimonials__header -->
+
+    <div class="row s-testimonials__content">
+      <div class="column xl-12 testimonials">
+        <div class="swiper-container testimonials__slider page-slider">
+          <div class="swiper-wrapper">
+            {% for testimonial in testimonials %}
+            <div class="testimonials__slide swiper-slide">
+              <p>{{ testimonial.testimonial|safe }}</p>
+              <div class="testimonials__author">
+                <img
+                  src="{% static 'images/avatars/user-01.jpg' %}"
+                  alt="{{ testimonial.author }} image"
+                  class="testimonials__avatar"
+                />
+                <cite class="testimonials__cite">
+                  <strong>{{ testimonial.name }}</strong>
+                  <span>{{ testimonial.department }}</span>
+                </cite>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          <!-- end swiper-wrapper -->
+
+          <div class="swiper-pagination"></div>
+        </div>
+        <!--end testimonials__slider -->
+      </div>
+      <!-- testimonials -->
+    </div>
+    <!--end s-testimonials__content -->
+  </section>
+  <!-- end s-testimonials -->
+</section>
+<!-- s-content-->
+
+<!-- # cta
+        ================================================== -->
+<section id="cta" class="s-cta">
+  <div class="row row-x-center text-center">
+    <div class="column xl-8 lg-12">
+      <div class="s-cta__content">
+        <h2 class="text-display-title">
+          Get started with a consultation today.
+        </h2>
+        <p class="lead">{{ tag2 }}</p>
+        <a href="{% url 'contact' %}" class="btn btn--primary">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end s-cta -->
+{% endblock %}
