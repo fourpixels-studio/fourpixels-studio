@@ -23,6 +23,9 @@
         <li><a href="{% url 'services' %}">Services</a></li>
         <li><a href="{% url 'blog_list' %}">Journal</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+        <li><a href="/admin/">Admin</a></li>
+        {% endif %}
       </ul>
       <!-- s-header__menu-links -->
 
