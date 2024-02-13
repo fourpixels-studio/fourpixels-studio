@@ -1,0 +1,23 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<section id="content" class="bg-black s-content">
+  <section class="s-pageheader pageheader">
+    <div class="row">
+      <div class="column xl-12">
+        <h1 class="page-title fw-bold">
+          <span class="page-title__small-type text-pretitle">Error 404</span>
+          400 Not Found!
+        </h1>
+        <p class="text-white text-center">
+          Oops! It seems the page you're looking for got lost in cyberspace.
+          Maybe it's having an intergalactic adventure. Try navigating
+          <span
+            ><a href="{% url 'index' %}" class="link_hover"
+              >back to Earth!</a
+            ></span
+          >
+        </p>
+      </div>
+    </div>
+  </section>
+</section>
+{% endblock %}

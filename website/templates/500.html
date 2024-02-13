@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<section id="content" class="bg-black s-content">
+  <section class="s-pageheader pageheader">
+    <div class="row">
+      <div class="column xl-12">
+        <h1 class="page-title fw-bold">
+          <span class="page-title__small-type text-pretitle">Error 500</span>
+          500 Internal Chuck Norris Error
+        </h1>
+        <p class="text-white">
+          Uh-oh! Something went wrong, and it's so serious that even Chuck
+          Norris can't fix it right now. He's busy roundhouse kicking other
+          issues. Please
+          <span
+            ><a href="{% url 'index' %}" class="link_hover"
+              >go back home</a
+            ></span
+          >
+          and try again later.
+        </p>
+      </div>
+    </div>
+  </section>
+</section>
+{% endblock %}
