@@ -227,7 +227,7 @@ def services_web_development(request):
         'testimonials': testimonials,
         'web_development_heading': web_development_heading,
     }
-    return render(request, 'services_web_development.html', context)
+    return render(request, 'services-web-development.html', context)
 # Services end
 
 # Blog Logic Start
@@ -265,7 +265,7 @@ def blog_detail(request, slug):
         "meta_keywords": meta_keywords,
     }
 
-    return render(request, 'blog_detail.html', context)
+    return render(request, 'blog-detail.html', context)
 
 # Function to render out all blogs
 def blog_list(request):
@@ -274,7 +274,7 @@ def blog_list(request):
         'title_tag': "Blogs",
         'recent_blogs': recent_blogs,
     }
-    return render(request, 'blog_list.html', context)
+    return render(request, 'blog-list.html', context)
 
 # Blog Logic End
 
@@ -339,3 +339,16 @@ def downloadSuccess(request, pk):
 
 def artworks(request):
     return render(request, 'artworks.html', {'title_tag': "Artworks"})
+
+
+def error_404(request):
+    context = {
+        'title_tag': "Error 404",
+    }
+    return render(request,'404.html', context)
+
+def error_500(request):
+    context = {
+        'title_tag': "Error 505",
+    }
+    return render(request,'500.html', context)
