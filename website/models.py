@@ -119,7 +119,7 @@ class Contact(models.Model):
 
 
     def __str__(self):
-        return f'Lead Name: {self.name}'
+        return f'Lead Name: {self.name} | {self.date} | {self.message[:100]}'
     
 # Merchandise Start
 class Merchandise(models.Model):
