@@ -9,7 +9,7 @@ from django.core.mail import EmailMessage
 
 # Image Compression Logic End
 def index(request):
-    title_tag = "Masters of the Digital Realm"
+    title_tag = "Masters of the Digital Realm | Elevate Your Online Presence"
     meta_descriprion = "Masters of the digital realm, blending creativity and technology into mind-blowing experiences. Graphic gurus, web whisperers, and visual/audio virtuosos. Elevate your online presence with custom web/app development, stunning graphic design, mesmerizing digital art, and epic DJ services."
     meta_keywords = "digital realm, creativity, technology, website development, app development, graphic design, digital art, DJ services, online presence"
     blogs = Blog.objects.all()
@@ -76,7 +76,6 @@ def about(request):
     return render(request, 'about.html', context)
 
 def contact(request):
-    title_tag = "Contact Us"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -98,7 +97,6 @@ def contact(request):
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
-            # Get the email from the form/user
             email = contact_form.cleaned_data.get('email')
             
             contact_form.save()
@@ -112,8 +110,8 @@ def contact(request):
             
             # Send mail utility start
             subject = 'Thank You for Reaching Out to Four Pixels'
-            message = f"Hi {name},\n\nThank you for reaching out to Four Pixels! We're thrilled to receive your message and appreciate your interest in our creative studio.\n\nOur team is dedicated to transforming ideas into captivating digital experiences, and we're excited about the possibility of collaborating with you.\n\nWe have received your inquiry and will review it carefully. Expect to hear back from us within the next 1hr with more information or to schedule a discussion about your project.\n\nIn the meantime, feel free to explore our portfolio to get a sense of our creative capabilities. If you have any additional information or specific details you'd like to share, please reply to this email, and we'll ensure it's factored into our conversation.\n\nThank you once again for considering Four Pixels. We look forward to the opportunity to create something extraordinary together.\n\nBest regards,\n\nMoses Bartena\nVisual Identity Designer\nFour Pixels Creative Studio\nhello@fourpixels.com"
-            from_email = '4ourpixels@gmail.com'
+            message = f"Hi {name},\n\nThank you for reaching out to Four Pixels! We're thrilled to receive your message and appreciate your interest in our creative studio.\n\nOur team is dedicated to transforming ideas into captivating digital experiences, and we're excited about the possibility of collaborating with you.\n\nWe have received your inquiry and will review it carefully. Expect to hear back from us soon with more information or to schedule a discussion about your project.\n\nIn the meantime, feel free to explore our portfolio to get a sense of our creative capabilities. If you have any additional information or specific details you'd like to share, please reply to this email, and we'll ensure it's factored into our conversation.\n\nThank you once again for considering Four Pixels. We look forward to the opportunity to create something extraordinary together.\n\nBest regards,\n\nMoses Bartena\nVisual Identity Designer\nFour Pixels Creative Studio\nhello@fourpixels.studio"
+            from_email = 'hello@fourpixels.studio'
             recepient_list = [email]
 
             # Create an EmailMessage instance
@@ -137,7 +135,7 @@ def contact(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Contact Us",
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -155,7 +153,6 @@ def contact(request):
 
 # Services start
 def services(request):
-    title_tag = "Services"
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
     
@@ -196,7 +193,7 @@ def services(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Services",
         'tag1': tag1,
         'tag2': tag2,
         'about_our_story': about_our_story, 
@@ -213,7 +210,6 @@ def services(request):
     return render(request, 'services.html', context)
 
 def services_web_development(request):
-    title_tag = "Web & App Development Services"
     about_object = AboutSection.objects.all()
     web_development_heading = about_object[2].question
     clients = ClientPortoflio.objects.all()
@@ -222,7 +218,7 @@ def services_web_development(request):
     testimonials = Testimonial.objects.order_by('-pk')
     
     context = {
-        'title_tag': title_tag,
+        'title_tag': "Web & App Development Services",
         'clients': clients,
         'testimonials': testimonials,
         'web_development_heading': web_development_heading,
