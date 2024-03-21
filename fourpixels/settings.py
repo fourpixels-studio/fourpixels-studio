@@ -96,3 +96,15 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'website/media')
 STATIC_ROOT = os.path.join(BASE_DIR, 'website/static')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Four Pixels Email SMTP Configuration Settings Start
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'mail.fourpixels.studio'
+EMAIL_PORT = '465'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_CC = ''
+DEFAULT_FROM_EMAIL = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_USE_SSL = True
+EMAIL_USE_TLS = False
+# Four Pixels Email SMTP Configuration Settings End
