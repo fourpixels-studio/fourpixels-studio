@@ -2,9 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import *
 from django.contrib import messages
 from .models import *
-
-# Email Logic Start
-from django.core.mail import EmailMessage
+from .email import send_contact_email
 
 
 # Image Compression Logic End
@@ -16,31 +14,35 @@ def index(request):
     context = {
         'title_tag': title_tag,
         'blogs': blogs,
+        'meta_descriprion': meta_descriprion,
+        'meta_keywords': meta_keywords,
     }
     return render(request, 'index.html', context)
+
 
 def about(request):
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
-    
+
     tag1 = tags[0].tag
     tag2 = tags[1].tag
-    
+
     about_our_story = about_object[0].content_1
     about_our_mission = about_object[0].content_2
     about_our_vision = about_object[0].content_3
     about_our_team = about_object[0].content_4
-    
+
     services_masters = about_object[1].content_1
     services_websites = about_object[1].content_2
     services_graphic_design = about_object[1].content_3
     services_motion_graphics = about_object[1].content_4
-    
+
     testimonial_form = TestimonialForm(initial={'post_testimonial': True})
-    
+
     # Testimonials
     all_testimonials = Testimonial.objects.order_by('-pk')
-    testimonials = [testimonial for testimonial in all_testimonials if testimonial.post_testimonial]
+    testimonials = [
+        testimonial for testimonial in all_testimonials if testimonial.post_testimonial]
 
     if request.method == 'POST':
         testimonial_form = TestimonialForm(request.POST)
@@ -55,17 +57,17 @@ def about(request):
                 request, ('Thank you!'))
             return redirect('about')
         else:
-            testimonial_form = TestimonialForm(initial={'post_testimonial': True})
+            testimonial_form = TestimonialForm(
+                initial={'post_testimonial': True})
 
-    
     context = {
         'title_tag': "About Us",
         'tag1': tag1,
         'tag2': tag2,
-        'about_our_story': about_our_story, 
-        'about_our_mission': about_our_mission, 
-        'about_our_vision': about_our_vision, 
-        'about_our_team': about_our_team, 
+        'about_our_story': about_our_story,
+        'about_our_mission': about_our_mission,
+        'about_our_vision': about_our_vision,
+        'about_our_team': about_our_team,
         'services_masters': services_masters,
         'services_websites': services_websites,
         'services_graphic_design': services_graphic_design,
@@ -75,30 +77,31 @@ def about(request):
     }
     return render(request, 'about.html', context)
 
+
 def contact(request):
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
-    
+
     tag1 = tags[0].tag
     tag2 = tags[1].tag
-    
+
     about_our_story = about_object[0].content_1
     about_our_mission = about_object[0].content_2
     about_our_vision = about_object[0].content_3
     about_our_team = about_object[0].content_4
-    
+
     services_masters = about_object[1].content_1
     services_websites = about_object[1].content_2
     services_graphic_design = about_object[1].content_3
     services_motion_graphics = about_object[1].content_4
-    
+
     contact_form = ContactForm()
 
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             email = contact_form.cleaned_data.get('email')
-            
+
             contact_form.save()
             name = contact_form.cleaned_data.get('name')
             message = contact_form.cleaned_data.get('message')
@@ -107,23 +110,10 @@ def contact(request):
             user = contact_form.cleaned_data.get('user')
             print(
                 f"==== NEW CONTACT ====\n\nFrom: {name} - User: {user}\nMessage: {message}\nEmail: {email}\nPhone Number: {phone_number}\n\n==== END OF NEW CONTACT ====")
-            
-            # Send mail utility start
-            subject = 'Thank You for Reaching Out to Four Pixels'
-            message = f"Hi {name},\n\nThank you for reaching out to Four Pixels! We're thrilled to receive your message and appreciate your interest in our creative studio.\n\nOur team is dedicated to transforming ideas into captivating digital experiences, and we're excited about the possibility of collaborating with you.\n\nWe have received your inquiry and will review it carefully. Expect to hear back from us soon with more information or to schedule a discussion about your project.\n\nIn the meantime, feel free to explore our portfolio to get a sense of our creative capabilities. If you have any additional information or specific details you'd like to share, please reply to this email, and we'll ensure it's factored into our conversation.\n\nThank you once again for considering Four Pixels. We look forward to the opportunity to create something extraordinary together.\n\nBest regards,\n\nMoses Bartena\nVisual Identity Designer\nFour Pixels Creative Studio\nhello@fourpixels.studio"
-            from_email = 'hello@fourpixels.studio'
-            recepient_list = [email]
-
             # Create an EmailMessage instance
-            email_message = EmailMessage(
-                subject,
-                message,
-                from_email,
-                recepient_list,
-            )
-            email_message.send()
+            send_contact_email(name, email, phone_number, message)
             # Send mail utility end
-            
+
             messages.success(
                 request, (f'Thank you {name}! We have received your message!'))
             return redirect('contact')
@@ -133,15 +123,15 @@ def contact(request):
 
     # Testimonials
     testimonials = Testimonial.objects.order_by('-pk')
-    
+
     context = {
         'title_tag': "Contact Us",
         'tag1': tag1,
         'tag2': tag2,
-        'about_our_story': about_our_story, 
-        'about_our_mission': about_our_mission, 
-        'about_our_vision': about_our_vision, 
-        'about_our_team': about_our_team, 
+        'about_our_story': about_our_story,
+        'about_our_mission': about_our_mission,
+        'about_our_vision': about_our_vision,
+        'about_our_team': about_our_team,
         'services_masters': services_masters,
         'services_websites': services_websites,
         'services_graphic_design': services_graphic_design,
@@ -152,23 +142,25 @@ def contact(request):
     return render(request, 'contact.html', context)
 
 # Services start
+
+
 def services(request):
     tags = MessageTag.objects.all()
     about_object = AboutSection.objects.all()
-    
+
     tag1 = tags[0].tag
     tag2 = tags[1].tag
-    
+
     about_our_story = about_object[0].content_1
     about_our_mission = about_object[0].content_2
     about_our_vision = about_object[0].content_3
     about_our_team = about_object[0].content_4
-    
+
     services_masters = about_object[1].content_1
     services_websites = about_object[1].content_2
     services_graphic_design = about_object[1].content_3
     services_motion_graphics = about_object[1].content_4
-    
+
     contact_form = ContactForm()
 
     if request.method == 'POST':
@@ -191,15 +183,15 @@ def services(request):
 
     # Testimonials
     testimonials = Testimonial.objects.order_by('-pk')
-    
+
     context = {
         'title_tag': "Services",
         'tag1': tag1,
         'tag2': tag2,
-        'about_our_story': about_our_story, 
-        'about_our_mission': about_our_mission, 
-        'about_our_vision': about_our_vision, 
-        'about_our_team': about_our_team, 
+        'about_our_story': about_our_story,
+        'about_our_mission': about_our_mission,
+        'about_our_vision': about_our_vision,
+        'about_our_team': about_our_team,
         'services_masters': services_masters,
         'services_websites': services_websites,
         'services_graphic_design': services_graphic_design,
@@ -209,6 +201,7 @@ def services(request):
     }
     return render(request, 'services.html', context)
 
+
 def services_web_development(request):
     about_object = AboutSection.objects.all()
     web_development_heading = about_object[2].question
@@ -216,7 +209,7 @@ def services_web_development(request):
 
     # Testimonials
     testimonials = Testimonial.objects.order_by('-pk')
-    
+
     context = {
         'title_tag': "Web & App Development Services",
         'clients': clients,
@@ -229,6 +222,8 @@ def services_web_development(request):
 # Blog Logic Start
 
 # Function to get previous and next blog in the blog detail
+
+
 def get_previous_and_next_blog(blog):
     blogs = Blog.objects.order_by('-pub_date')
     blog_index = list(blogs).index(blog)
@@ -244,11 +239,13 @@ def get_previous_and_next_blog(blog):
     return previous_blog, next_blog
 
 # Function to render out blog details
+
+
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     meta_description = blog.meta_description
     meta_keywords = blog.meta_keywords
-    
+
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
     context = {
@@ -264,6 +261,8 @@ def blog_detail(request, slug):
     return render(request, 'blog-detail.html', context)
 
 # Function to render out all blogs
+
+
 def blog_list(request):
     recent_blogs = Blog.objects.order_by('-pk')
     context = {
@@ -275,6 +274,8 @@ def blog_list(request):
 # Blog Logic End
 
 # Newsletter blog Start
+
+
 def newsletter(request):
     if request.method == 'POST':
         newsletter_form = NewsletterForm(request.POST)
@@ -302,6 +303,8 @@ def newsletter(request):
 # Newsletter blog end
 
 # DJ G400 Start
+
+
 def djg400(request):
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
@@ -311,6 +314,8 @@ def djg400(request):
     return render(request, 'djg400.html', context)
 
 # Merchandise
+
+
 def merchandise(request):
     merchandise = Merchandise.objects.order_by("-pk")
     context = {
@@ -321,11 +326,12 @@ def merchandise(request):
 
 # DJ G400 End
 
+
 def downloadSuccess(request, pk):
     item = get_object_or_404(Object, pk=pk)
     item.download_count = item.download_count + 1
     item.save()
-    
+
     context = {
         'title_tag': "Success!",
         'item': item,
@@ -341,10 +347,11 @@ def error_404(request):
     context = {
         'title_tag': "Error 404",
     }
-    return render(request,'404.html', context)
+    return render(request, '404.html', context)
+
 
 def error_500(request):
     context = {
         'title_tag': "Error 505",
     }
-    return render(request,'500.html', context)
+    return render(request, '500.html', context)
