@@ -8,6 +8,7 @@ from website.views import error_404, error_500
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("website.urls")),
+    path("projects/", include("projects.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Configure admin titles
