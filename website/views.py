@@ -3,19 +3,18 @@ from .forms import *
 from django.contrib import messages
 from .models import *
 from .email import send_contact_email
+from seo_management.models import SEO
 
 
 # Image Compression Logic End
 def index(request):
-    title_tag = "Masters of the Digital Realm | Elevate Your Online Presence"
-    meta_descriprion = "Masters of the digital realm, blending creativity and technology into mind-blowing experiences. Graphic gurus, web whisperers, and visual/audio virtuosos. Elevate your online presence with custom web/app development, stunning graphic design, mesmerizing digital art, and epic DJ services."
-    meta_keywords = "digital realm, creativity, technology, website development, app development, graphic design, digital art, DJ services, online presence"
-    blogs = Blog.objects.all()
     context = {
-        'title_tag': title_tag,
-        'blogs': blogs,
-        'meta_descriprion': meta_descriprion,
-        'meta_keywords': meta_keywords,
+        'blogs': Blog.objects.all(),
+        'title_tag': SEO.objects.get(pk=1).title_tag,
+        'meta_description': SEO.objects.get(pk=1).meta_description,
+        'meta_keywords': SEO.objects.get(pk=1).meta_keywords,
+        'meta_thumbnail': SEO.objects.get(pk=1).meta_thumbnail.url,
+        'homepage_data': HomePage.objects.first(),
     }
     return render(request, 'index.html', context)
 
