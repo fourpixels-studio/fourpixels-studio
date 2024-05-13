@@ -157,3 +157,29 @@ class ClientPortoflio(models.Model):
     def get_website_url(self):
         return self.website_link
 # Client Portoflio End
+
+# Homepage Data Start
+class HomePage(models.Model):
+    hero_h1 = models.CharField(max_length=150, blank=True, null=True)
+    hero_p = models.CharField(max_length=150, blank=True, null=True)
+    hero_btn_primary = models.CharField(max_length=25, blank=True, null=True)
+    hero_btn_secondary = models.CharField(max_length=25, blank=True, null=True)
+    card_1_icon = models.CharField(max_length=70, blank=True, null=True)
+    card_1_title = models.CharField(max_length=25, blank=True, null=True)
+    card_1_paragraph = models.TextField(blank=True, null=True)
+    card_2_icon = models.CharField(max_length=70, blank=True, null=True)
+    card_2_title = models.CharField(max_length=25, blank=True, null=True)
+    card_2_paragraph = models.TextField(blank=True, null=True)
+    card_3_icon = models.CharField(max_length=70, blank=True, null=True)
+    card_3_title = models.CharField(max_length=25, blank=True, null=True)
+    card_3_paragraph = models.TextField(blank=True, null=True)
+    about_us_h1 = models.CharField(max_length=25, blank=True, null=True)
+    about_us_p = models.TextField(blank=True, null=True)
+    about_us_button = models.CharField(max_length=20, blank=True, null=True)
+    about_us_image = models.ImageField(
+        upload_to="homepage/", blank=True, null=True)
+
+    def __str__(self):
+        return "Home Page"
+# Homepage Data End
+
