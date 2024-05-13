@@ -14,35 +14,35 @@ class Blog(models.Model):
     tags = models.TextField(blank=True, null=True)
     author = models.CharField(max_length=50, blank=True, null=True)
     category = models.CharField(max_length=50, blank=True, null=True)
-    blog_image = models.ImageField(default="blog.jpg", blank=True, null=True)
+    cover = models.ImageField(default="blog.jpg", blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     summary = models.TextField(blank=True, null=True)
     meta_description = models.TextField(blank=True, null=True)
     meta_keywords = models.TextField(blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
-    
+
     def __str__(self):
         return f"{self.title} - Published On: {self.pub_date.strftime('%A, %B %d, %Y')}"
-    
+
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super().save(*args, **kwargs)
+
     @property
     def get_blog_url(self):
-        return f"www.4ourpixels.com/{self.slug}/"
-    
-    @property
-    def get_og_image_url(self):
-        if self.cover_image:
-            return self.cover_image.url
-        else:
-            default_image_path = 'images/logo.jpg'
-            return static(default_image_path)
+        return f"www.fourpixels.studio/blog/{self.slug}/"
+
     @property
     def get_url(self):
         return reverse("blog_detail", kwargs={
             "slug": self.slug,
         })
+
+    @property
+    def get_category(self):
+        if self.category:
+            return self.category.split()[0]
+        return "All"
         
 class Customer(models.Model):
     user = models.OneToOneField(
