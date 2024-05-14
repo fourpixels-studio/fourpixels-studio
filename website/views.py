@@ -1,8 +1,9 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .forms import *
 from django.contrib import messages
+from .forms import *
 from .models import *
 from .email import send_contact_email
+from .get_items import get_testimonials
 from seo_management.models import SEO
 
 
@@ -354,3 +355,18 @@ def error_500(request):
         'title_tag': "Error 505",
     }
     return render(request, '500.html', context)
+
+def testimonials_list(request):
+    context = {
+        'title_tag': "Testimonials",
+        'testimonials': get_testimonials(),
+    }
+    return render(request, 'testimonials_list.html', context)
+
+
+def help(request):
+    context = {
+        'title_tag': "Help",
+    }
+    return render(request, 'help.html', context)
+
