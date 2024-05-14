@@ -1,9 +1,5 @@
 from django.urls import path
-from .views import index, about, contact, djg400, services, newsletter, merchandise, services_web_development, blog_detail, blog_list, downloadSuccess, artworks
-from .image_search import image_search
-from .image_compression import image_compression
-from .applications_list import applications_list
-
+from .views import *
 
 urlpatterns = [
     path("", index, name="index"),
@@ -11,9 +7,6 @@ urlpatterns = [
     path("contact/", contact, name="contact"),
     path("djg400/", djg400, name="djg400"),
     path("services/", services, name="services"),
-    path("applications/", applications_list, name="applications_list"),
-    path("application/image-search/", image_search, name="image_search"),
-    path("application/image-compression/", image_compression, name="image_compression"),
     path("djg400/merchandise/", merchandise, name="merchandise"),
     path("services/web-app-development/", services_web_development, name="services_web_development"),
     path("blog/<slug:slug>/", blog_detail, name="blog_detail"),
@@ -21,4 +14,6 @@ urlpatterns = [
     path('newsletter/', newsletter, name='newsletter'),
     path('artworks/', artworks, name='artworks'),
     path('download-success/<int:pk>/', downloadSuccess, name='download-success'),
+    path('testimonials/', testimonials_list, name='testimonials_list'),
+    path('help/', help, name='help'),
 ]
