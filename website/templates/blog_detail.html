@@ -1,178 +1,39 @@
-{% extends 'base.html' %} {% load static %} {% block body %}
-<!-- # site main content
-        ================================================== -->
-<article id="content" class="s-content entry">
-  <div class="s-pageheader entry__header">
-    <div class="row">
-      <div class="column xl-12">
-        <h1 class="entry__title">{{ blog.title }}</h1>
-        <!-- end entry__title -->
-
-        <div class="entry__meta">
-          <div class="entry__meta-date">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <circle
-                cx="12"
-                cy="12"
-                r="7.25"
-                stroke="currentColor"
-                stroke-width="1.5"
-              ></circle>
-              <path
-                stroke="currentColor"
-                stroke-width="1.5"
-                d="M12 8V12L14 14"
-              ></path>
-            </svg>
-            {{ blog.pub_date|date:"M d, Y" }}
-          </div>
-          <div class="entry__meta-cat">
-            <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M19.25 17.25V9.75C19.25 8.64543 18.3546 7.75 17.25 7.75H4.75V17.25C4.75 18.3546 5.64543 19.25 6.75 19.25H17.25C18.3546 19.25 19.25 18.3546 19.25 17.25Z"
-              ></path>
-              <path
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="1.5"
-                d="M13.5 7.5L12.5685 5.7923C12.2181 5.14977 11.5446 4.75 10.8127 4.75H6.75C5.64543 4.75 4.75 5.64543 4.75 6.75V11"
-              ></path>
-            </svg>
-            <span class="cat-links">
-              <a href="">{{ blog.category }}</a>
-            </span>
-          </div>
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<main class="container mt-5">
+    <div class="row justify-content-between g-5">
+        <div class="col-md-8">
+            <article class="blog-post">
+                <h5 class="mb-4 fst-italic">{{ blog.introduction }}</h5>
+                <p class="blog-post-meta pb-4 border-bottom">{{ blog.pub_date|timesince }} ago by <a>{{ blog.author }}</a></p>
+            </article>
+            <article class="blog-post">
+                <p>{{ blog.paragraph_1|safe }}</p>
+                <p>{{ blog.paragraph_2|safe }}</p>
+            </article>
+            <article class="blog-post">
+                <p>{{ blog.paragraph_3|safe }}</p>
+                <p>{{ blog.conclusion|safe }}</p>
+            </article>
         </div>
-        <!-- end entry__meta -->
-      </div>
-    </div>
-  </div>
-  <!-- end entry__header -->
-
-  <div class="bg-white s-pagecontent entry__content">
-    <div class="row entry__media">
-      <div class="column xl-12">
-        <figure class="featured-image">
-          <img
-            src="{% static 'images/thumbs/single/standard-1200.jpg' %}"
-            srcset="
-              {% static 'images/thumbs/single/standard-2400.jpg' %} 2400w,
-              {% static 'images/thumbs/single/standard-1200.jpg' %} 1200w,
-              {% static 'images/thumbs/single/standard-600.jpg' %}   600w
-            "
-            sizes="(max-width: 2400px) 100vw, 2400px"
-            alt=""
-          />
-        </figure>
-      </div>
-    </div>
-    <!-- end entry__media -->
-
-    <div class="row entry__primary width-narrower">
-      <div class="column xl-12">
-        <p style="color: #ffffff" class="lead">
-          {{ blog.introduction|safe|linebreaks }}
-        </p>
-
-        <p class="drop-cap">{{ blog.paragraph_1|safe|linebreaks }}</p>
-
-        <p>{{ blog.paragraph_2|safe|linebreaks }}</p>
-
-        <figure class="alignwide">
-          <img
-            src="{% static 'images/sample-1200.jpg' %}"
-            srcset="
-              {% static 'images/sample-2400.jpg' %} 2400w,
-              {% static 'images/sample-1200.jpg' %} 1200w,
-              {% static 'images/sample-600.jpg' %}   600w
-            "
-            sizes="(max-width: 2400px) 100vw, 2400px"
-            alt=""
-          />
-        </figure>
-
-        <p>{{ blog.paragraph_3|safe|linebreaks }}</p>
-
-        <h2>Conclusion</h2>
-
-        <p>{{ blog.conclusion|safe|linebreaks }}</p>
-
-        {% if blog.pk == 4%}
-        <div class="text-center my-4">
-          <a href="{% url 'image_search' %}" class="btn btn--primary"
-            >Try out the app</a
-          >
+        <div class="col-md-4">
+            <div class="p-4 mb-3 bg-light rounded">
+                <h4 class="fst-italic">Summary</h4>
+                <p class="mb-0">{{ blog.summary }}</p>
+            </div>
+            <div class="p-4">
+                <h4 class="fst-italic">Tags</h4>
+                <ol class="list-unstyled mb-0">
+                    {% for tag in tags %}
+                    <li>{{ tag }},</li>
+                    {% endfor %}
+                </ol>
+            </div>
         </div>
-        {% endif %}
-
-        <!-- <blockquote>
-          <p>
-            For God so loved the world, that he gave his only Son, that whoever
-            believes in him should not perish but have eternal life. For God did
-            not send his Son into the world to condemn the world, but in order
-            that the world might be saved through him.
-          </p>
-          <cite>John 3:16-17 ESV</cite>
-        </blockquote> -->
-
-        <div class="post-nav">
-          <div class="post-nav__prev">
-            {% if previous_blog %}
-            <a
-              href="{% url 'blog_detail' slug=previous_blog.slug %}"
-              rel="prev"
-            >
-              <span>Prev</span>
-              {{ previous_blog.title }}
-            </a>
-            {% else %}
-            <a href="{% url 'blog_list'  %}" rel="prev">
-              <span>All</span>
-              Check more blogs
-            </a>
-            {% endif %}
-          </div>
-          <div class="post-nav__next">
-            {% if next_blog %}
-            <a href="{% url 'blog_detail' slug=next_blog.slug %}" rel="next">
-              <span>Next</span>
-              {{ next_blog.title }}
-            </a>
-            {% endif %}
-          </div>
+        <div class="col-md-12 border-top pt-5">
+            <img src="{{ blog.cover.url }}" alt="" class="img-fluid w-100">
         </div>
-
-        <!-- end post-nav -->
-      </div>
-      <!-- end column-->
     </div>
-    <!-- end entry__primary -->
-  </div>
-  <!-- end entry__content -->
-</article>
-<!-- s-content entry-->
-
-<!-- # cta
-        ================================================== -->
-<section id="cta" class="s-cta">
-  <div class="row row-x-center text-center">
-    <div class="column xl-8 lg-12">
-      <div class="s-cta__content">
-        <h2 class="text-display-title">
-          Get started with a consultation today.
-        </h2>
-        <p class="lead">{{ tag2 }}</p>
-        <a href="{% url 'contact' %}" class="btn btn--primary"
-          >Let's Work Together</a
-        >
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end s-cta -->
+</main>
 {% endblock %}

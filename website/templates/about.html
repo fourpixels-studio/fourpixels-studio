@@ -1,236 +1,107 @@
-{% extends 'base.html' %} {% load static %} {% block body %}
-<!-- # site main content
-        ================================================== -->
-<section id="content" class="bg-black s-content">
-  <section class="s-pageheader pageheader">
-    <div class="row">
-      <div class="column xl-12">
-        <h1 class="page-title fw-bold">
-          <span class="page-title__small-type text-pretitle">About Us</span>
-          Four Pixels
-        </h1>
-      </div>
-    </div>
-  </section>
-  <!-- end pageheader -->
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
 
-  <section class="s-pagecontent pagecontent">
-    <div class="row pageintro">
-      <div class="column xl-6 lg-12">
-        <h2 class="text-display-title text-white fw-bold">
-          So here's the thing...
-        </h2>
-      </div>
-      <div class="column xl-6 lg-12 u-flexitem-x-right text-white">
-        <p class="lead">{{ services_masters }}</p>
-      </div>
-    </div>
-    <!-- end pageintro -->
-
-    <div class="row pagemedia">
-      <div class="column xl-12">
-        <figure class="page-media">
-          <img
-            src="{% static 'images/thumbs/about/about-1200.jpg' %}"
-            srcset="
-              {% static 'images/thumbs/about/about-2400.jpg' %} 2400w,
-              {% static 'images/thumbs/about/about-1200.jpg' %} 1200w,
-              {% static 'images/thumbs/about/about-600.jpg' %}   600w
-            "
-            sizes="(max-width: 2400px) 100vw, 2400px"
-          />
-        </figure>
-      </div>
-    </div>
-    <!-- end pagemedia -->
-
-    <div class="row width-narrower pagemain">
-      <div class="column xl-12 text-white">
-        <h2 class="text-primary-2">Bridging Art and Function</h2>
-        <p>
-          With a skilled team of graphic designers, web developers, and
-          multimedia editors, we channel creativity to fuel exceptional digital
-          design. Our focus is transforming abstract ideas into visually
-          compelling, user-friendly digital experiences that inspire. At Four
-          Pixels, we merge innovation and artistry for impactful online
-          engagement.
-        </p>
-
-        <h2 class="u-add-bottom text-primary-2">Mission and Vision</h2>
-
-        <div class="grid-list-items list-items">
-          <div class="grid-list-items__item list-items__item u-remove-bottom">
-            <div class="list-items__item-header">
-              <h6 class="list-items__item-small-title text-primary-2">
-                Our Mission
-              </h6>
+<!-- Feature Start -->
+<div id="services" class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="row g-4">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_1_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_1_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_1_paragraph }}</p>
+                </div>
             </div>
-            <p>
-              To inspire and engage people worldwide through contemporary art,
-              believing in its power to unite and positively influence society.
-            </p>
-          </div>
-          <div class="grid-list-items__item list-items__item u-remove-bottom">
-            <div class="list-items__item-header">
-              <h6 class="list-items__item-small-title text-primary-2">
-                Our Vision
-              </h6>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_2_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_2_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_2_paragraph }}</p>
+                </div>
             </div>
-            <p>
-              To establish ourselves as a major force in the field of modern
-              art, pushing the limits of creativity and improving the world, one
-              pixel at a time.
-            </p>
-          </div>
-        </div>
-        <!--grid-list-items -->
-
-        <h2 class="text-primary-2">Our Team</h2>
-        <p>
-          We are a small, devoted group of creative artists led by
-          <a class="link_hover" href="/djg400">Moses Bartena.</a> United by our
-          love for contemporary art, we believe in the impact we can create
-          together. Our journey has been one of persistence, determination, and
-          continuous learning.
-        </p>
-        <h2 class="text-primary-2">Let's Create Together</h2>
-        <p>
-          Whether you're looking for a stunning website, eye-catching graphics,
-          a vibrant social media presence, a memorable DJ experience, or
-          captivating multimedia content, Four Pixels is your creative partner.
-          <br />
-          <br />
-          Join us on our journey to reshape the business one pixel at a time.
-          Together, let's make art that inspires and transforms.
-        </p>
-      </div>
-      <!-- end grid-block-->
-    </div>
-    <!-- end pagemain -->
-  </section>
-  <!-- pagecontent -->
-
-  <section class="s-testimonials">
-    <div class="s-testimonials__header row row-x-center text-center">
-      <div class="column xl-8 lg-12">
-        <p class="text-pretitle text-primary-2">Testimonials</p>
-        <h3>Reviews From Previous Collaborations</h3>
-      </div>
-    </div>
-    <!--end s-testimonials__header -->
-
-    <div class="row s-testimonials__content">
-      <div class="column xl-12 testimonials">
-        <div class="swiper-container testimonials__slider page-slider">
-          <div class="swiper-wrapper">
-            {% for testimonial in testimonials %}
-            <div class="testimonials__slide swiper-slide">
-              <p>{{ testimonial.testimonial|safe }}</p>
-              <div class="testimonials__author">
-                <img
-                  src="{% static 'images/avatars/user-01.jpg' %}"
-                  alt="{{ testimonial.author }} image"
-                  class="testimonials__avatar"
-                />
-                <cite class="testimonials__cite">
-                  <strong>{{ testimonial.name }}</strong>
-                  <span>{{ testimonial.department }}</span>
-                </cite>
-              </div>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_3_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_3_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_3_paragraph }}</p>
+                </div>
             </div>
-            {% endfor %}
-          </div>
-          <!-- end swiper-wrapper -->
-
-          <div class="swiper-pagination"></div>
         </div>
-        <!--end testimonials__slider -->
-      </div>
-      <!-- testimonials -->
     </div>
-    <!--end s-testimonials__content -->
-    <div class="container mt-5">
-      <form
-        enctype="multipart/form-data"
-        method="POST"
-        action="{% url 'about' %}"
-        class="row justify-content-center align-items-center"
-      >
-        <h3 class="text-primary-2 text-center">Leave a comment...</h3>
-        <div class="col-lg-8 col-sm-12">
-          {% csrf_token %}
-          <div class="row">
-            <input name="name" type="text" placeholder="Name" required />
-            <input
-              name="department"
-              type="text"
-              placeholder="Company/Department"
-            />
-            <input name="email" type="email" placeholder="Email" required />
-            <input
-              id="testimonial"
-              name="testimonial"
-              type="text"
-              placeholder="Testimonial"
-              required
-            />
-            <label for="testimonial" class="form-label mb-2"
-              >Upload image/avatar</label
-            >
-            <input name="image" type="file" class="form-control" />
-          </div>
-          <div class="row">
-            <div class="form-check" type="radio">
-              {{ testimonial_form.post_testimonial }} Post testimonial
+</div>
+<!-- Feature End -->
+
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p class="section-title text-secondary">About Us<span></span></p>
+                <h1 class="mb-5">{{ about_data.title }}</h1>
+                <p class="mb-4">{{ about_data.content }}</p>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-2">Design & Development</p>
+                        <p class="mb-2">95%</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-2">Graphic Design</p>
+                        <p class="mb-2">90%</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <div class="skill mb-4">
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-2">Digital Art</p>
+                        <p class="mb-2">85%</p>
+                    </div>
+                    <div class="progress">
+                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+                <a href="{% url 'blog_list' %}" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">Read More</a>
             </div>
-            <button
-              type="submit"
-              class="btn btn--primary u-fullwidth contact-btn"
-            >
-              Post
-            </button>
-          </div>
+            <div class="col-lg-6">
+                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{% static 'img/about-art3.png' %}">
+            </div>
         </div>
-        <div id="newsletter_message" class="mc-status">
-          {% if messages %} {% for message in messages %}
-          <div class="{{ message.tags }} text-pretitle text-center">
-            {{ message }}
-          </div>
-          {% endfor %} {% endif %}
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Accordion Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="row g-5 align-items-center justify-content-center">
+                <div class="accordion col-lg-8 wow fadeInUp" id="accordionPanelsStayOpenExample" data-wow-delay="0.1s">
+                    {% for accordion in accordions %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ accordion.pk }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ accordion.pk }}">
+                                <span class="h5">{{ accordion.title }}</span>
+                            </button>
+                        </h2>
+                        <div id="panelsStayOpen-collapse{{ accordion.pk }}" class="accordion-collapse collapse">
+                            <div class="accordion-body">
+                                <p class="lead">{{ accordion.content|safe|linebreaks }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
         </div>
-      </form>
     </div>
-  </section>
-  <!-- end s-testimonials -->
-</section>
-<!-- s-content-->
+</div>
+<!-- Accordion End -->
 
-<!-- # cta
-        ================================================== -->
-<section id="cta" class="s-cta">
-  <div class="row row-x-center text-center">
-    <div class="column xl-8 lg-12">
-      <div class="s-cta__content">
-        <h2 class="text-display-title">
-          Get started with a consultation today.
-        </h2>
-        <p class="lead">{{ tag2 }}</p>
-        <a href="{% url 'contact' %}" class="btn btn--primary">Get in Touch</a>
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end s-cta -->
-
-<script>
-  var form_fields = document.getElementsByTagName("input");
-
-  form_fields[1].placeholder = "Name";
-  form_fields[2].placeholder = "Company or Department";
-  form_fields[3].placeholder = "youremail@email.com";
-  form_fields[5].classList += "form-control";
-  // for (var field in form_fields) {
-  //form_fields[field].className += "form-control";
-  //}
-</script>
 {% endblock %}

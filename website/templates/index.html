@@ -1,405 +1,174 @@
-{% extends 'base.html' %} {% load static %} {% block body %}
-<section id="content" class="s-content">
-  <!-- intro ----------------------------------------------- -->
-  <section id="intro" class="s-intro">
-    <div class="row s-intro__content width-sixteen-col">
-      <div class="column lg-12 s-intro__content-inner grid-block">
-        <div class="s-intro__content-text">
-          <div class="s-intro__content-pretitle text-pretitle">
-            Creative Production Studio
-          </div>
-          <h1 class="fw-bold s-intro__content-title">
-            We create <br />
-            <a class="link_hover" href="{% url 'index' %}">art</a> for your
-            <br />
-            business that <span class="link_hover">get</span> <br />
-            <span class="link_hover">results.</span>
-          </h1>
-        </div>
-        <!-- s-intro__content-text -->
-
-        <div class="s-intro__content-media">
-          <div class="s-intro__content-media-inner">
-            <img
-              src="{% static 'images/intro-bg.png' %}"
-              srcset="{% static 'images/intro-bg.png' %} 1x, {% static 'images/intro-bg@2x.png' %} 2x"
-              alt=""
-            />
-            <div class="lines">
-              <span></span>
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<!-- Feature Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="row g-4">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_1_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_1_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_1_paragraph }}</p>
+                </div>
             </div>
-          </div>
-        </div>
-        <!-- s-intro__content-media -->
-
-        <div class="s-intro__scroll-down">
-          <a href="#about" class="smoothscroll">
-            <div class="scroll-icon">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                width="36"
-                height="36"
-                fill="none"
-                stroke="#97b34a"
-                stroke-width="1"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <polyline points="7 13 12 18 17 13"></polyline>
-                <line x1="12" y1="18" x2="12" y2="6"></line>
-              </svg>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_2_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_2_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_2_paragraph }}</p>
+                </div>
             </div>
-            <span>Scroll for more</span>
-          </a>
-        </div>
-        <!-- s-intro__scroll-down -->
-      </div>
-      <!-- s-intro__content-inner -->
-    </div>
-    <!-- s-intro__content -->
-  </section>
-  <!-- end s-intro -->
-
-  <!-- about
-            ----------------------------------------------- -->
-  <section id="about" class="s-about target-section">
-    <div class="row s-about__content width-sixteen-col">
-      <div class="column grid-block grid-section-split">
-        <img
-          src="{% static 'images/geometric_shape.svg' %}"
-          alt=""
-          class="s-about__content-imgbg"
-        />
-
-        <div class="section-header grid-section-split__header">
-          <div class="text-pretitle">About Us</div>
-          <h2 class="fw-bold text-display-title">
-            Transforming Ideas into Timeless Treasures.
-          </h2>
-        </div>
-        <!-- end section-header -->
-
-        <div class="s-about__content-main grid-section-split__primary">
-          <p class="attention-getter">
-            We specialize in bridging the gap between art and function, turning
-            visions into reality. Our collaborative approach empowers brands to
-            establish a unique and compelling digital presence, leaving a
-            lasting impression.
-          </p>
-        </div>
-        <!-- end s-about__content-main -->
-
-        <div class="s-about__content-btn grid-section-split__bottom">
-          <a href="{% url 'about' %}" class="btn btn--stroke u-fullwidth"
-            >Read More About Us</a
-          >
-
-          <ul class="s-about__social social-list">
-            <li>
-              <a href="#0">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  style="fill: rgba(0, 0, 0, 1); transform: ; -ms-filter: "
-                >
-                  <path
-                    d="M20,3H4C3.447,3,3,3.448,3,4v16c0,0.552,0.447,1,1,1h8.615v-6.96h-2.338v-2.725h2.338v-2c0-2.325,1.42-3.592,3.5-3.592 c0.699-0.002,1.399,0.034,2.095,0.107v2.42h-1.435c-1.128,0-1.348,0.538-1.348,1.325v1.735h2.697l-0.35,2.725h-2.348V21H20 c0.553,0,1-0.448,1-1V4C21,3.448,20.553,3,20,3z"
-                  ></path>
-                </svg>
-                <span class="u-screen-reader-text">Facebook</span>
-              </a>
-            </li>
-            <li>
-              <a href="www.twitter.com/4ourpixels/">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  style="fill: rgba(0, 0, 0, 1); transform: ; -ms-filter: "
-                >
-                  <path
-                    d="M19.633,7.997c0.013,0.175,0.013,0.349,0.013,0.523c0,5.325-4.053,11.461-11.46,11.461c-2.282,0-4.402-0.661-6.186-1.809 c0.324,0.037,0.636,0.05,0.973,0.05c1.883,0,3.616-0.636,5.001-1.721c-1.771-0.037-3.255-1.197-3.767-2.793 c0.249,0.037,0.499,0.062,0.761,0.062c0.361,0,0.724-0.05,1.061-0.137c-1.847-0.374-3.23-1.995-3.23-3.953v-0.05 c0.537,0.299,1.16,0.486,1.82,0.511C3.534,9.419,2.823,8.184,2.823,6.787c0-0.748,0.199-1.434,0.548-2.032 c1.983,2.443,4.964,4.04,8.306,4.215c-0.062-0.3-0.1-0.611-0.1-0.923c0-2.22,1.796-4.028,4.028-4.028 c1.16,0,2.207,0.486,2.943,1.272c0.91-0.175,1.782-0.512,2.556-0.973c-0.299,0.935-0.936,1.721-1.771,2.22 c0.811-0.088,1.597-0.312,2.319-0.624C21.104,6.712,20.419,7.423,19.633,7.997z"
-                  ></path>
-                </svg>
-                <span class="u-screen-reader-text">Twitter</span>
-              </a>
-            </li>
-            <li>
-              <a href="#0">
-                <svg
-                  xmlns="www.instagram.com/4ourpixels/"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  style="fill: rgba(0, 0, 0, 1); transform: ; -ms-filter: "
-                >
-                  <path
-                    d="M11.999,7.377c-2.554,0-4.623,2.07-4.623,4.623c0,2.554,2.069,4.624,4.623,4.624c2.552,0,4.623-2.07,4.623-4.624 C16.622,9.447,14.551,7.377,11.999,7.377L11.999,7.377z M11.999,15.004c-1.659,0-3.004-1.345-3.004-3.003 c0-1.659,1.345-3.003,3.004-3.003s3.002,1.344,3.002,3.003C15.001,13.659,13.658,15.004,11.999,15.004L11.999,15.004z"
-                  ></path>
-                  <circle cx="16.806" cy="7.207" r="1.078"></circle>
-                  <path
-                    d="M20.533,6.111c-0.469-1.209-1.424-2.165-2.633-2.632c-0.699-0.263-1.438-0.404-2.186-0.42 c-0.963-0.042-1.268-0.054-3.71-0.054s-2.755,0-3.71,0.054C7.548,3.074,6.809,3.215,6.11,3.479C4.9,3.946,3.945,4.902,3.477,6.111 c-0.263,0.7-0.404,1.438-0.419,2.186c-0.043,0.962-0.056,1.267-0.056,3.71c0,2.442,0,2.753,0.056,3.71 c0.015,0.748,0.156,1.486,0.419,2.187c0.469,1.208,1.424,2.164,2.634,2.632c0.696,0.272,1.435,0.426,2.185,0.45 c0.963,0.042,1.268,0.055,3.71,0.055s2.755,0,3.71-0.055c0.747-0.015,1.486-0.157,2.186-0.419c1.209-0.469,2.164-1.424,2.633-2.633 c0.263-0.7,0.404-1.438,0.419-2.186c0.043-0.962,0.056-1.267,0.056-3.71s0-2.753-0.056-3.71C20.941,7.57,20.801,6.819,20.533,6.111z M19.315,15.643c-0.007,0.576-0.111,1.147-0.311,1.688c-0.305,0.787-0.926,1.409-1.712,1.711c-0.535,0.199-1.099,0.303-1.67,0.311 c-0.95,0.044-1.218,0.055-3.654,0.055c-2.438,0-2.687,0-3.655-0.055c-0.569-0.007-1.135-0.112-1.669-0.311 c-0.789-0.301-1.414-0.923-1.719-1.711c-0.196-0.534-0.302-1.099-0.311-1.669c-0.043-0.95-0.053-1.218-0.053-3.654 c0-2.437,0-2.686,0.053-3.655c0.007-0.576,0.111-1.146,0.311-1.687c0.305-0.789,0.93-1.41,1.719-1.712 c0.534-0.198,1.1-0.303,1.669-0.311c0.951-0.043,1.218-0.055,3.655-0.055c2.437,0,2.687,0,3.654,0.055 c0.571,0.007,1.135,0.112,1.67,0.311c0.786,0.303,1.407,0.925,1.712,1.712c0.196,0.534,0.302,1.099,0.311,1.669 c0.043,0.951,0.054,1.218,0.054,3.655c0,2.436,0,2.698-0.043,3.654H19.315z"
-                  ></path>
-                </svg>
-                <span class="u-screen-reader-text">Instagram</span>
-              </a>
-            </li>
-          </ul>
-          <!-- end s-footer__social -->
-        </div>
-        <!-- end s-about__content-btn -->
-      </div>
-      <!-- content-inner -->
-    </div>
-  </section>
-  <!-- end s-about -->
-
-  <!-- expertise
-            ----------------------------------------------- -->
-  <section id="expertise" class="s-expertise">
-    <div class="row s-expertise__content width-sixteen-col">
-      <div class="column xl-12 grid-block grid-section-split">
-        <div class="section-header grid-section-split__header">
-          <div class="text-pretitle">Expertise</div>
-          <h2 class="text-display-title fw-bold">
-            Our key areas of expertise.
-          </h2>
-        </div>
-        <!-- end section-header -->
-
-        <div class="s-expertise__content-main grid-section-split__primary">
-          <div class="grid-list-items list-items show-ctr">
-            <!-- Web Development -->
-            <div class="grid-list-items__item list-items__item">
-              <div class="grid-list-items__title list-items__item-header">
-                <h3 class="list-items__item-title">Web/App Development</h3>
-              </div>
-              <div class="grid-list-items__text list-items__item-text">
-                <p>
-                  We craft custom web and app solutions tailored just for you.
-                  Ready to take your online presence to the next level? <br />
-                  <span
-                    ><a class="text-muted link_hover" href="{% url 'index' %}"
-                      >Let's go!</a
-                    ></span
-                  >
-                </p>
-              </div>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+                <div class="feature-item bg-light rounded text-center p-4">
+                    <i class="{{ homepage_data.card_3_icon }}"></i>
+                    <h5 class="mb-3">{{ homepage_data.card_3_title }}</h5>
+                    <p class="m-0">{{ homepage_data.card_3_paragraph }}</p>
+                </div>
             </div>
-            <!-- Graphic Design -->
-            <div class="grid-list-items__item list-items__item">
-              <div class="grid-list-items__title list-items__item-header">
-                <h3 class="list-items__item-title">Graphic Design</h3>
-              </div>
-              <div class="grid-list-items__text list-items__item-text">
-                <p>
-                  Stunning logos, unforgettable branding, and print materials
-                  that leave a lasting impression. <br />
-                  <span
-                    ><a class="text-muted link_hover" href="{% url 'index' %}"
-                      >Read more</a
-                    ></span
-                  >
-                </p>
-              </div>
+        </div>
+    </div>
+</div>
+<!-- Feature End -->
+
+<!-- About Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="row g-5 align-items-center justify-content-between">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                <p class="section-title text-secondary">About Us<span></span></p>
+                <h1 class="mb-5">{{ homepage_data.about_us_h1 }}</h1>
+                <p class="mb-4">{{ homepage_data.about_us_p }}</p>
+                <a href="{% url 'about' %}" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">{{ homepage_data.about_us_button }}</a>
             </div>
-            <!-- Digital Art -->
-            <div class="grid-list-items__item list-items__item">
-              <div class="grid-list-items__title list-items__item-header">
-                <h3 class="list-items__item-title">Digital Art</h3>
-              </div>
-              <div class="grid-list-items__text list-items__item-text">
-                <p>
-                  Transform your content into visual magic with our mesmerizing
-                  motion graphics. From videos to presentations, we make your
-                  ideas dance! <br />
-                  <span
-                    ><a class="text-muted link_hover" href="{% url 'index' %}"
-                      >Read more</a
-                    ></span
-                  >
-                </p>
-              </div>
+            <div class="col-lg-6 ">
+                <img style="max-height: 90vh; width: auto" class="img-fluid float-end wow zoomIn" data-wow-delay="0.5s" src="{{ homepage_data.about_us_image.url }}">
             </div>
-            <!-- Groove With DJ G400 -->
-            <div class="grid-list-items__item list-items__item">
-              <div class="grid-list-items__title list-items__item-header">
-                <h3 class="list-items__item-title">Groove With DJ G400</h3>
-              </div>
-              <div class="grid-list-items__text list-items__item-text">
-                <p>
-                  Your one-stop party shop for epic playlists, banging mixes,
-                  dazzling outfits, and unforgettable DJ services. <br />
-                  <span
-                    ><a class="text-muted link_hover" href="{% url 'djg400' %}"
-                      >Check out DJ G400</a
-                    ></span
-                  >
-                </p>
-              </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Service Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="wow fadeInUp" data-wow-delay="0.1s">
+            <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
+            <h1 class="text-center mb-5">What Solutions We Provide</h1>
+        </div>
+        <div class="row g-4">
+            {% for service in services %}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.{{ service.pk }}s">
+                <div class="service-item d-flex flex-column text-center rounded">
+                    <div class="service-icon flex-shrink-0">
+                        <i class="{{ service.icon|safe }}"></i>
+                    </div>
+                    <h5 class="mb-3">{{ service.title }}</h5>
+                    <p class="m-0">{{ service.paragraph }}</p>
+                </div>
             </div>
-          </div>
-          <!-- grid-list-items -->
+            {% endfor %}
         </div>
-        <!-- end s-expertise__content-main -->
-
-        <div class="s-expertise__content-btn grid-section-split__bottom">
-          <a href="{% url 'services' %}" class="btn btn--primary u-fullwidth"
-            >View All Services</a
-          >
-        </div>
-        <!-- end s-about__content-btn -->
-      </div>
-      <!-- end grid-block-->
     </div>
-    <!-- end s-expertise__content -->
-  </section>
-  <!-- end s-expertise -->
+</div>
+<!-- Service End -->
 
-  <!-- clients
-            ----------------------------------------------- -->
-  <section id="clients" class="s-clients">
-    <div class="row s-clients__content-block width-sixteen-col">
-      <div class="column xl-12 grid-block grid-section-split">
-        <div class="section-header grid-section-split__header">
-          <div class="text-pretitle">Clients</div>
-          <h2 class="text-display-title fw-bold">
-            We've worked with these incredible brands.
-          </h2>
+<!-- Newsletter Start -->
+{% include 'components/newsletter.html' %}
+<!-- Newsletter End -->
+
+<!-- Projects Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="wow fadeInUp" data-wow-delay="0.1s">
+            <p class="section-title text-secondary justify-content-center"><span></span>Our Projects<span></span></p>
+            <h1 class="text-center mb-5">Recently Completed Projects</h1>
         </div>
-        <!-- end section-header -->
-
-        <div class="grid-section-split__primary">
-          <p class="lead">
-            Our collaboration has empowered these brands to seamlessly merge
-            creativity and functionality, creating a unique and compelling
-            digital presence. Together, we've turned visions into reality,
-            elevating their online impact and leaving a lasting impression.
-          </p>
-        </div>
-        <!-- end grid-section-split__primary -->
-      </div>
-      <!-- end column -->
-    </div>
-    <!-- end row -->
-
-    <div class="row s-clients__content-block width-sixteen-col">
-      <div class="column xl-12">
-        <div class="clients-list">
-          <div class="clients-list__item">
-            <a href="https://www.amscins.com/">
-              <img src="{% static 'images/clients/amscins.png' %}" alt="" />
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://www.lukustore.nl">
-              <img src="{% static 'images/clients/lukustorenl.png' %}" alt="" />
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://www.codeblackintl.com">
-              <img src="{% static 'images/clients/codeblack.png' %}" alt="" />
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://4ourpixels.github.io/African-Spice-Kitchen/">
-              <img src="{% static 'images/clients/ask.png' %}" alt="" />
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://www.instagram.com/shekenya22/">
-              <h1 style="margin: -1rem 0" class="fw-bold">She!</h1>
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://wajenzistores.com/">
-              <h3 style="margin: -1rem 0" class="fw-bold">WAJENZI STORES</h3>
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://4ourpixels.github.io/Vom-Saj-Kennels/">
-              <h1 style="margin: -1rem 0" class="fw-bold">VSK</h1>
-            </a>
-          </div>
-          <div class="clients-list__item">
-            <a href="https://4ourpixels.github.io/lorenzos-store/">
-              <h1 style="margin: -1rem 0" class="fw-bold">LS</h1>
-            </a>
-          </div>
-        </div>
-        <!-- end clients-list -->
-      </div>
-      <!-- end column -->
-    </div>
-    <!-- end row -->
-  </section>
-  <!-- end s-clients -->
-</section>
-<!-- s-content-->
-
-<!-- # cta
-        ================================================== -->
-<section id="cta" class="s-cta">
-  <div class="row row-x-center text-center">
-    <div class="column xl-8 lg-12">
-      <div class="s-cta__content">
-        <h2 class="fw-bold text-display-title">
-          Get started with a consultation today.
-        </h2>
-        <p class="lead">
-          Embark on your digital journey by initiating a consultation today and
-          unlock the potential for transformative solutions tailored to your
-          needs.
-        </p>
-        <a href="{% url 'contact' %}" class="btn btn--primary"
-          >Let's Work Together</a
-        >
-      </div>
-    </div>
-  </div>
-</section>
-<!-- end s-cta -->
-
-<!-- # journal
-        ================================================== -->
-<section id="journal" class="s-journal">
-  <div class="row s-journal__content width-sixteen-col">
-    <div class="column xl-12 grid-block">
-      <div class="grid-full section-header text-center">
-        <div class="text-pretitle">Recent Articles</div>
-        <h2 class="text-display-title fw-bold">Latest in our journal.</h2>
-      </div>
-      <!-- end section-header -->
-
-      <div class="grid-full s-journal__content-main grid-list-items">
-        <!-- start blog card -->
-        {% for blog in blogs %}
-        <div class="grid-list-items__item blog-card">
-          <div class="blog-card__header">
-            <div class="blog-card__cat-links">
-              <a href="{{ blog.get_url }}">{{ blog.category }}</a>
+        <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-12 text-center">
+                <ul class="list-inline mb-5" id="portfolio-flters">
+                    <li class="mx-2 active" data-filter="*">All</li>
+                    <li class="mx-2" data-filter=".website">Website</li>
+                    <li class="mx-2" data-filter=".application">Application</li>
+                    <li class="mx-2" data-filter=".uiux">UI/UX</li>
+                    <li class="mx-2" data-filter=".graphic-design">Graphic Design</li>
+                    <li class="mx-2" data-filter=".branding">Branding</li>
+                    <li class="mx-2" data-filter=".digital-art">Digital Art</li>
+                </ul>
             </div>
-            <h3 class="blog-card__title">
-              <a href="{{ blog.get_url }}">{{ blog.title }}</a>
-            </h3>
-          </div>
-          <div class="blog-card__text">
-            <p>{{ blog.summary|safe|truncatewords:15 }}</p>
-            <a href="{{ blog.get_url }}">Read more</a>
-          </div>
         </div>
-        {% endfor %}
-        <!-- end blog-card -->
-      </div>
-      <!-- end grid-list-items -->
+        <div class="row g-4 portfolio-container">
+            {% for project in projects %}
+            <div class="col-lg-4 col-md-6 portfolio-item {{ project.category.slug }} wow fadeInUp" data-wow-delay="0.1s">
+                <div class="rounded overflow-hidden">
+                    <div class="position-relative overflow-hidden">
+                        {% if project.logo %}
+                        <img class="img-fluid w-100 bg-light" src="{{ project.logo.url }}" alt="">
+                        {% else %}
+                        <img class="img-fluid w-100 bg-light" src="" alt="">
+                        {% endif %}
+                        <div class="portfolio-overlay">
+                            <a class="btn btn-square btn-outline-light mx-1" href="#" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            {% if project.website_link %}
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.website_link }}" target="_blank"><i class="fa fa-link"></i></a>
+                            {% elif project.blog_link %}
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.blog_link }}" target="_blank"><i class="fa fa-link"></i></a>
+                            {% elif project.app_link %}
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.app_link }}" target="_blank"><i class="fa fa-link"></i></a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="bg-light p-4">
+                        {% if project.website_link %}
+                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.website_link }}" target="_blank">{{ project.link_name }}</a></p>
+                        {% elif project.app_link %}
+                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.app_link }}" target="_blank">{{ project.link_name }}</a></p>
+                        {% elif project.blog_link %}
+                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.blog_link }}" target="_blank">{{ project.link_name }}</a></p>
+                        {% endif %}
+                        <h5 class="lh-base mb-0">{{ project.name }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
-    <!-- end grid-block-->
-  </div>
-  <!-- end s-journal__content -->
-</section>
-<!-- end s-journal -->
+</div>
+<!-- Projects End -->
+
+<!-- Lets Work Together CTA Start -->
+{% include 'components/lets_work_together.html' %}
+<!-- Lets Work Together CTA End -->
+
+
+<!-- Blogs Start -->
+<div class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="wow fadeInUp" data-wow-delay="0.1s">
+            <p class="section-title text-secondary justify-content-center"><span></span>Our Blogs & News<span></span></p>
+            <h1 class="text-center mb-5">Read the latest articles</h1>
+        </div>
+        <div class="row g-4 ">
+            {% for blog in blogs|slice:3 %}
+            <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+                <div class="rounded overflow-hidden">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ blog.cover.url }}" alt="">
+                        <div class="portfolio-overlay">
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ blog.blog_image.url }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ blog.get_url }}"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light p-4">
+                        <p class="text-primary fw-medium mb-2">{{ blog.category }}</p>
+                        <h5 class="lh-base mb-0">{{ blog.title }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Blogs End -->
 {% endblock %}
