@@ -6,8 +6,10 @@
     <div class="container px-lg-5 text-center">
         <div class="row justify-content-center">
             <div class="col-lg-6">
+                <h1 class="text-center">Pixa Scout</h1>
+                <p>Search for beautiful, free images and photos that you can download and use for any project.</p>
                 <form id="search-form" class="d-flex input-group">
-                    <input id="search-box" class="form-control" type="text" placeholder="Search for images"/>
+                    <input id="search-box" class="form-control" type="text" placeholder="Try cat, car, texture..."/>
                     <button class="btn btn-primary" type="submit">Search</button>
                 </form>
             </div>
@@ -16,10 +18,15 @@
     <div class="container mt-5">
         <div class="row justify-content-center" id="search-result"></div>
     </div>
-    <button type="submit" class="btn text-center text-center btn-lg mx-auto btn-primary my-5" id="show-more-btn">Show more</button>
+    <button type="submit" class="btn text-center text-center btn-lg mx-auto btn-primary mt-5" id="show-more-btn">Show more</button>
 </div>
-<div class="my-5 text-center">
-    <small>Images provided by Unsplash API</small>
+<div class="container mt-4">
+    <div class="text-center border-top pt-4">
+        <a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="link">
+            Click here to read more about Pixa Scout.
+        </a><br>
+        <small>Images provided by Unsplash API</small>
+    </div>
 </div>
 <script src="{% static 'js/image-search.js' %}"></script>
 {% endblock %}

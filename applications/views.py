@@ -18,7 +18,7 @@ def applications_list(request):
 def image_search(request):
     blog = get_object_or_404(Blog, pk=4)
     context = {
-        'title_tag': "Search for beautiful, free images and photos that you can download and use for any project.",
+        'title_tag': "Search free images",
         'meta_description': blog.meta_description,
         'meta_keywords': blog.meta_keywords,
         'cover_image': Blog.objects.get(pk=4).cover,
