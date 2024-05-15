@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.text import slugify
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -27,11 +28,14 @@ class Project(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} - {self.category}"
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
         super().save(*args, **kwargs)
 
-    def get_website_url(self):
-        return self.website_link
+    @property
+    def get_url(self):
+        return reverse("project_detail", kwargs={
+            "slug": self.slug,
+        })
