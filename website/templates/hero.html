@@ -1,0 +1,72 @@
+{% load static %}
+{% if request.path == '/' %}
+<div class="container-xxl bg-primary-dark hero-header">
+    <div class="container px-lg-5">
+        {% if messages %}
+        {% include 'components/messages.html' %}
+        {% endif %}
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 text-center text-lg-start">
+                <h1 class="text-white display-5 my-5 animated slideInDown">{{ homepage_data.hero_h1 }}</h1>
+                <p class="text-white pb-3 animated slideInDown">{{ homepage_data.hero_p }}</p>
+                <a href="{% url 'about' %}" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill me-3 animated slideInLeft">Read More</a>
+                <a href="{% url 'contact' %}" class="btn btn-outline-light py-sm-3 px-sm-5 rounded-pill animated slideInRight">Contact Us</a>
+            </div>
+            <div class="col-lg-6 text-center text-lg-start">
+                <img class="img-fluid animated zoomIn" src="{% static 'img/hero.png' %}" alt="">
+            </div>
+        </div>
+    </div>
+</div>
+{% elif cover_image %}
+<div style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent), url('{{ cover_image.url }}');" class="container-fluid py-5 header-image">
+    <div class="container mt-5 py-5 px-lg-5">
+        {% if messages %}
+        {% include 'components/messages.html' %}
+        {% endif %}
+        <div class="row g-5 py-5">
+            <div class="col-12 text-center">
+                <h1 class="text-white animated slideInDown">{{ title_tag }}</h1>
+                <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                        {% if request.path|slice:"0:5" == "/blog" %}
+                        <li class="breadcrumb-item"><a href="{% url 'blog_list' %}" class="text-white">Blog</a></li>
+                        {% elif request.path|slice:":13" == "/applications" %}
+                        <li class="breadcrumb-item"><a class="text-white" href="{% url 'applications_list' %}">Applications</a></li>
+                        {% elif request.path|slice:":9" == "/projects" %}
+                        <li class="breadcrumb-item"><a href="{% url 'projects_list' %}" class="text-white">Projects</a></li>
+                        {% endif %}
+                        <li class="breadcrumb-item text-white active" aria-current="page">{{ title_tag }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% else %}
+<div class="container-xxl py-5 bg-primary-dark">
+    <div class="container mt-5 py-5 px-lg-5">
+        {% if messages %}
+        {% include 'components/messages.html' %}
+        {% endif %}
+        <div class="row g-5 py-5">
+            <div class="col-12 text-center">
+                <h1 class="text-white animated slideInDown">{{ title_tag }}</h1>
+                <hr class="bg-white mx-auto mt-0" style="width: 90px;">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb justify-content-center">
+                        <li class="breadcrumb-item"><a class="text-white" href="{% url 'index' %}">Home</a></li>
+                        {% if project.category.name %}
+                        <li class="breadcrumb-item"><a href="{% url 'projects_list' %}" class="text-white">Project</a></li>
+                        <li class="breadcrumb-item"><a class="text-white">{{ project.category.name }}</a></li>
+                        {% endif %}
+                        <li class="breadcrumb-item text-white active" aria-current="page">{{ title_tag }}</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
