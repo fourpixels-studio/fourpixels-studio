@@ -1,9 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
-from django.utils.dateformat import DateFormat
-from django.contrib.auth.models import User
 from django.urls import reverse
-# Create your models here.
+
+
 class Blog(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     introduction = models.TextField(blank=True, null=True)
@@ -29,7 +28,7 @@ class Blog(models.Model):
         super().save(*args, **kwargs)
 
     @property
-    def get_blog_url(self):
+    def meta_url(self):
         return f"www.fourpixels.studio/blog/{self.slug}/"
 
     @property
@@ -38,64 +37,16 @@ class Blog(models.Model):
             "slug": self.slug,
         })
 
-    @property
-    def get_category(self):
-        if self.category:
-            return self.category.split()[0]
-        return "All"
-        
-class Customer(models.Model):
-    user = models.OneToOneField(
-        User, null=True, blank=True, on_delete=models.CASCADE)
-    first_name = models.CharField(max_length=200, null=True, blank=True)
-    last_name = models.CharField(max_length=200, null=True, blank=True)
-    username = models.CharField(max_length=50, null=True, blank=True)
-    email = models.EmailField(default='', null=True, blank=True)
-
-    profile_pic = models.ImageField(
-        null=True,
-        blank=True,
-        upload_to="customer-images/",
-        default='image.jpg',
-    )
-
-    def __str__(self):
-        return self.username
-
-
-def create_customer(sender, instance, created, **kwargs):
-    if created:
-        Customer.objects.create(
-            user=instance, name=instance.username, email=instance.email)
-
-
-models.signals.post_save.connect(create_customer, sender=User)
 
 class Newsletter(models.Model):
-    customer = models.ForeignKey(
-        Customer, on_delete=models.SET_NULL, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
+    date_added = models.DateTimeField(
+        auto_now_add=True, blank=True, null=True)
+    consent = models.BooleanField(default=True, null=True, blank=False)
 
     def __str__(self):
         return self.email
 
-# About Us
-
-class AboutSection(models.Model):
-    question = models.CharField(max_length=255, blank=True, null=True)
-    content_1 = models.TextField(blank=True, null=True)
-    content_2 = models.TextField(blank=True, null=True)
-    content_3 = models.TextField(blank=True, null=True)
-    content_4 = models.TextField(blank=True, null=True)
-    
-    def __str__(self):
-        return f"{self.question}"
-
-class MessageTag(models.Model):
-    tag = models.TextField(blank=True, null=True)
-    
-    def __str__(self):
-        return self.tag
 
 class Testimonial(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -104,61 +55,24 @@ class Testimonial(models.Model):
     testimonial = models.TextField(blank=True, null=True)
     post_testimonial = models.BooleanField(default=True, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    image = models.ImageField(default="testimonial.jpg", upload_to="testimonial-images/", blank=True, null=True)
+    image = models.ImageField(
+        default="testimonial.jpg", upload_to="testimonial-images/", blank=True, null=True)
+
     def __str__(self):
         return f"{self.name}' Testimonial - Posted On: {self.pub_date.strftime('%A, %B %d, %Y')}"
 
+
 class Contact(models.Model):
-    user = models.OneToOneField(
-        User, null=True, blank=True, on_delete=models.CASCADE)
-    name = models.CharField(max_length=200, null=True, blank=True)
+    name = models.CharField(max_length=120, null=True, blank=True)
     message = models.TextField(null=True, blank=True)
     phone_number = models.CharField(max_length=20, null=True, blank=True)
-    email = models.EmailField(default='', null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
+    def __str__(self):
+        return f'{self.name} | {self.message[:100]} | {self.date}'
 
-    def __str__(self):
-        return f'Lead Name: {self.name} | {self.date} | {self.message[:100]}'
-    
-# Merchandise Start
-class Merchandise(models.Model):
-    name = models.CharField(max_length=200, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    summary = models.TextField(blank=True, null=True)
-    image = models.ImageField(default="merchandise.jpg", upload_to="merchandise-images/", blank=True, null=True)
-    slug = models.SlugField(unique=True, null=True, blank=True)
-    
-    def __str__(self):
-        return self.name
-    
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-        
-# Client Portoflio End
-class ClientPortoflio(models.Model):
-    company_name = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    website_link = models.TextField(blank=True, null=True)
-    link_name = models.CharField(max_length=40,blank=True, null=True)
-    blog_link = models.TextField(blank=True, null=True)
-    app_link = models.TextField(blank=True, null=True)
-    
-    slug = models.SlugField(unique=True, null=True, blank=True)
-    
-    def __str__(self):
-        return self.company_name
-    
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.company_name)
-        super().save(*args, **kwargs)
-        
-    def get_website_url(self):
-        return self.website_link
-# Client Portoflio End
 
-# Homepage Data Start
 class HomePage(models.Model):
     hero_h1 = models.CharField(max_length=150, blank=True, null=True)
     hero_p = models.CharField(max_length=150, blank=True, null=True)
@@ -173,7 +87,7 @@ class HomePage(models.Model):
     card_3_icon = models.CharField(max_length=70, blank=True, null=True)
     card_3_title = models.CharField(max_length=25, blank=True, null=True)
     card_3_paragraph = models.TextField(blank=True, null=True)
-    about_us_h1 = models.CharField(max_length=25, blank=True, null=True)
+    about_us_h1 = models.CharField(max_length=50, blank=True, null=True)
     about_us_p = models.TextField(blank=True, null=True)
     about_us_button = models.CharField(max_length=20, blank=True, null=True)
     about_us_image = models.ImageField(
@@ -181,5 +95,28 @@ class HomePage(models.Model):
 
     def __str__(self):
         return "Home Page"
-# Homepage Data End
 
+
+class Service(models.Model):
+    icon = models.CharField(max_length=70, blank=True, null=True)
+    title = models.CharField(max_length=25, blank=True, null=True)
+    paragraph = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Accordion(models.Model):
+    title = models.CharField(max_length=255, blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
+
+
+class About(models.Model):
+    title = models.CharField(max_length=255, blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return self.title
