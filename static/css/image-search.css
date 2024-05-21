@@ -1,0 +1,25 @@
+#search-result {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 40px;
+}
+#search-result img {
+  border-radius: 8px;
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+#show-more-btn {
+  display: none;
+}
+.underline {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Media query for small screens */
+@media screen and (max-width: 767px) {
+  #search-result {
+    grid-template-columns: 1fr 1fr;
+  }
+}
