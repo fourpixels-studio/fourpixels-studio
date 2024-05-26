@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<main class="container-xxl">
+    <section class="container py-5 px-lg-5">
+        <div class="row">
+            <div class="wow fadeInUp" data-wow-delay="0.1s">
+                <div class="rounded overflow-hidden">
+                    <div class="position-relative overflow-hidden">
+                        <h1>Title: {{ track.title }}</h1>
+                        <p class="lead">Artists: {{ track.artist }}</p>
+                        <p class="lead">Year: {{ track.year }}</p>
+                        <img class="img-fluid my-5 w-100" src="{{ track.landscape_cover.url }}" alt="">
+                        <div class="text-center">
+                            <a class="btn btn-primary btn-lg download-btn" href="{{ track.download_link }}" data-track-id="{{ track.id }}" data-url="{% url 'update_download_count' track.id %}">Download</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('.download-btn').on('click', function(event) {
+            event.preventDefault();
+            var trackId = $(this).data('track-id');
+            var downloadLink = $(this).attr('href');
+            var updateUrl = $(this).data('url');
+            $.ajax({
+                url: updateUrl,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': '{{ csrf_token }}'
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        window.location.href = downloadLink;
+                    } else {
+                        alert('Failed to update download count.');
+                    }
+                },
+                error: function() {
+                    alert('Failed to update download count.');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}
