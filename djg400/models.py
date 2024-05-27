@@ -10,8 +10,11 @@ class Track(models.Model):
     cover = models.ImageField(blank=True, null=True)
     landscape_cover = models.ImageField(blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    download_link = models.TextField(blank=True, null=True)
-    download_count = models.PositiveIntegerField(
+    video_download_link = models.TextField(blank=True, null=True)
+    audio_download_link = models.TextField(blank=True, null=True)
+    audio_download_count = models.PositiveIntegerField(
+        default=0, blank=True, null=True)
+    video_download_count = models.PositiveIntegerField(
         default=0, blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
 
