@@ -11,6 +11,8 @@ urlpatterns = [
     path("projects/", include("projects.urls")),
     path("applications/", include("applications.urls")),
     path("djg400/", include("djg400.urls")),
+    path("hitcount/", include("hitcount.urls")),
+    path("blogs/", include("blogs.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # Configure admin titles
