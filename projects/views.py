@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Project
 from website.get_items import get_projects
+from blogs.utils import update_views
 
 
 def projects_list(request):
@@ -21,4 +22,5 @@ def project_detail(request, slug):
         'meta_description': project.description,
         'projects': get_projects(),
     }
+    update_views(request, project)
     return render(request, 'project_detail.html', context)

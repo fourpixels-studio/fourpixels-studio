@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+{% load hitcount_tags %}
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
         <div class="wow fadeInUp" data-wow-delay="0.1s">
+            {% if request.user.is_authenticated and request.user.is_superuser %}
+            <p class="text-center">Viewed {% get_hit_count for contact_model %} times</p>
+            {% endif %}
             <h1 class="text-center mb-5">Contact For Any Query</h1>
         </div>
         <div class="row justify-content-center">

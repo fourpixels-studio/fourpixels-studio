@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
+{% load hitcount_tags %}
 <!-- Feature Start -->
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
+        {% if request.user.is_authenticated and request.user.is_superuser %}
+        <p class="text-center">Viewed {% get_hit_count for homepage_data %} times</p>
+        {% endif %}
         <div class="row g-4">
             <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="feature-item bg-light rounded text-center p-4">
@@ -12,14 +16,14 @@
                     <p class="m-0">{{ homepage_data.card_1_paragraph }}</p>
                 </div>
             </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.2s">
                 <div class="feature-item bg-light rounded text-center p-4">
                     <i class="{{ homepage_data.card_2_icon }}"></i>
                     <h5 class="mb-3">{{ homepage_data.card_2_title }}</h5>
                     <p class="m-0">{{ homepage_data.card_2_paragraph }}</p>
                 </div>
             </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="feature-item bg-light rounded text-center p-4">
                     <i class="{{ homepage_data.card_3_icon }}"></i>
                     <h5 class="mb-3">{{ homepage_data.card_3_title }}</h5>
@@ -35,14 +39,14 @@
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
         <div class="row g-5 align-items-center justify-content-between">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-6 wow fadeInUp">
                 <p class="section-title text-secondary">About Us<span></span></p>
                 <h1 class="mb-5">{{ homepage_data.about_us_h1 }}</h1>
                 <p class="mb-4">{{ homepage_data.about_us_p }}</p>
                 <a href="{% url 'about' %}" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">{{ homepage_data.about_us_button }}</a>
             </div>
             <div class="col-lg-6 ">
-                <img style="max-height: 90vh; width: auto" class="img-fluid float-end wow zoomIn" data-wow-delay="0.5s" src="{{ homepage_data.about_us_image.url }}">
+                <img style="max-height: 90vh; width: auto" class="img-fluid float-end wow zoomIn" data-wow-delay="0.3s" src="{{ homepage_data.about_us_image.url }}">
             </div>
         </div>
     </div>
@@ -53,7 +57,7 @@
 <!-- Service Start -->
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
-        <div class="wow fadeInUp" data-wow-delay="0.1s">
+        <div class="wow fadeInUp">
             <p class="section-title text-secondary justify-content-center"><span></span>Our Services<span></span></p>
             <h1 class="text-center mb-5">What Solutions We Provide</h1>
         </div>
@@ -81,11 +85,11 @@
 <!-- Projects Start -->
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
-        <div class="wow fadeInUp" data-wow-delay="0.1s">
+        <div class="wow fadeInUp">
             <p class="section-title text-secondary justify-content-center"><span></span>Our Projects<span></span></p>
             <h1 class="text-center mb-5">Recently Completed Projects</h1>
         </div>
-        <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+        <div class="row mt-n2 wow fadeInUp">
             <div class="col-12 text-center">
                 <ul class="list-inline mb-5" id="portfolio-flters">
                     <li class="mx-2 active" data-filter="*">All</li>
@@ -100,7 +104,7 @@
         </div>
         <div class="row g-4 portfolio-container">
             {% for project in projects %}
-            <div class="col-lg-4 col-md-6 portfolio-item {{ project.category.slug }} wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-4 col-md-6 portfolio-item {{ project.category.slug }} wow fadeInUp">
                 <div class="rounded overflow-hidden">
                     <div class="position-relative overflow-hidden">
                         {% if project.logo %}
@@ -109,25 +113,13 @@
                         <img class="img-fluid w-100 bg-light" src="" alt="">
                         {% endif %}
                         <div class="portfolio-overlay">
-                            <a class="btn btn-square btn-outline-light mx-1" href="#" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            {% if project.website_link %}
-                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.website_link }}" target="_blank"><i class="fa fa-link"></i></a>
-                            {% elif project.blog_link %}
-                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.blog_link }}" target="_blank"><i class="fa fa-link"></i></a>
-                            {% elif project.app_link %}
-                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.app_link }}" target="_blank"><i class="fa fa-link"></i></a>
-                            {% endif %}
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.logo.url }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.get_url }}"><i class="fa fa-link"></i></a>
                         </div>
                     </div>
                     <div class="bg-light p-4">
-                        {% if project.website_link %}
-                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.website_link }}" target="_blank">{{ project.link_name }}</a></p>
-                        {% elif project.app_link %}
-                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.app_link }}" target="_blank">{{ project.link_name }}</a></p>
-                        {% elif project.blog_link %}
-                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.blog_link }}" target="_blank">{{ project.link_name }}</a></p>
-                        {% endif %}
-                        <h5 class="lh-base mb-0">{{ project.name }}</a>
+                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.get_url }}">{{ project.link_name }}</a></p>
+                        <h5 class="lh-base mb-0">{{ project.name }}</h5>
                     </div>
                 </div>
             </div>
@@ -145,13 +137,13 @@
 <!-- Blogs Start -->
 <div class="container-xxl py-5">
     <div class="container py-5 px-lg-5">
-        <div class="wow fadeInUp" data-wow-delay="0.1s">
+        <div class="wow fadeInUp">
             <p class="section-title text-secondary justify-content-center"><span></span>Our Blogs & News<span></span></p>
             <h1 class="text-center mb-5">Read the latest articles</h1>
         </div>
         <div class="row g-4 ">
             {% for blog in blogs|slice:3 %}
-            <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp" data-wow-delay="0.1s">
+            <div class="col-lg-4 col-md-6 portfolio-item wow fadeInUp">
                 <div class="rounded overflow-hidden">
                     <div class="position-relative overflow-hidden">
                         <img class="img-fluid w-100" src="{{ blog.cover.url }}" alt="">
@@ -162,7 +154,7 @@
                     </div>
                     <div class="bg-light p-4">
                         <p class="text-primary fw-medium mb-2">{{ blog.category }}</p>
-                        <h5 class="lh-base mb-0">{{ blog.title }}</a>
+                        <h5 class="lh-base mb-0">{{ blog.title }}</h5>
                     </div>
                 </div>
             </div>

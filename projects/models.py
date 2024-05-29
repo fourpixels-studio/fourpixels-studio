@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from hitcount.models import HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Category(models.Model):
@@ -26,6 +28,8 @@ class Project(models.Model):
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return f"{self.name} - {self.category}"

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+from hitcount.models import HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Track(models.Model):
@@ -17,6 +19,8 @@ class Track(models.Model):
     video_download_count = models.PositiveIntegerField(
         default=0, blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return self.title

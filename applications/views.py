@@ -1,9 +1,9 @@
-from website.models import Blog
+from blogs.models import Blog
 from django.shortcuts import render, get_object_or_404
-from website.models import Blog
 from django.http import HttpResponse
 from PIL import Image
 from django.shortcuts import render
+from blogs.utils import update_views
 
 
 def applications_list(request):
@@ -21,20 +21,23 @@ def image_search(request):
         'title_tag': "Search free images",
         'meta_description': blog.meta_description,
         'meta_keywords': blog.meta_keywords,
-        'cover_image': Blog.objects.get(pk=4).cover,
+        'cover_image': blog.cover,
+        'blog': blog,
     }
+    update_views(request, blog)
     return render(request, 'image_search.html', context)
 
 
 def image_compression(request):
-
+    blog = get_object_or_404(Blog, pk=3)
     context = {
         'title_tag': "Easily compress images",
         'meta_description': "meta_description",
         'meta_keywords': "meta_keywords",
-        'cover_image': Blog.objects.get(pk=3).cover,
+        'cover_image': blog.cover,
+        'blog': blog,
     }
-
+    update_views(request, blog)
     if request.method == 'POST':
         # Get the uploaded file from the request
         uploaded_file = request.FILES['image']

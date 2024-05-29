@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% load hitcount_tags %}
+<main class="container-xxl py-5">
+    <div class="container py-5 px-lg-5">
+        <div class="wow fadeInUp" data-wow-delay="0.1s">
+            <p class="section-title text-secondary justify-content-center"><span></span>News and Blogs<span></span></p>
+            <h1 class="text-center mb-5">Read the latest articles</h1>
+        </div>
+        <div class="row mt-n2 wow fadeInUp" data-wow-delay="0.3s">
+            <div class="col-12 text-center">
+                <ul class="list-inline mb-5" id="portfolio-flters">
+                    <li class="mx-2 active" data-filter="*">All</li>
+                    <li class="mx-2" data-filter=".Python">Python Programming</li>
+                    <li class="mx-2" data-filter=".Digital">Digital Art</li>
+                    <li class="mx-2" data-filter=".Website">Web Development</li>
+                    <li class="mx-2" data-filter=".Application">Application</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row g-4 portfolio-container">
+            {% for blog in blogs %}
+            <div class="col-lg-4 col-md-6 portfolio-item {{ blog.get_category }} wow fadeInUp" data-wow-delay="0.{{ blog.pk }}s">
+                <div class="rounded overflow-hidden">
+                    <div class="position-relative overflow-hidden">
+                        <img class="img-fluid w-100" src="{{ blog.cover.url }}" alt="">
+                        <div class="portfolio-overlay">
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ blog.cover.url }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-square btn-outline-light mx-1" href="{{ blog.get_url }}"><i class="fa fa-link"></i></a>
+                        </div>
+                    </div>
+                    <div class="bg-light p-4">
+                        {% if request.user.is_authenticated and request.user.is_superuser %}
+                        <p>Seen {% get_hit_count for blog %} times</p>
+                        {% endif %}
+                        <p class="text-primary fw-medium mb-2">{{ blog.category }}</p>
+                        <h5 class="lh-base mb-0">{{ blog.title }}</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</main>
+{% endblock %}

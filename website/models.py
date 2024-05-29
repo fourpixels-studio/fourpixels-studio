@@ -1,41 +1,8 @@
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
-
-
-class Blog(models.Model):
-    title = models.CharField(max_length=200, blank=True, null=True)
-    introduction = models.TextField(blank=True, null=True)
-    paragraph_1 = models.TextField(blank=True, null=True)
-    paragraph_2 = models.TextField(blank=True, null=True)
-    paragraph_3 = models.TextField(blank=True, null=True)
-    conclusion = models.TextField(blank=True, null=True)
-    tags = models.TextField(blank=True, null=True)
-    author = models.CharField(max_length=50, blank=True, null=True)
-    category = models.CharField(max_length=50, blank=True, null=True)
-    cover = models.ImageField(default="blog.jpg", blank=True, null=True)
-    pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    summary = models.TextField(blank=True, null=True)
-    meta_description = models.TextField(blank=True, null=True)
-    meta_keywords = models.TextField(blank=True, null=True)
-    slug = models.SlugField(unique=True, null=True, blank=True)
-
-    def __str__(self):
-        return f"{self.title} - Published On: {self.pub_date.strftime('%A, %B %d, %Y')}"
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
-
-    @property
-    def meta_url(self):
-        return f"www.fourpixels.studio/blog/{self.slug}/"
-
-    @property
-    def get_url(self):
-        return reverse("blog_detail", kwargs={
-            "slug": self.slug,
-        })
+from hitcount.models import HitCount
+from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Newsletter(models.Model):
@@ -68,6 +35,8 @@ class Contact(models.Model):
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return f'{self.name} | {self.message[:100]} | {self.date}'
@@ -92,9 +61,12 @@ class HomePage(models.Model):
     about_us_button = models.CharField(max_length=20, blank=True, null=True)
     about_us_image = models.ImageField(
         upload_to="homepage/", blank=True, null=True)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
-    def __str__(self):
-        return "Home Page"
+
+def __str__(self):
+    return "Home Page"
 
 
 class Service(models.Model):
@@ -117,6 +89,8 @@ class Accordion(models.Model):
 class About(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     content = models.TextField(blank=True, null=True)
+    hit_count_generic = GenericRelation(
+        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return self.title
