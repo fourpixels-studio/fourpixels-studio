@@ -28,7 +28,7 @@ class Blog(models.Model):
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     thumbnail = ResizedImageField(
-        size=[1200, 600], upload_to="blogs/", null=True, blank=True, force_format='JPEG', quality=90,)
+        size=[1024, 600], upload_to="blogs/", null=True, blank=True, force_format='JPEG', quality=90,)
 
     def __str__(self):
         return f"{self.title} - Published On: {self.pub_date.strftime('%a, %b %d, %Y')}"
@@ -39,10 +39,16 @@ class Blog(models.Model):
 
     @property
     def meta_url(self):
-        return f"www.fourpixels.studio/blog/{self.slug}/"
+        return f"www.fourpixels.studio/blogs/{self.slug}/"
 
     @property
     def get_url(self):
         return reverse("blog_detail", kwargs={
             "slug": self.slug,
         })
+
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
