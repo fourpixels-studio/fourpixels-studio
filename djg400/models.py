@@ -35,6 +35,12 @@ class Track(models.Model):
             "slug": self.slug,
         })
 
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
+
 
 class Comment(models.Model):
     name = models.CharField(max_length=120, null=True, blank=True)
