@@ -1,6 +1,4 @@
 from django.db import models
-from django.utils.text import slugify
-from django.urls import reverse
 from hitcount.models import HitCount
 from django.contrib.contenttypes.fields import GenericRelation
 
@@ -38,6 +36,12 @@ class Contact(models.Model):
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
+
     def __str__(self):
         return f'{self.name} | {self.message[:100]} | {self.date}'
 
@@ -64,9 +68,14 @@ class HomePage(models.Model):
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
 
-def __str__(self):
-    return "Home Page"
+    def __str__(self):
+        return "Home Page"
 
 
 class Service(models.Model):
@@ -92,5 +101,11 @@ class About(models.Model):
     hit_count_generic = GenericRelation(
         HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
+
     def __str__(self):
-        return self.title
+        return "About Us"
