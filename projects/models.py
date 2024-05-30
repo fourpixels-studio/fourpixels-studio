@@ -43,3 +43,9 @@ class Project(models.Model):
         return reverse("project_detail", kwargs={
             "slug": self.slug,
         })
+
+    @property
+    def get_hit_count(self):
+        if self.hit_count_generic.exists():
+            return self.hit_count_generic.first().hits
+        return 0
