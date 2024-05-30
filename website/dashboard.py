@@ -1,22 +1,32 @@
-from .models import *
+import json
 from django.shortcuts import render
-from djg400.models import *
 from blogs.models import Blog
+from djg400.models import Track
+from projects.models import Project
+from .models import HomePage, About, Contact, Newsletter
 from django.contrib.auth.decorators import login_required
 
 
-@login_required(login_url='/account/signin/')
+@login_required(login_url='/account/login/')
 def dashboard(request):
-    pages = []
-    home_page = HomePage.objects.first()
-    about_us_page = About.objects.first()
-    contact_us_page = Contact.objects.first()
-    contact_us_page = Track.objects.first()
+    projects = Project.objects.all()
+    projects_data = json.dumps([
+        {"name": project.name, "get_hit_count": project.get_hit_count}
+        for project in projects
+    ])
+
     context = {
         "title_tag": "Dashboard",
         "newsletters": Newsletter.objects.order_by("-pk"),
-        "contacts": Contact.objects.order_by("-pk"),
+        "contacts": Contact.objects.order_by("-pk")[:5],
+        "contacts_count": Contact.objects.count(),
+        "newsletters_count": Newsletter.objects.count(),
         "blogs": Blog.objects.order_by("-pk"),
+        "projects": projects,
+        "home": HomePage.objects.first(),
+        "about": About.objects.first(),
+        "contact_page": Contact.objects.first(),
         "remixes": Track.objects.order_by("-pk"),
+        "projects_data": projects_data,
     }
     return render(request, "dashboard.html", context)
