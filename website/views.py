@@ -91,14 +91,14 @@ def newsletter(request):
     return render(request, 'newsletter.html', context)
 
 
-def error_404(request):
+def error_404(request, exception):
     context = {
         'title_tag': "Error 404",
     }
     return render(request, '404.html', context)
 
 
-def error_500(request, exception):
+def error_500(request):
     context = {
         'title_tag': "Error 505",
     }
