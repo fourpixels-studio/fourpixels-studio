@@ -45,6 +45,13 @@ class Project(models.Model):
         })
 
     @property
+    def get_short_name(self):
+        name = self.name
+        split_name = name.split(" ")
+        first_name = split_name[0]
+        return first_name
+
+    @property
     def get_hit_count(self):
         if self.hit_count_generic.exists():
             return self.hit_count_generic.first().hits
