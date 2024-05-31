@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 def dashboard(request):
     projects = Project.objects.all()
     projects_data = json.dumps([
-        {"name": project.name, "get_hit_count": project.get_hit_count}
+        {"name": project.get_short_name, "get_hit_count": project.get_hit_count}
         for project in projects
     ])
 
