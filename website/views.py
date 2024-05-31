@@ -98,7 +98,7 @@ def error_404(request):
     return render(request, '404.html', context)
 
 
-def error_500(request):
+def error_500(request, exception):
     context = {
         'title_tag': "Error 505",
     }
