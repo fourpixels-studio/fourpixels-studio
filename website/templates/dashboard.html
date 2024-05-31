@@ -170,7 +170,8 @@
     // Chart for page views
     var options1 = {
         chart: {
-            type: 'bar'
+            type: 'bar',
+            // height: 1000
         },
         series: [{
             name: 'Views',
@@ -178,6 +179,11 @@
         }],
         xaxis: {
             categories: ["Home", "About", "Contact"]
+        },
+        plotOptions: {
+            bar: {
+            distributed: true
+            }
         }
     }
 
@@ -190,12 +196,12 @@
     // Extract project names and hit counts
     var projectNames = projectsData.map(project => project.name);
     var projectHitCounts = projectsData.map(project => project.get_hit_count);
-    console.log(projectHitCounts)
 
     // Options for the projects chart
     var options = {
         chart: {
-            type: 'bar'
+            type: 'bar',
+            // height: 1000
         },
         series: [{
             name: 'Views',
@@ -203,6 +209,11 @@
         }],
         xaxis: {
             categories: projectNames
+        },
+        plotOptions: {
+            bar: {
+            distributed: true
+            }
         }
     };
 
