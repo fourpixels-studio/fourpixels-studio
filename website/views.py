@@ -8,10 +8,11 @@ from seo_management.models import SEO
 from blogs.utils import update_views
 from blogs.models import Blog
 
+seo = SEO.objects.get(pk=1)
+
 
 def index(request):
     homepage_data = HomePage.objects.first()
-    seo = SEO.objects.get(pk=1)
     context = {
         'title_tag': seo.title_tag,
         'meta_description': seo.meta_description,
@@ -33,6 +34,7 @@ def about(request):
         'about_data': about_data,
         'homepage_data': HomePage.objects.first(),
         'accordions': Accordion.objects.all(),
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     update_views(request, about_data)
     return render(request, 'about.html', context)
@@ -62,6 +64,7 @@ def contact(request):
         'contact_form': contact_form,
         'contact_model': contact_model,
         'testimonials': get_testimonials(),
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     update_views(request, contact_model)
     return render(request, 'contact.html', context)
@@ -86,6 +89,7 @@ def newsletter(request):
     context = {
         'title_tag': "Newsletter",
         'newsletter_form': newsletter_form,
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
 
     return render(request, 'newsletter.html', context)
@@ -94,6 +98,7 @@ def newsletter(request):
 def error_404(request, exception):
     context = {
         'title_tag': "Error 404",
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, '404.html', context)
 
@@ -101,6 +106,7 @@ def error_404(request, exception):
 def error_500(request):
     context = {
         'title_tag': "Error 505",
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, '500.html', context)
 
@@ -109,6 +115,7 @@ def testimonials_list(request):
     context = {
         'title_tag': "Testimonials",
         'testimonials': get_testimonials(),
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, 'testimonials_list.html', context)
 
@@ -116,5 +123,6 @@ def testimonials_list(request):
 def help(request):
     context = {
         'title_tag': "Help",
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, 'help.html', context)
