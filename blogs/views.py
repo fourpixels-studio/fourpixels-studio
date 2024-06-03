@@ -1,6 +1,9 @@
 from django.shortcuts import render, get_object_or_404
 from blogs.models import Blog
 from .utils import update_views
+from seo_management.models import SEO
+
+seo = SEO.objects.first()
 
 
 def get_previous_and_next_blog(blog):
@@ -31,7 +34,7 @@ def blog_detail(request, slug):
         'title_tag': blog.title,
         "meta_description": blog.meta_description,
         "meta_keywords": blog.meta_keywords,
-        'meta_thumbnail': blog.cover,
+        'meta_thumbnail': seo.meta_thumbnail.url,
         'meta_url': blog.meta_url,
     }
     update_views(request, blog)
@@ -42,5 +45,6 @@ def blog_list(request):
     context = {
         'title_tag': "Blogs",
         'blogs': Blog.objects.order_by('-pk'),
+        'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, 'blog_list.html', context)
