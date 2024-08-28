@@ -2,109 +2,87 @@
 {% load static %}
 {% block body %}
 {% load hitcount_tags %}
-<!-- Feature Start -->
-<div id="services" class="container-xxl py-5">
-    <div class="container py-5 px-lg-5">
+<main class="container-fluid px-0">
+    <div class="container my-6 px-4 fadeInUp">
         {% if request.user.is_authenticated and request.user.is_superuser %}
         <p class="text-center">Viewed {% get_hit_count for about_data %} times</p>
         {% endif %}
-        <div class="row g-4">
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.1s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="{{ homepage_data.card_1_icon }}"></i>
-                    <h5 class="mb-3">{{ homepage_data.card_1_title }}</h5>
-                    <p class="m-0">{{ homepage_data.card_1_paragraph }}</p>
-                </div>
+        <div class="row g-4 fadeInUp justify-content-between align-items-center">
+            <div class="col-sm-12 col-lg-8">
+                <h1 class="display-6 fw-500">Creating, designing, and developing high-quality websites and web applications for you.</h1>
             </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.3s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="{{ homepage_data.card_2_icon }}"></i>
-                    <h5 class="mb-3">{{ homepage_data.card_2_title }}</h5>
-                    <p class="m-0">{{ homepage_data.card_2_paragraph }}</p>
-                </div>
-            </div>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="0.5s">
-                <div class="feature-item bg-light rounded text-center p-4">
-                    <i class="{{ homepage_data.card_3_icon }}"></i>
-                    <h5 class="mb-3">{{ homepage_data.card_3_title }}</h5>
-                    <p class="m-0">{{ homepage_data.card_3_paragraph }}</p>
-                </div>
+            <div class="col-sm-12 col-lg-4">
+                <p class="text-muted">Delivering user-friendly designs and engaging content, tailored to meet the unique needs of freelancers, creative professionals, and small business owners.</p>
             </div>
         </div>
     </div>
-</div>
-<!-- Feature End -->
-
-
-<!-- About Start -->
-<div class="container-xxl py-5">
-    <div class="container py-5 px-lg-5">
-        <div class="row g-5 align-items-center">
-            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                <p class="section-title text-secondary">About Us<span></span></p>
-                <h1 class="mb-5">{{ about_data.title }}</h1>
-                <p class="mb-4">{{ about_data.content }}</p>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2">Design & Development</p>
-                        <p class="mb-2">95%</p>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2">Graphic Design</p>
-                        <p class="mb-2">90%</p>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-secondary" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <div class="skill mb-4">
-                    <div class="d-flex justify-content-between">
-                        <p class="mb-2">Digital Art</p>
-                        <p class="mb-2">85%</p>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar bg-dark" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-                <a href="{% url 'blog_list' %}" class="btn btn-primary py-sm-3 px-sm-5 rounded-pill mt-3">Read More</a>
+    <img src="https://images.unsplash.com/photo-1719179497918-f43bec73cfde?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Digital artist image" class="fadeInUp img-fluid">
+    <div class="container my-6 px-4">
+        <div class="row g-4 justify-content-evenly align-items-center">
+            <div class="col-sm-12 col-lg-6">
+                <h1 class="display-4 fw-500 fadeInLeft">Our focus</h1>
             </div>
-            <div class="col-lg-6">
-                <img class="img-fluid wow zoomIn" data-wow-delay="0.5s" src="{% static 'img/about-art3.png' %}">
+            <div class="col-sm-12 col-lg-6 fadeInRight">
+                <p class="text-muted lead">Delivering user-friendly designs and engaging content, tailored to meet the unique needs of freelancers, creative professionals, and small business owners</p>
+            </div>
+        </div>
+        <div class="row g-4 my-5 justify-content-evenly align-items-start">
+            <hr class="mb-5 fadeInUp">
+            <div class="col-sm-12 col-lg-6 fadeInLeft">
+                <h1 class="display-4 fw-500">Our Services</h1>
+                <p class="text-muted lead">With a passion for technology and design, we offer a range of services including:</p>
+            </div>
+            <div class="col-sm-12 col-lg-6 px-2 px-lg-0 fadeInRight">
+                <ul>
+                    <li class="mb-2"><strong>Website & Web App Design/Development:</strong> We build responsive, visually appealing websites and web applications that are both functional and user-centric.</li>
+                    <li class="mb-2"><strong>UI/UX Design:</strong> We craft intuitive user interfaces that enhance user experiences, making your digital presence more engaging and effective.</li>
+                    <li class="mb-2"><strong>Graphic Design:</strong> Our graphic design services bring your brand to life, creating visually stunning assets that resonate with your audience.</li>
+                    <li><strong>Media Editing:</strong> We offer professional media editing services to ensure your content is polished and impactful.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row g-4 my-5 justify-content-evenly align-items-start">
+            <hr class="mb-5 fadeInUp">
+            <div class="col-sm-12 col-lg-6 fadeInLeft">
+                <h1 class="display-4 fw-500">Our Process</h1>
+                <p class="text-muted lead">We believe in a structured, collaborative approach to every project. Our process includes four key phases:</p>
+            </div>
+            <div class="col-sm-12 col-lg-6 px-2 px-lg-0 fadeInRight">
+                <ul>
+                    <li class="mb-2"><strong>Planning</strong> Understanding your goals and mapping out a strategy that aligns with your vision.</li>
+                    <li class="mb-2"><strong>Design:</strong> Creating custom designs that reflect your brand and captivate your audience..</li>
+                    <li class="mb-2"><strong>Development:</strong> Building a responsive, robust platform that performs seamlessly across all devices.</li>
+                    <li><strong>Support:</strong> Providing ongoing maintenance to keep your site up-to-date, secure, and running smoothly.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-evenly align-items-start">
+            <hr class="my-5 fadeInUp">
+            <div class="col-sm-12 col-lg-6 fadeInLeft">
+                <h1 class="display-4 fw-500">Our Work</h1>
+            </div>
+            <div class="col-sm-12 col-lg-6 fadeInRight">
+                <p class="text-muted lead">We’re proud of the work we’ve done and the impact it has had on our clients' businesses. From sleek portfolio sites to dynamic e-commerce platforms, our projects showcase our commitment to excellence in design and development. Visit our <a href="{% url 'projects_list' %}" class="hover-underline text-primary">Portfolio Page</a> to see our latest creations and discover how we can bring your vision to life.</p>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-evenly align-items-start">
+            <hr class="my-5 fadeInUp">
+            <div class="col-sm-12 col-lg-6 fadeInLeft">
+                <h1 class="display-4 fw-500">Our Content</h1>
+            </div>
+            <div class="col-sm-12 col-lg-6 fadeInRight">
+                <p class="text-muted lead">In addition to our services, we also share valuable insights through our Blogs, News, Tutorials, and Step-by-Step Guides. These resources are designed to keep you informed about the latest trends in web design, development, and more, while also offering practical advice on how to improve your digital presence.</p>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-evenly align-items-start">
+            <hr class="my-5 fadeInUp">
+            <div class="col-sm-12 col-lg-6 fadeInLeft">
+                <h1 class="display-4 fw-500">Why Choose Us?</h1>
+            </div>
+            <div class="col-sm-12 col-lg-6 fadeInRight">
+                <p class="text-muted lead">Our business model is built around creating lasting relationships with our clients. We not only design and develop your website or app but also provide continuous support and maintenance to ensure it evolves with your needs. Our remote work model allows us to serve clients from anywhere, making our services accessible and flexible.</p>
             </div>
         </div>
     </div>
-</div>
-<!-- About End -->
-
-
-<!-- Accordion Start -->
-<div class="container-xxl py-5">
-    <div class="container py-5 px-lg-5">
-        <div class="row g-5 align-items-center justify-content-center">
-                <div class="accordion col-lg-8 wow fadeInUp" id="accordionPanelsStayOpenExample" data-wow-delay="0.1s">
-                    {% for accordion in accordions %}
-                    <div class="accordion-item">
-                        <h2 class="accordion-header">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapse{{ accordion.pk }}" aria-expanded="true" aria-controls="panelsStayOpen-collapse{{ accordion.pk }}">
-                                <span class="h5">{{ accordion.title }}</span>
-                            </button>
-                        </h2>
-                        <div id="panelsStayOpen-collapse{{ accordion.pk }}" class="accordion-collapse collapse">
-                            <div class="accordion-body">
-                                <p class="lead">{{ accordion.content|safe|linebreaks }}</p>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-        </div>
-    </div>
-</div>
-<!-- Accordion End -->
-
+</main>
 {% endblock %}
