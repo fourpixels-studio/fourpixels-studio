@@ -20,8 +20,7 @@ class Testimonial(models.Model):
     testimonial = models.TextField(blank=True, null=True)
     post_testimonial = models.BooleanField(default=True, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    image = models.ImageField(
-        default="testimonial.jpg", upload_to="testimonial-images/", blank=True, null=True)
+    image = models.ImageField(upload_to="testimonial-images/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}' Testimonial - Posted On: {self.pub_date.strftime('%A, %B %d, %Y')}"
