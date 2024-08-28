@@ -16,7 +16,7 @@
 <meta name="image" content="https://fourpixels.studio{% static 'brand/fourpixelsstudio_thumbnail.jpg' %}" />
 {% endif %}
 {% if meta_url %}
-<link rel="canonical" href="https://fourpixels.studio{{ meta_url }}" />
+<link rel="canonical" href="{{ meta_url }}" />
 {% else %}
 <link rel="canonical" href="https://fourpixels.studio/" />
 {% endif %}
@@ -28,10 +28,11 @@
 <meta property="og:image" content="https://fourpixels.studio{% static 'brand/fourpixelsstudio_thumbnail.jpg' %}" />
 <meta property="og:keywords" content="{{ meta_keywords }}" />
 {% if meta_url %}
-<meta property="og:url" content="https://fourpixels.studio{{ meta_url }}" />
+<meta property="og:url" content="{{ meta_url }}" />
 {% else %}
 <meta property="og:url" content="https://fourpixels.studio/" />
 {% endif %}
+
 
 <meta property="og:locale" content="en_US" />
 <meta property="og:site_name" content="Four Pixels Studio" />
@@ -47,7 +48,7 @@
 <!-- Twitter Meta Tags -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta name="twitter:image:width" content="1200" />
-<meta name="twitter:image:height" content="600" />
+<meta name="twitter:image:height" content="630" />
 {% if meta_thumbnail %}
 <meta name="twitter:image" content="https://fourpixels.studio{{ meta_thumbnail }}" />
 {% else %}
@@ -55,7 +56,7 @@
 {% endif %}
 <meta property="twitter:title" content="Four Pixels Studio — {{ title_tag }}" />
 {% if meta_url %}
-<meta property="twitter:url" content="https://fourpixels.studio{{ meta_url }}" />
+<meta property="twitter:url" content="{{ meta_url }}" />
 {% else %}
 <meta property="twitter:url" content="https://fourpixels.studio/" />
 {% endif %}
@@ -82,13 +83,17 @@
 <link href="{% static 'favicon/favicon.ico' %}" rel="icon" />
 <link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap" rel="stylesheet" />
-
 <!-- Bootstrap  -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
 
 <!-- Fontawesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/custom.css' %}" rel="stylesheet">
+<link href="{% static 'css/animations.css' %}" rel="stylesheet">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
