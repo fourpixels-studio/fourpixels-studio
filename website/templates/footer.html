@@ -1,42 +1,55 @@
 {% load static %}
-<div class="container-fluid bg-secondary text-light footer wow fadeIn">
-    <div class="container py-5 px-lg-5">
+<div class="container-fluid bg-dark py-6">
+    <div class="container fadeInUp rounded-5 bg-primary p-5">
+        <div class="row justify-content-between align-items-center gy-3 gx-5">
+            <div class="col-sm-12 col-lg-7">
+                <h1 class="display-3 fw-400">Have An Awesome Project?</h1>
+            </div>
+            <div class="col-sm-12 col-lg-3">
+                <a href="{% url 'contact' %}" class="btn mb-3 btn-outline-dark btn-lg fadeInRight px-4 w-100 rounded-4">Contact Us <i style="font-size: .8rem;" class="fa-solid fa-chevron-right ms-2"></i></a>
+            </div>
+        </div>
+        <div class="row my-4 px-2">    
+            <hr class="text-dark">
+        </div>
         <div class="row g-5">
-            <div class="col-md-6 col-lg-3">
-                <p class="section-title text-white h5 mb-4">Address<span></span></p>
-                <p><i class="fa fa-map-marker-alt me-3"></i>Nairobi, Kenya</p>
-                <p><i class="fa fa-phone-alt me-3"></i>+254 700 28 70 73</p>
-                <p><i class="fa fa-envelope me-3"></i>hello@fourpixels.studio</p>
-                <div class="d-flex pt-2">
-                    <a class="btn btn-outline-light btn-social" href="https://x.com/4ourPixels?t=mcuYBOjkEhg52xlZS1IDWA&s=09" target="_blank"><i class="fab fa-twitter"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a class="btn btn-outline-light btn-social" href="https://www.instagram.com/fourpixels.studio/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <div class="col-md-6 col-lg-4">
+                <p class="text-dark h5 mb-4">Address<span></span></p>
+                <p class="text-dark mb-1"><i class="fa fa-map-marker-alt me-3"></i>Nairobi, Kenya</p>
+                <p class="text-dark mb-1"><i class="fa fa-phone-alt me-3"></i>+254 700 28 70 73</p>
+                <p class="text-dark mb-1"><i class="fa fa-envelope me-3"></i>hello@fourpixels.studio</p>
+                <hr class="text-dark my-">
+                <div class="d-flex flex-row gap-3">
+                    <a class="text-dark no-btn" href="https://x.com/4ourPixels?t=mcuYBOjkEhg52xlZS1IDWA&s=09" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a class="text-dark no-btn" href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a class="text-dark no-btn" href="https://www.instagram.com/fourpixels.studio/" target="_blank"><i class="fab fa-instagram fa-xl"></i></a>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <p class="section-title text-white h5 mb-4">Quick Link<span></span></p>
-                <a class="btn btn-link" href="{% url 'about' %}">About Us</a>
-                <a class="btn btn-link" href="{% url 'contact' %}">Contact Us</a>
-                <a class="btn btn-link" href="{% url 'projects_list' %}">Projects</a>
+            <div class="col-md-6 col-lg-2">
+                <p class="section-title text-dark h5 mb-4">Quick Link<span></span></p>
+                <a class="hover-underline text-dark" href="{% url 'contact' %}">Contact Us</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'about' %}">About Us</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'projects_list' %}">Our Work</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'index' %}">Home</a> <br>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <p class="section-title text-white h5 mb-4">Applications<span></span></p>
-                <a class="btn btn-link" href="{% url 'image_search' %}">Image Search</a>
-                <a class="btn btn-link" href="{% url 'image_compression' %}">Image Compression</a>
-                <a class="btn btn-link" href="{% url 'blog_list' %}">News & Blogs</a>
+            <div class="col-md-6 col-lg-2">
+                <p class="section-title text-dark h5 mb-4">Applications<span></span></p>
+                <a class="hover-underline text-dark" href="{% url 'image_compression' %}">Image Compressor</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'image_search' %}">Image Search</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'blog_list' %}">News & Blogs</a> <br>
             </div>
-            <div class="col-md-6 col-lg-3">
-                <p class="section-title text-white h5 mb-4">Newsletter<span></span></p>
-                <p>Join our inner circle for the latest updates and exclusive perks.</p>
+            <div class="col-md-6 col-lg-4">
+                <p class="section-title text-dark h5 mb-4">Newsletter<span></span></p>
+                <p class="text-dark small">Join our inner circle for the latest updates and exclusive perks.</p>
                 <div class="position-relative w-100 mt-3">
                     <form method="POST" action="{% url 'newsletter' %}">
                         {% csrf_token %}
                         <input required name="email" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="email" placeholder="email@website.com" style="height: 48px;">
-                        <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary"></i></button>
+                        <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-dark"></i></button>
                         {% if messages %}
                         <div id="newsletter_message" class="mt-4">
                             {% for message in messages %}
-                            <div class="text-white">{{ message }}</div>
+                            <div class="text-dark">{{ message }}</div>
                             {% endfor %}
                         </div>
                         {% endif %}
@@ -44,23 +57,19 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container px-lg-5">
-        <div class="copyright">
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <a href="{% url 'index' %}">&copy; 2017 - 
-                        <script>document.write(new Date().getFullYear());</script>
-                        Four Pixels Studio
-                    </a>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="footer-menu">
-                        <a href="{% url 'help' %}">Help</a>
-                        <a href="{% url 'help' %}#privacyPolicy">Privacy Policy</a>
-                        <a href="{% url 'help' %}#termsAndConditions">Terms & Conditions</a>
-                        <a href="{% url 'help' %}#faq">FAQs</a>
-                    </div>
+        <div class="row mt-4">
+            <div class="col-md-6 text-center text-md-start">
+                <a class="text-dark small no-btn" href="{% url 'index' %}">&copy; 2017 - 
+                    <script>document.write(new Date().getFullYear());</script>
+                    All Rights Reserved by Four Pixels Studio
+                </a>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <div class="footer-menu">
+                    <a class="text-dark hover-underline small me-2" href="{% url 'help' %}">Help</a>
+                    <a class="text-dark hover-underline small me-2" href="{% url 'help' %}#privacyPolicy">Privacy Policy</a>
+                    <a class="text-dark hover-underline small me-2" href="{% url 'help' %}#termsAndConditions">Terms & Conditions</a>
+                    <a class="text-dark hover-underline small" href="{% url 'help' %}#faq">FAQs</a>
                 </div>
             </div>
         </div>
