@@ -3,6 +3,7 @@ from .models import Project
 from website.get_items import get_projects
 from blogs.utils import update_views
 from seo_management.models import SEO
+from website.forms import TestimonialForm
 seo = SEO.objects.first()
 
 
@@ -24,6 +25,7 @@ def project_detail(request, slug):
         'meta_keywords': project.category,
         'meta_description': project.description,
         'projects': get_projects(),
+        'testimonial_form': TestimonialForm(),
     }
     update_views(request, project)
     return render(request, 'project_detail.html', context)
