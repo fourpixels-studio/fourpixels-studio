@@ -13,4 +13,6 @@ urlpatterns = [
     path('account/login/', account_login, name='account_login'),
     path('account/logout/', account_logout, name='account_logout'),
     path('dashboard/', dashboard, name='dashboard'),
+    path('submit-testimonial/', submit_testimonial, name='submit_testimonial'),
+    path('success/', success, name='success'),
 ]
