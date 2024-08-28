@@ -1,15 +1,15 @@
-<div class="container-fluid bg-primary-dark newsletter py-5 wow fadeInUp" data-wow-delay="0.1s">
+<div class="container-fluid bg-dark py-5 fadeInUp">
     <div class="container py-5 px-lg-5">
         <div class="row justify-content-center">
             <div class="col-lg-7 text-center">
                 <p class="section-title text-white justify-content-center"><span></span>Newsletter<span></span></p>
-                <h1 class="text-center text-white mb-4">Stay In Touch</h1>
-                <p class="text-white mb-4">Join our inner circle for the latest updates and exclusive perks.</p>
+                <h1 class="text-center text-white mb-4">Stay Connected and Informed</h1>
+                <p class="text-white mb-4">Don't miss out on the latest tips, trends, and updates in web design and development. Subscribe to our newsletter and get valuable insights delivered straight to your inbox. Whether you're looking to enhance your online presence or keep your website performing at its best, we're here to help you stay ahead of the curve.</p>
                 <div class="position-relative w-100 mt-3">
                     <form method="POST" action="{% url 'newsletter' %}">
                         {% csrf_token %}
                         <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="email" name="email" placeholder="Enter Your Email" style="height: 48px;" required>
-                        <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-dark fs-4"></i></button>
                         {% if messages %}
                         <div id="newsletter_message" class="mt-4">
                             {% for message in messages %}
