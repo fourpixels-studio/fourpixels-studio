@@ -22,6 +22,7 @@ def index(request):
         'projects': get_projects(),
         'homepage_data': homepage_data,
         'services': Service.objects.all(),
+        'testimonials': Testimonial.objects.all(),
     }
     update_views(request, homepage_data)
     return render(request, 'index.html', context)
@@ -126,3 +127,23 @@ def help(request):
         'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, 'help.html', context)
+
+
+def success(request):
+    context = {
+        'title_tag': "Success",
+        'meta_thumbnail': seo.meta_thumbnail.url,
+    }
+    return render(request, 'success.html', context)
+
+
+def submit_testimonial(request):
+    if request.method == 'POST':
+        testimonial_form = TestimonialForm(request.POST, request.FILES)
+        if testimonial_form.is_valid():
+            testimonial_form.save()
+            return redirect('success')
+    else:
+        testimonial_form = TestimonialForm()
+
+    return render(request, 'submit_testimonial.html', {'testimonial_form': testimonial_form})
