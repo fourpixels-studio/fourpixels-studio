@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from .forms import *
 from .models import *
-from .email import send_contact_email
+from .email import send_contact_email, send_testimonial_email
 from .get_items import get_testimonials, get_projects
 from seo_management.models import SEO
 from blogs.utils import update_views
@@ -18,7 +18,7 @@ def index(request):
         'meta_description': seo.meta_description,
         'meta_keywords': seo.meta_keywords,
         'meta_thumbnail': seo.meta_thumbnail.url,
-        'blogs': Blog.objects.all(),
+        'blogs': Blog.objects.order_by("-pk"),
         'projects': get_projects(),
         'homepage_data': homepage_data,
         'services': Service.objects.all(),
@@ -142,8 +142,24 @@ def submit_testimonial(request):
         testimonial_form = TestimonialForm(request.POST, request.FILES)
         if testimonial_form.is_valid():
             testimonial_form.save()
-            return redirect('success')
+            message_1 = str(
+                "We appreciate you taking the time to share your experience. Your testimonial has been successfully submitted and will be reviewed shortly.")
+            message_2 = str(
+                "If approved, your testimonial will be published on our website. We value your feedback and thank you for your support!")
+            email = testimonial_form.cleaned_data.get('email')
+            name = testimonial_form.cleaned_data.get('name')
+            if email:
+                send_testimonial_email(email, name, message_1, message_1)
+            context = {
+                "title_tag": "Thank You For The Testimonial",
+                "message_1": message_1,
+                "message_2": message_2,
+                'meta_description': seo.meta_description,
+                'meta_keywords': seo.meta_keywords,
+                'meta_thumbnail': seo.meta_thumbnail.url,
+            }
+            return render(request, 'success.html', context)
     else:
         testimonial_form = TestimonialForm()
 
-    return render(request, 'submit_testimonial.html', {'testimonial_form': testimonial_form})
+    return render(request, 'success.html', {'testimonial_form': testimonial_form})
