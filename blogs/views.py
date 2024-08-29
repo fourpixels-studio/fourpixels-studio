@@ -25,6 +25,11 @@ def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
+    if blog.thumbnail:
+        meta_thumbnail = blog.thumbnail.url
+    else:
+        meta_thumbnail = None
+
     context = {
         'blog': blog,
         'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
@@ -34,7 +39,7 @@ def blog_detail(request, slug):
         'title_tag': blog.title,
         "meta_description": blog.meta_description,
         "meta_keywords": blog.meta_keywords,
-        'meta_thumbnail': seo.meta_thumbnail.url,
+        'meta_thumbnail': meta_thumbnail,
         'meta_url': blog.meta_url,
     }
     update_views(request, blog)
