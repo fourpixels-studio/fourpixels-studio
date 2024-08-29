@@ -2,63 +2,47 @@
 {% load static %}
 {% block body %}
 {% load hitcount_tags %}
-<main class="container-xxl">
-    <section class="container py-5 px-lg-5">
-        <div class="row">
-            {% if request.user.is_authenticated and request.user.is_superuser %}
-            <p class="text-center">Viewed {% get_hit_count for project %} times</p>
-            {% endif %}
-            <div class="wow fadeInUp">
-                <div class="rounded overflow-hidden">
-                    <div class="position-relativeoverflow-hidden">
-                        <p class="lead">{{ project.description }}</p>
-                        <img class="img-fluid w-100" src="{{ project.logo.url }}" alt="">
-                        <div class="text-center  border-bottom pb-5 ">
-                            <a class="btn btn-primary btn-lg" href="{{ project.website_link }}" target="_blank">View website</a>
-                        </div>
-                    </div>
-                </div>
+<main class="container-fluid px-0 mb-5">
+    <div class="container mb-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 col-lg-9 text-center">
+                <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" style="max-height: 200px; width: auto; object-fit: cover;" class="img-fluid">
+                <h1 class="display-5 mb-4 fw-500">{{ project.name }}</h1>
+                <p class="text-muted">{{ project.description }}</p>
+                <!-- <h6 class="lead text-muted">Tools</h6>
+                <div class="d-flex flex-row justify-content-center flex-wrap gap-3">
+                    <p class="text-muted rounded-1 px-2 border">Photoshop</p>
+                    <p class="text-muted rounded-1 px-2 border">Adobe Illustrator</p>
+                    <p class="text-muted rounded-1 px-2 border">Figma</p>
+                    <p class="text-muted rounded-1 px-2 border">Figma</p>
+                </div> -->
             </div>
         </div>
-    </section>
-    <section class="container py-5 px-lg-5">
-        <div class="wow fadeInUp">
-            <h1 class="text-center mb-5">Other Projects</h1>
-        </div>
-        <div class="row mt-n2 wow fadeInUp">
-            <div class="col-12 text-center">
-                <ul class="list-inline mb-5" id="portfolio-flters">
-                    <li class="mx-2 active" data-filter="*">All</li>
-                    <li class="mx-2" data-filter=".website">Website</li>
-                    <li class="mx-2" data-filter=".uiux">UI/UX</li>
-                    <li class="mx-2" data-filter=".application">Applications</li>
-                    <li class="mx-2" data-filter=".graphic-design">Graphic Design</li>
-                    <li class="mx-2" data-filter=".branding">Branding</li>
-                </ul>
+    </div>
+    <img src="{{ project.image_placeholder }}" alt="" class="img-fluid fadeIn">
+    {% if project.get_project_media %}
+    <section class="container mt-5">
+        <h2 class="text-center fadeInUp">About Project</h2>
+        <div class="row gy-5 gx-3 fadeInUp">
+            {% for pk, media, name, description in project.get_project_media %}
+            <div class="col-sm-12 col-lg-6">
+                <hr class="text-muted">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#projectMediaModal{{ pk }}" class="no-btn text-start">
+                    <h6 class="hover-underline">{{ name }}</h6>
+                    <p class="small text-muted">{{ description|truncatechars:60 }} <strong class="hover-underline">Read more...</strong></p>
+                    {{ media|safe }}
+                </button>
             </div>
-        </div>
-        <div class="row g-4 portfolio-container">
-            {% for project in projects %}
-            <div class="col-lg-4 col-md-6 portfolio-item {{ project.category.slug }} wow fadeInUp">
-                <div class="rounded overflow-hidden">
-                    <div class="rounded position-relative overflow-hidden">
-                        <img class="img-fluid w-100" src="{{ project.logo.url }}" alt="">
-                        <div class="portfolio-overlay">
-                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.logo.url }}" data-lightbox="portfolio"><i class="fa fa-eye"></i></a>
-                            <a class="btn btn-square btn-outline-light mx-1" href="{{ project.get_url }}"><i class="fa fa-link"></i></a>
-                        </div>
-                    </div>
-                    <div class="bg-light p-4">
-                        {% if request.user.is_authenticated and request.user.is_superuser %}
-                        <p>Seen {% get_hit_count for project %} times</p>
-                        {% endif %}
-                        <p class="text-primary fw-medium mb-2"><a style="text-decoration: none; color: inherit" href="{{ project.get_url }}">View project</a></p>
-                        <h5 class="lh-base mb-0">{{ project.name }}</h5>
-                    </div>
-                </div>
-            </div>
+            {% include "modals/project_media.html" with pk=pk media=media name=name description=description %}
             {% endfor %}
         </div>
     </section>
+    {% endif %}
+    <div class="text-center mt-5">
+        <button type="button" class="btn btn-lg px-4 rounded-4 btn-primary" data-bs-toggle="modal" data-bs-target="#postTestimonialModal">
+            Post Testimonial
+        </button>
+    </div>
 </main>
+{% include "modals/submit_testimonial.html" %}
 {% endblock %}
