@@ -24,7 +24,6 @@ INSTALLED_APPS = [
     "projects",
     "seo_management",
     "applications",
-    "djg400",
     "blogs",
 ]
 
