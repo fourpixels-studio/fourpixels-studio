@@ -15,11 +15,6 @@
 {% else %}
 <meta name="image" content="https://fourpixels.studio{% static 'brand/fourpixelsstudio_thumbnail.jpg' %}" />
 {% endif %}
-{% if meta_url %}
-<link rel="canonical" href="{{ meta_url }}" />
-{% else %}
-<link rel="canonical" href="https://fourpixels.studio/" />
-{% endif %}
 
 <!-- Facebook Meta Tags -->
 <meta property="og:type" content="website" />
@@ -27,11 +22,6 @@
 <meta property="og:description" content="{{ meta_description }}" />
 <meta property="og:image" content="https://fourpixels.studio{% static 'brand/fourpixelsstudio_thumbnail.jpg' %}" />
 <meta property="og:keywords" content="{{ meta_keywords }}" />
-{% if meta_url %}
-<meta property="og:url" content="{{ meta_url }}" />
-{% else %}
-<meta property="og:url" content="https://fourpixels.studio/" />
-{% endif %}
 
 
 <meta property="og:locale" content="en_US" />
@@ -55,11 +45,6 @@
 <meta property="twitter:image" content="https://fourpixels.studio{% static 'brand/fourpixelsstudio_thumbnail.jpg' %}" />
 {% endif %}
 <meta property="twitter:title" content="Four Pixels Studio — {{ title_tag }}" />
-{% if meta_url %}
-<meta property="twitter:url" content="{{ meta_url }}" />
-{% else %}
-<meta property="twitter:url" content="https://fourpixels.studio/" />
-{% endif %}
 <meta property="twitter:description" content="{{ meta_description }}" />
 <meta property="twitter:keywords" content="{{ meta_keywords }}" />
 <meta name="twitter:site" content="https://fourpixels.studio/" />
