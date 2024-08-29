@@ -12,7 +12,7 @@
                 <small class="badge-sm" style="background-color: #bcbcbc;">{{ blog.category }}</small> 
                 <small class="text-muted" style="font-size: .8rem;">{% get_hit_count for blog %} views</small> 
             </div>
-            <h6 class="mt-2 fw-500 hover-underline text-dark">{{ blog.title|truncatewords:13 }}</h6>
+            <h6 class="mt-2 fw-500 hover-underline text-dark">{{ blog.title|truncatechars:75 }}</h6>
             <p class="fw-300 text-muted small">{{ blog.summary|truncatewords:10   }}</p>
             <button class="btn btn-outline-secondary rounded-4 w-100">Read now</button>
         </a>
