@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     "seo_management",
     "applications",
     "blogs",
+    "django_summernote",
 ]
 
 MIDDLEWARE = [
@@ -114,3 +115,20 @@ EMAIL_HOST_PASSWORD = 'superuser400'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 # Four Pixels Email SMTP Configuration Settings End
+
+custom_file_limit = 20 * 1024 * 1024
+SUMMERNOTE_CONFIG = {
+    'attachment_filesize_limit': custom_file_limit,
+    'attachment_upload_to': 'blogs/attachments',
+    'width': '100%',
+    'height': 300,
+    'toolbar': [
+        ['style', ['style']],
+        ['style', ['bold', 'italic', 'underline', 'clear']],
+        ['fontsize', ['fontsize']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['insert', ['link', 'picture', 'video', 'hr']],
+        ['view', ['fullscreen', 'undo', 'redo']],
+    ],
+    'toolbarSticky': True
+}
