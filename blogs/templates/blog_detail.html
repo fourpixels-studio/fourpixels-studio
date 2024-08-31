@@ -2,6 +2,22 @@
 {% load static %}
 {% block body %}
 {% load hitcount_tags %}
+<style>
+    .code-dark {
+        background-color: #2e3440;
+        color: #d8dee9;
+        padding: 16px;
+        border-radius: 5px;
+        font-family: 'Courier New', Courier, monospace;
+        overflow-x: auto;
+    }
+
+    .code-dark .keyword { color: #81a1c1; }
+    .code-dark .string { color: #a3be8c; }
+    .code-dark .comment { color: #616e88; font-style: italic; }
+    .code-dark .number { color: #b48ead; }
+</style>
+
 <main class="container-fluid px-0 mb-5">
     <div class="container my-6">
         <div class="row justify-content-center">
@@ -22,15 +38,7 @@
     <div class="container px-4 mt-5">
         <div class="row justify-content-between g-5">
             <div class="col-md-8 col-sm-12">
-                <article class="blog-post">
-                    <p>{{ blog.paragraph_1|safe }}</p>
-                    <p>{{ blog.paragraph_2|safe }}</p>
-                </article>
-                <article class="blog-post">
-                    <p>{{ blog.paragraph_3|safe }}</p>
-                    <p>{{ blog.conclusion|safe }}</p>
-                </article>
-                <a href="{% url 'blog_list' %}" class="btn btn-sm btn-outline-secondary px-3 mt-3 rounded-pill"><i style="font-size: .7rem;" class="fa-solid fa-arrow-left-long me-1"></i> Back to blogs</a>
+                <article class="blog-post summernote-content text-dark">{{ blog.content|safe }}</article>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="p-4 mb-3 border rounded-4">
@@ -46,4 +54,13 @@
         </div>
     </div>
 </main>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const codeBlocks = document.querySelectorAll('.summernote-content pre');
+
+        codeBlocks.forEach(function(block) {
+            block.classList.add('code-dark');
+        });
+    });
+</script>
 {% endblock %}
