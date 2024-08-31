@@ -11,9 +11,7 @@ from django.utils import timezone
 class Blog(models.Model):
     title = models.CharField(max_length=200, blank=True, null=True)
     introduction = models.TextField(blank=True, null=True)
-    paragraph_1 = models.TextField(blank=True, null=True)
-    paragraph_2 = models.TextField(blank=True, null=True)
-    paragraph_3 = models.TextField(blank=True, null=True)
+    content = models.TextField(blank=True, null=True)
     conclusion = models.TextField(blank=True, null=True)
     tags = models.TextField(blank=True, null=True)
     author = models.CharField(max_length=50, blank=True, null=True)
