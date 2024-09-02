@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@100...900&display=swap");
-.space-grotesk {
-    font-family: "Space Grotesk", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
+
 :root {
     --primary: #30d5c8;
     --secondary: #6a7877;
@@ -285,4 +281,28 @@ p {
 .py-6{
     padding-top: 4rem;
     padding-bottom: 4rem;
+}
+.code-dark {
+    background-color: #2e3440;
+    color: #d8dee9;
+    padding: 16px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+}
+
+.code-dark .keyword { color: #81a1c1; }
+.code-dark .string { color: #a3be8c; }
+.code-dark .comment { color: #616e88; font-style: italic; }
+.code-dark .number { color: #b48ead; }
+
+.logo-text {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.logo-wrapper:hover .logo-text {
+    opacity: 1;
+    transform: translateX(0);
 }
