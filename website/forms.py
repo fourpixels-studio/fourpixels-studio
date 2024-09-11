@@ -59,12 +59,20 @@ class TestimonialForm(forms.ModelForm):
         widgets = {
             'name': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Name'}),
             'department': forms.Textarea(attrs={'class': 'form-control', 'style': 'height: 60px;', 'placeholder': 'Enter your department, company name or position'}),
-            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email (optional)', }),
-            'testimonial': forms.Textarea(attrs={'class': 'form-control', 'style': 'height: 150px;', 'placeholder': 'Testimonial goes here', }),
+            'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Enter your email (optional)'}),
+            'testimonial': forms.Textarea(attrs={'class': 'form-control', 'style': 'height: 150px;', 'placeholder': 'Testimonial goes here'}),
             'image': forms.ClearableFileInput(attrs={'class': 'form-control'}),
             'post_testimonial': forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['name'].required = True
+        self.fields['department'].required = True
+        self.fields['email'].required = False
+        self.fields['testimonial'].required = True
+        self.fields['image'].required = False
+        self.fields['post_testimonial'].required = False
 
 
 class ContactForm(ModelForm):
