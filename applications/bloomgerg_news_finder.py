@@ -1,6 +1,7 @@
 import requests
 from django.conf import settings
 from django.shortcuts import render
+from django.http import JsonResponse
 from seo_management.models import SEO
 from django.views.decorators.debug import sensitive_variables
 
@@ -39,6 +40,10 @@ def bloomgerg_news_finder(request):
         keyword = request.POST.get('search_box', '').strip()
         if keyword:
             loading_text, news_items = fetch_bloomberg_news(keyword)
+            return JsonResponse({
+                'loading_text': loading_text,
+                'news_items': news_items
+            })
         else:
             loading_text = "Enter a word to search"
     context = {
