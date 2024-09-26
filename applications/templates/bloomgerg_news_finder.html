@@ -2,36 +2,87 @@
 {% load static %}
 {% block body %}
 {% load hitcount_tags %}
-<main class="container my-5 py-5 px-3 fadeInUp">
+<main class="container my-5 py-5 px-4">
     <div class="row justify-content-center">
-        <div class="col-lg-6 col-sm-12">
-            <h1 class="text-center">Bloomberg News Finder</h1>
-            <p class="text-muted text-center lead">Search for the latest news in any topic.</p>
-            <form method="POST" class="d-flex input-group">
-                {% csrf_token %}
-                <input id="search-box" name="search_box" class="form-control rounded-start" type="text" required placeholder="Try bitcoin, music,..."/>
-                <button class="btn btn-primary" type="submit">Search</button>
+        <div class="col-lg-6 col-sm-10">
+            <h1 class="text-center mb-3">Bloomberg News Finder</h1>
+            <form id="news-search-form" class="d-flex input-group">
+                <input id="search-box" name="search_box" class="form-control rounded-start" type="text" required placeholder="Search for the latest news in any topic..."/>
+                <button id="search-button" class="btn btn-primary" type="submit">Search</button>
             </form>
         </div>
     </div>
     <div id="news-list" class="row justify-content-center">
-        {% if news_items %}
         <div class="col-sm-12 col-lg-8">
-            <h4 class="text-center text-muted fw-400 my-4">Here's what we've got on <strong>{{ loading_text }}</strong></h4>
-            <div class="list-group">
-                {% for post in news_items %}
-                <a href="{{ post.longURL }}" class="list-group-item list-group-item-action" target="_blank">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{ post.title }}</h5>
-                        <small class="text-muted">{{ post.date|date:"Y-m-d" }}</small>
-                    </div>
-                </a>
-                {% endfor %}
-            </div>
+            <h4 id="loading-text" class="text-center text-muted fw-400 my-4"></h4>
+            <div class="list-group" id="news-items"></div>
         </div>
-        {% else %}
-            <p class="text-center lead"></p>
-        {% endif %}
     </div>
 </main>
+
+<script>
+    document.getElementById("news-search-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        let searchBox = document.getElementById("search-box");
+        let keyword = searchBox.value.trim();
+        let newsList = document.getElementById("news-items");
+        let loadingText = document.getElementById("loading-text");
+
+        if (keyword === "") {
+            alert("Please enter a search keyword.");
+            return;
+        }
+
+        // Show loading text
+        loadingText.textContent = `Getting news for "${keyword}"...`;
+        newsList.innerHTML = ""; // Clear previous results
+
+        // Send AJAX request
+        fetch("{% url 'bloomgerg_news_finder' %}", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": "{{ csrf_token }}",
+                "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: new URLSearchParams({
+                search_box: keyword
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Update loading text
+            loadingText.textContent = `Here's what we've got on "${data.loading_text}"`;
+
+            // Clear existing news
+            newsList.innerHTML = "";
+
+            // Display fetched news items
+            if (data.news_items.length > 0) {
+                data.news_items.forEach(post => {
+                    let newsItem = document.createElement("a");
+                    newsItem.classList.add("list-group-item", "list-group-item-action");
+                    newsItem.href = post.longURL;
+                    newsItem.target = "_blank";
+
+                    let content = `
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">${post.title}</h5>
+                            <small class="text-muted">${new Date(post.date * 1000).toLocaleDateString()}</small>
+                        </div>
+                    `;
+
+                    newsItem.innerHTML = content;
+                    newsList.appendChild(newsItem);
+                });
+            } else {
+                newsList.innerHTML = "<p class='text-center'>No news found.</p>";
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching news:", error);
+            loadingText.textContent = "Error fetching news. Please try again later.";
+        });
+    });
+</script>
 {% endblock %}
