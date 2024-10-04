@@ -1,0 +1,53 @@
+<div class="modal fade" id="postTestimonialModal" tabindex="-1" aria-labelledby="postTestimonialModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content border-0 rounded-4">
+            <div class="modal-body">
+                <div class="container px-0">
+                    <div class="mb-3 d-flex flex-row align-items-center justify-content-between">
+                        <h5 class="modal-title text-muted fw-500" id="postTestimonialModalLabel">Post Testimonial</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form method="post" enctype="multipart/form-data" action="{% url 'submit_testimonial' %}">
+                        {% csrf_token %}
+                        <div class="form-floating">
+                            {{ testimonial_form.name }}
+                            <label for="name">Enter Name</label>
+                        </div>
+                        <div class="form-floating my-3">
+                            {{ testimonial_form.department }}
+                            <label for="department">Enter your department, company name or position</label>
+                        </div>
+                        <div class="form-floating">
+                            {{ testimonial_form.email }}
+                            <label for="email">Enter your email (optional)</label>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                {{ testimonial_form.testimonial }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <label class="mb-2 small" for="image">Upload your image (optional)</label>
+                                {{ testimonial_form.image }}
+                            </div>
+                        </div>
+                        <div class="row my-3">
+                            <div class="col-12">
+                                <div class="form-check">
+                                    {{ testimonial_form.post_testimonial }}
+                                    <label class="form-check-label" for="post_testimonial">
+                                        <small class="text-muted">By checking this box, I consent to having my testimonial, including my name, department, and image, published on the website. I understand that my testimonial may be edited for clarity or length but will remain true to my original intent. I also confirm that the testimonial is my genuine opinion and experience with the service or product.</small>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-row">
+                            <button type="submit" class="btn btn-primary btn-lg w-100 rounded-4">Post Testimonial</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
