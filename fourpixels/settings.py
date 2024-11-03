@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'djg400',
     'blogs',
     'django_summernote',
+    'django_recaptcha',
 ]
 
 MIDDLEWARE = [
@@ -176,3 +177,8 @@ SUMMERNOTE_CONFIG = {
 }
 
 BLOOMBERG_RAPID_API_KEY = os.environ.get('BLOOMBERG_RAPID_API_KEY')
+
+# recaptcha keys
+RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
+RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
+# recaptcha keys
