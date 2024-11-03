@@ -8,3 +8,4 @@ sqlparse==0.4.4
 typing_extensions==4.8.0
 requests==2.32.3
 python-dotenv==1.0.1
+django-recaptcha==4.0.0
