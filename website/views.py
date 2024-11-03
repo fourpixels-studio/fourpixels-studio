@@ -1,12 +1,12 @@
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from .forms import *
-from .models import *
-from .email import send_contact_email, send_testimonial_email
-from .get_items import get_testimonials, get_projects
-from seo_management.models import SEO
-from blogs.utils import update_views
 from blogs.models import Blog
+from django.contrib import messages
+from blogs.utils import update_views
+from seo_management.models import SEO
+from django.shortcuts import render, redirect
+from .get_items import get_testimonials, get_home_projects
+from .email import send_contact_email, send_testimonial_email
+from .forms import NewsletterForm, TestimonialForm, ContactForm
+from .models import Testimonial, Service, About, Accordion, Contact, HomePage, Newsletter
 
 seo = SEO.objects.get(pk=1)
 
@@ -19,10 +19,11 @@ def index(request):
         'meta_keywords': seo.meta_keywords,
         'meta_thumbnail': seo.meta_thumbnail.url,
         'blogs': Blog.objects.order_by("-pk"),
-        'projects': get_projects(),
+        'projects': get_home_projects()[:4],
         'homepage_data': homepage_data,
         'services': Service.objects.all(),
-        'testimonials': Testimonial.objects.all(),
+        'testimonials': get_testimonials(),
+        'about': About.objects.first(),
     }
     update_views(request, homepage_data)
     return render(request, 'index.html', context)
@@ -54,10 +55,12 @@ def contact(request):
             email = contact_form.cleaned_data.get('email')
             phone_number = contact_form.cleaned_data.get('phone_number')
             send_contact_email(name, email, phone_number, message)
-            messages.success(
-                request, (f'Thank you {name}! We have received your message!'))
+            messages.success(request, (f'Thank you {name}! We have received your message!'))
             return redirect('contact')
         else:
+            for field, errors in contact_form.errors.items():
+                for error in errors:
+                    messages.error(request, error)
             contact_form = ContactForm()
 
     context = {
@@ -77,15 +80,16 @@ def newsletter(request):
         if newsletter_form.is_valid():
             email = newsletter_form.cleaned_data.get('email')
             if Newsletter.objects.filter(email=email).exists():
-                messages.info(
-                    request, "Breaking news: Your email is such a trendsetter; it subscribed before subscribing was cool. You're not just on the list; you're the list! 🌟📨")
+                messages.info(request, "Breaking news: Your email is such a trendsetter; it subscribed before subscribing was cool. You're not just on the list; you're the list! 🌟📨")
             else:
                 newsletter_form.save()
-                messages.success(
-                    request, "By hitting that subscribe button, you've just upgraded your inbox to the penthouse suite – 400 miles above the email riffraff. Get ready for a newsletter that's cooler than a polar bear in sunglasses. 😎❄️📧")
+                messages.success(request, "By hitting that subscribe button, you've just upgraded your inbox to the penthouse suite – 400 miles above the email riffraff. Get ready for a newsletter that's cooler than a polar bear in sunglasses. 😎❄️📧")
             return redirect('index')
-    else:
-        newsletter_form = NewsletterForm()
+        else:
+            for field, errors in newsletter_form.errors.items():
+                for error in errors:
+                    messages.error(request, error)
+            newsletter_form = NewsletterForm()
 
     context = {
         'title_tag': "Newsletter",
@@ -129,23 +133,13 @@ def help(request):
     return render(request, 'help.html', context)
 
 
-def success(request):
-    context = {
-        'title_tag': "Success",
-        'meta_thumbnail': seo.meta_thumbnail.url,
-    }
-    return render(request, 'success.html', context)
-
-
 def submit_testimonial(request):
     if request.method == 'POST':
         testimonial_form = TestimonialForm(request.POST, request.FILES)
         if testimonial_form.is_valid():
             testimonial_form.save()
-            message_1 = str(
-                "We appreciate you taking the time to share your experience. Your testimonial has been successfully submitted and will be reviewed shortly.")
-            message_2 = str(
-                "If approved, your testimonial will be published on our website. We value your feedback and thank you for your support!")
+            message_1 = str("We appreciate you taking the time to share your experience. Your testimonial has been successfully submitted and will be reviewed shortly.")
+            message_2 = str("If approved, your testimonial will be published on our website. We value your feedback and thank you for your support!")
             email = testimonial_form.cleaned_data.get('email')
             name = testimonial_form.cleaned_data.get('name')
             if email:
@@ -159,7 +153,18 @@ def submit_testimonial(request):
                 'meta_thumbnail': seo.meta_thumbnail.url,
             }
             return render(request, 'success.html', context)
-    else:
-        testimonial_form = TestimonialForm()
+        else:
+            for field, errors in testimonial_form.errors.items():
+                for error in errors:
+                    messages.error(request, error)
+            testimonial_form = TestimonialForm()
 
     return render(request, 'success.html', {'testimonial_form': testimonial_form})
+    
+    
+def success(request):
+    context = {
+        'title_tag': "Success",
+        'meta_thumbnail': seo.meta_thumbnail.url,
+    }
+    return render(request, 'success.html', context)
