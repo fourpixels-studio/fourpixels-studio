@@ -48,6 +48,12 @@
                                 </div>
                             </div>
                             <div class="col-12">
+                                {{ contact_form.captcha }}
+                                {% if contact_form.captcha.errors %}
+                                <div class="text-danger">{{ contact_form.captcha.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-12">
                                 <button class="btn btn-primary w-100 py-3" type="submit">Send Message</button>
                             </div>
                         </div>
