@@ -1,51 +1,26 @@
 from django import forms
-from .models import *
 from django.forms import ModelForm
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-
-
-class RegisterUserForm(UserCreationForm):
-    email = forms.EmailField()
-    first_name = forms.CharField(
-        max_length=50)
-    last_name = forms.CharField(
-        max_length=50)
-
-    class Meta:
-        model = User
-        fields = (
-            'username',
-            'first_name',
-            'last_name',
-            'email',
-            'password1',
-            'password2',
-        )
-
-        def __init__(self, *args, **kwagrs):
-            super(RegisterUserForm, self).__init__(*args, **kwagrs)
-
-            self.fields['username'].widget.attrs['class'] = 'form-control'
-            self.fields['password1'].widget.attrs['class'] = 'form-control'
-            self.fields['password2'].widget.attrs['class'] = 'form-control'
-            self.fields['first_name'].widget.attrs['class'] = 'form-control'
-            self.fields['last_name'].widget.attrs['class'] = 'form-control'
-            self.fields['email'].widget.attrs['class'] = 'form-control'
+from django_recaptcha.fields import ReCaptchaField
+from .models import Newsletter, Testimonial, Contact
 
 
 class NewsletterForm(forms.ModelForm):
+    captcha = ReCaptchaField()
+
     class Meta:
         model = Newsletter
-        fields = ("__all__")
+        fields = ['email', 'captcha',]
 
-        def __init__(self, *args, **kwagrs):
-            super(NewsletterForm, self).__init__(*args, **kwagrs)
-            self.fields['customer'].widget.attrs['class'] = 'form-control'
-            self.fields['email'].widget.attrs['class'] = 'form-control'
+    def clean_captcha(self):
+        captcha_value = self.cleaned_data.get('captcha')
+        if not captcha_value:
+            raise forms.ValidationError("Please complete the captcha.")
+        return captcha_value
 
 
 class TestimonialForm(forms.ModelForm):
+    captcha = ReCaptchaField()
+
     class Meta:
         model = Testimonial
         fields = [
@@ -55,6 +30,7 @@ class TestimonialForm(forms.ModelForm):
             'testimonial',
             'image',
             'post_testimonial',
+            'captcha',
         ]
         widgets = {
             'name': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Enter Name'}),
@@ -74,12 +50,19 @@ class TestimonialForm(forms.ModelForm):
         self.fields['image'].required = False
         self.fields['post_testimonial'].required = False
 
+    def clean_captcha(self):
+        captcha_value = self.cleaned_data.get('captcha')
+        if not captcha_value:
+            raise forms.ValidationError("Please complete the captcha.")
+        return captcha_value
+
 
 class ContactForm(ModelForm):
+    captcha = ReCaptchaField()
+
     class Meta:
         model = Contact
-        fields = ("__all__")
-        exclude = ['user']
+        fields = ['name', 'message', 'phone_number', 'email', 'captcha']
 
         def __init__(self, *args, **kwagrs):
             super(ContactForm, self).__init__(*args, **kwagrs)
@@ -87,3 +70,9 @@ class ContactForm(ModelForm):
             self.fields['message'].widget.attrs['class'] = 'form-control'
             self.fields['phone_number'].widget.attrs['class'] = 'form-control'
             self.fields['email'].widget.attrs['class'] = 'form-control'
+
+    def clean_captcha(self):
+        captcha_value = self.cleaned_data.get('captcha')
+        if not captcha_value:
+            raise forms.ValidationError("Please complete the captcha.")
+        return captcha_value
