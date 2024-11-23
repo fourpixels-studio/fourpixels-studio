@@ -3,9 +3,9 @@ from django.contrib import messages
 from blogs.utils import update_views
 from seo_management.models import SEO
 from django.shortcuts import render, redirect
-from .get_items import get_testimonials, get_home_projects
 from .email import send_contact_email, send_testimonial_email
 from .forms import NewsletterForm, TestimonialForm, ContactForm
+from .get_items import get_testimonials, get_recent_projects, get_project_highlights
 from .models import Testimonial, Service, About, Accordion, Contact, HomePage, Newsletter
 
 seo = SEO.objects.get(pk=1)
@@ -19,7 +19,8 @@ def index(request):
         'meta_keywords': seo.meta_keywords,
         'meta_thumbnail': seo.meta_thumbnail.url,
         'blogs': Blog.objects.order_by("-pk"),
-        'projects': get_home_projects()[:4],
+        'get_project_highlights': get_project_highlights()[:6],
+        'get_recent_projects': get_recent_projects()[:6],
         'homepage_data': homepage_data,
         'services': Service.objects.all(),
         'testimonials': get_testimonials(),
