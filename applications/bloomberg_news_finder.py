@@ -32,7 +32,7 @@ def fetch_bloomberg_news(keyword):
         return "Failed to load news. Please try again later.", []
 
 
-def bloomgerg_news_finder(request):
+def bloomberg_news_finder(request):
     loading_text = ""
     news_items = []
 
@@ -55,4 +55,4 @@ def bloomgerg_news_finder(request):
         'meta_thumbnail': seo.meta_thumbnail.url,
     }
 
-    return render(request, 'bloomgerg_news_finder.html', context)
+    return render(request, 'bloomberg_news_finder.html', context)
