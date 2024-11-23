@@ -6,5 +6,9 @@ def get_testimonials():
     return Testimonial.objects.all()
 
 
-def get_projects():
-    return Project.objects.all()
+def get_recent_projects():
+    return Project.objects.order_by("-pk")
+
+
+def get_project_highlights():
+    return Project.objects.filter(highlight=True)
