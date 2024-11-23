@@ -27,32 +27,21 @@
             </div>
             <div class="col-md-6 col-lg-2">
                 <p class="section-title text-dark h5 mb-4">Quick Link<span></span></p>
-                <a class="hover-underline text-dark" href="{% url 'contact' %}">Contact Us</a> <br>
-                <a class="hover-underline text-dark" href="{% url 'about' %}">About Us</a> <br>
-                <a class="hover-underline text-dark" href="{% url 'projects_list' %}">Our Work</a> <br>
                 <a class="hover-underline text-dark" href="{% url 'index' %}">Home</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'projects_list' %}">Our Work</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'about' %}">About Us</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'contact' %}">Contact Us</a> <br>
             </div>
-            <div class="col-md-6 col-lg-2">
+            <div class="col-md-6 col-lg-3">
                 <p class="section-title text-dark h5 mb-4">Applications<span></span></p>
-                <a class="hover-underline text-dark" href="{% url 'image_compression' %}">Image Compressor</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'applications_list' %}">View All</a> <br>
                 <a class="hover-underline text-dark" href="{% url 'image_search' %}">Image Search</a> <br>
-                <a class="hover-underline text-dark" href="{% url 'blog_list' %}">News & Blogs</a> <br>
-                <a class="hover-underline text-dark" href="{% url 'applications_list' %}">Applications</a>
+                <a class="hover-underline text-dark" href="{% url 'image_compression' %}">Image Compressor</a> <br>
+                <a class="hover-underline text-dark" href="{% url 'qr_code_generator' %}">QR Code Generator</a> <br>
             </div>
-            <div class="col-md-6 col-lg-4">
-                <p class="section-title text-dark h5 mb-4">Newsletter<span></span></p>
-                <p class="text-dark small">Join our inner circle for the latest updates and exclusive perks.</p>
-                <div class="position-relative w-100 mt-3">
-                    <form method="POST" action="{% url 'newsletter' %}">
-                        {% csrf_token %}
-                        <input required name="email" class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="email" placeholder="email@website.com" style="height: 48px;">
-                        <button type="submit" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-dark"></i></button>
-                        {{ newsletter_form.captcha }}
-                        {% if newsletter_form.captcha.errors %}
-                        <div class="text-danger">{{ newsletter_form.captcha.errors }}</div>
-                        {% endif %}
-                    </form>
-                </div>
+            <div class="col-md-6 col-lg-3">
+                <p class="section-title text-dark h5 mb-4">Blogs & News<span></span></p>
+                <a class="hover-underline text-dark" href="{% url 'blog_list' %}">All Blogs</a>
             </div>
         </div>
         <div class="row mt-4">
