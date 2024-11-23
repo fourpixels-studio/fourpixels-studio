@@ -21,19 +21,17 @@ class Category(models.Model):
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    company_category = models.CharField(max_length=100, blank=True, null=True)
     website_link = models.TextField(blank=True, null=True)
     link_name = models.CharField(max_length=40, blank=True, null=True)
     blog_link = models.TextField(blank=True, null=True)
     app_link = models.TextField(blank=True, null=True)
-    logo = models.ImageField(
-        upload_to="projects/logos/", blank=True, null=True)
+    logo = models.ImageField(upload_to="projects/logos/", blank=True, null=True)
     highlight = models.BooleanField(default=False, null=True, blank=True)
     image_placeholder = models.TextField(blank=True, null=True)
-    category = models.ForeignKey(
-        Category, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     def __str__(self):
         return f"{self.name} - {self.category}"
