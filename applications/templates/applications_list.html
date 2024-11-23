@@ -47,6 +47,19 @@
                 </a>
             </div>
         </div>
+        <div class="col-sm-12 col-lg-4 fadeInUp">
+            <img class="img-fluid rounded-4 w-100 bg-light" src="https://images.pexels.com/photos/278430/pexels-photo-278430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="QR Code Generator's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <div class="mt-2">
+                <a href="{% url 'qr_code_generator' %}" class="no-btn">
+                    <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
+                        <small class="badge-sm" style="background-color: #bcbcbc;">Powered by Python</small> 
+                    </div>
+                    <h6 class="mt-2 fw-500 hover-underline text-dark">QR Code Generator</h6>
+                    <p class="fw-300 text-muted small">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
+                    <button class="fadeInUp btn btn-outline-secondary rounded-4 w-100">Generate Now</button>
+                </a>
+            </div>
+        </div>
     </div>
 </main>
 {% endblock %}
