@@ -1,32 +1,30 @@
 {% extends 'base.html' %}
 {% block body %}
 <div class="container px-4 my-5">
-    <div class="row justify-content-center">
-        <h1 class="text-center">Generate and Download Your Custom QR Code</h1>
-        <p class="mb-3 text-center">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
-        <div class="col-sm-12 col-lg-10">
+    <div class="row pb-5">
+        <div class="col-12">
+        <h1>Generate and Download Your Custom QR Code</h1>
+        <p class="mb-2">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
             <form id="qrForm" method="POST" onsubmit="showSpinner()">
                 {% csrf_token %}
-                <div class="shadow rounded-2 p-4 mt-4">
+                <div class="shadow rounded-2 p-4 mt-4 bg-white">
                     <div class="form-group p-2">
                         <label for="qr_name" class="form-label fw-500 text-dark h5">Name your QR code</label>
                         <input type="text" class="form-control form-control-lg text-muted" id="qr_name" name="qr_name" placeholder="e.g. My first QR code" required>
                     </div>
                 </div>
-                <div class="shadow rounded-2 p-4 mt-4">
+                <div class="shadow rounded-2 p-4 mt-4 bg-white">
                     <div class="form-group p-2">
                         <h5>Website address</h5>
                         <p class="small text-muted">Enter the URL to which the QR code will link</p>
                         <input type="text" class="form-control form-control-lg text-muted" id="qr_input" name="qr_input" placeholder="e.g. www.mywebsite.com" required>
                     </div>
                 </div>
-                <div class="text-center mt-4">
-                    <button id="submit-btn" type="submit" class="btn btn-secondary py-2 px-4 btn-lg">
-                        <span id="submit-text">Generate QR Code</span>
-                        <span id="processing-text" class="d-none">Generating...</span>
-                        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                    </button>
-                </div>
+                <button id="submit-btn" type="submit" class="btn btn-primary rounded-3 mt-4 py-2 px-4 btn-lg">
+                    <span id="submit-text">Generate QR Code</span>
+                    <span id="processing-text" class="d-none">Generating...</span>
+                    <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
             </form>
 
             <div class="modal fade" id="qrModal" tabindex="-1" aria-labelledby="qrModalTitle" aria-hidden="true">
@@ -43,7 +41,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-outline-secondary px-4 py-2" data-bs-dismiss="modal">Close</button>
-                            <a href="#" id="qrDownloadButton" class="btn btn-success px-4 py-2">Download</a>
+                            <a href="#" id="qrDownloadButton" class="btn btn-primary px-4 py-2">Download</a>
                         </div>
                     </div>
                 </div>
