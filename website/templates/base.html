@@ -17,12 +17,13 @@
     {% include 'head.html' %}
     </head>
 
-    <body>
+    <body class="bg-light">
         {% include 'navbar.html' %}
-        <div class="container-fluid px-0" style="padding-top: 3rem;">
+        <main style="padding-top: 4.8rem;" class="container-fluid px-0">
+            {% include "messages.html" %}
             {% block body %}
             {% endblock %}
-        </div>
+        </main>
         {% include 'footer.html' %}
         <script src="{% static 'js/showSpinner.js' %}"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
