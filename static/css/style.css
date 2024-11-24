@@ -598,3 +598,6 @@ h6,
 .footer .footer-menu a:hover {
     color: var(--secondary);
 }
+.bg-dark-2{
+    background-color: #0a2e2b;
+}
