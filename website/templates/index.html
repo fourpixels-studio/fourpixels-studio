@@ -1,41 +1,31 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
-<section class="container py-5 fadeInUp">
-    <div class="row justify-content-between align-items-center gy-5">
+<div class="container-fluid me-0 bg-dark-2">
+    <div class="row gy-5 justify-content-between align-items-end pt-0 pt-lg-5">
         <div class="col-sm-12 col-lg-6">
-            <p class="btn btn-outline-secondary rounded-5 btn-sm px-3" style="font-size: .6rem;">Web Design Agency</p>
-            <h1 class="display-4">Life Feels Empty Without Beautiful Design</h1>
-            <p class="my-4">We create and design applications, websites or other digital products with profesionalism.</p>
-            <a href="{% url 'projects_list' %}" class="btn btn-primary fadeInUp rounded-pill ps-4">
-                <div class="d-flex flex-row align-items-center gap-2">
-                    <span>Latest Work</span>
-                    <span><i class="fa-solid fa-circle-arrow-right" style="font-size: 2rem;"></i></span>
-                </div>
-            </a>
-            <ul class="list-unstyled mt-5 d-flex flex-row flex-wrap gap-2 align-items-center">
-                <li><a href="https://instagram.com/fourpixels.studio/" target="_blank" class="no-link text-dark"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="https://x.com/4ourPixels/" target="_blank" class="no-link text-dark"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank" class="no-link text-dark"><i class="fa-brands fa-sm fa-facebook-f"></i></a></li>
-            </ul>
+            <div class="mt-5 pt-5 px-sm-0 px-lg-5">
+                <p class="btn btn-outline-light rounded-5 btn-sm px-3" style="font-size: .6rem;">Web Design Agency</p>
+                <h1 class="display-6 text-white">Life's Empty Without Beautiful Design.</h1>
+                <p class="my-4 text-white">We create and design applications, websites or other digital products with profesionalism.</p>
+                <a href="{% url 'projects_list' %}" class="btn btn-light rounded-pill ps-4">
+                    <div class="d-flex flex-row align-items-center gap-2">
+                        <span>Latest Work</span>
+                        <span><i class="fa-solid fa-circle-arźow-right" style="font-size: 2rem; color: #0a2e2b"></i></span>
+                    </div>
+                </a>
+                <ul class="list-unstyled mt-5 d-flex flex-row flex-wrap gap-2 align-items-center">
+                    <li><a href="https://instagram.com/fourpixels.studio/" target="_blank" class="no-link text-light"><i class="fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://x.com/4ourPixels/" target="_blank" class="no-link text-light"><i class="fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank" class="no-link text-light"><i class="fa-brands fa-sm fa-facebook-f"></i></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="col-sm-12 col-lg-6 fadeIn">
-            <img src="https://images.pexels.com/photos/4348403/pexels-photo-4348403.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" class="img-fluid rounded-5" style="height: 50vh; width: 100%; object-fit: cover">
+        <div class="col-sm-12 col-lg-6">
+            <img src="{% static 'img/homepage/web_app_designer_hand.png' %}" alt="" class="img-fluid p-0 m-0" >
         </div>
     </div>
-</section>
-
-<section class="container-fluid px-lg-5 py-5 my-5 fadeIn bg-dark">
-    <div class="row row-cols-2 gy-5 px-2">
-        {% for project in get_project_highlights %}
-        {% if project.highlight %}
-        <div class="col-sm-6 col-md-4 col-lg-2">
-            <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" class="img-fluid" style="filter: brightness(0) invert(1); height: 90px; width: 100%; object-fit: cover">
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
-</section>
+</div>
 
 <section class="container my-5 py-5">
     <div class="row">
@@ -68,8 +58,19 @@
         </div>
     </div>
 </section>
-
-<section class="container-fluid bg-dark py-5 my-5">
+<div class="container p-lg-0 px-4 fadeInUp">
+    <div class="row row-cols-2 gy-5 my-5 pb-5">
+        {% for project in get_project_highlights %}
+        {% if project.highlight %}
+        <div class="col-sm-6 col-md-4 col-lg-2">
+            <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" class="img-fluid" style="filter: brightness(0) saturate(100%) invert(11%) sepia(61%) saturate(393%) hue-rotate(162deg) brightness(92%) contrast(91%); height: 90px; width: 100%; object-fit: cover">
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<section class="container-fluid bg-dark-2 py-5 my-5">
+    
     <div class="container mb-5 px-0 px-lg-4 fadeInUp">
         <h1 class="my-5 text-white">By the End of Our Collaboration, You Will:</h1>
         <div class="row gy-5 align-items-start justify-content-between">
