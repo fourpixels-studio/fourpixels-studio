@@ -6,11 +6,11 @@
         <div class="col-sm-12 col-lg-6">
             <div class="mt-5 pt-5 px-sm-0 px-lg-5">
                 <p class="btn btn-outline-light rounded-5 btn-sm px-3" style="font-size: .6rem;">Web Design Agency</p>
-                <h1 class="display-6 text-white">Life's Empty Without Beautiful Design.</h1>
-                <p class="my-4 text-white">We create and design applications, websites or other digital products with profesionalism.</p>
+                <h1 class="display-6 text-white">{{ homepage_data.hero_h1|linebreaks }}</h1>
+                <p class="my-4 text-white">{{ homepage_data.hero_p|linebreaks }}</p>
                 <a href="{% url 'projects_list' %}" class="btn btn-light rounded-pill ps-4">
                     <div class="d-flex flex-row align-items-center gap-2">
-                        <span>Latest Work</span>
+                        <span>{{ homepage_data.hero_btn_primary }}</span>
                         <span><i class="fa-solid fa-circle-arźow-right" style="font-size: 2rem; color: #0a2e2b"></i></span>
                     </div>
                 </a>
