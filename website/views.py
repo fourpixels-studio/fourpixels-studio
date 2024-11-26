@@ -15,16 +15,17 @@ def index(request):
     homepage_data = HomePage.objects.first()
     context = {
         'title_tag': seo.title_tag,
-        'meta_description': seo.meta_description,
-        'meta_keywords': seo.meta_keywords,
-        'meta_thumbnail': seo.meta_thumbnail.url,
-        'blogs': Blog.objects.order_by("-pk"),
-        'get_project_highlights': get_project_highlights()[:6],
-        'get_recent_projects': get_recent_projects()[:6],
+        'contact_form': ContactForm(),
         'homepage_data': homepage_data,
-        'services': Service.objects.all(),
-        'testimonials': get_testimonials(),
         'about': About.objects.first(),
+        'services': Service.objects.all(),
+        'meta_keywords': seo.meta_keywords,
+        'testimonials': get_testimonials(),
+        'blogs': Blog.objects.order_by("-pk"),
+        'meta_thumbnail': seo.meta_thumbnail.url,
+        'meta_description': seo.meta_description,
+        'get_recent_projects': get_recent_projects()[:6],
+        'get_project_highlights': get_project_highlights()[:6],
     }
     update_views(request, homepage_data)
     return render(request, 'index.html', context)
