@@ -47,8 +47,9 @@ class Contact(models.Model):
 
 class HomePage(models.Model):
     hero_h1 = models.CharField(max_length=150, blank=True, null=True)
-    hero_p = models.CharField(max_length=150, blank=True, null=True)
+    hero_p = models.CharField(max_length=255, blank=True, null=True)
     hero_btn_primary = models.CharField(max_length=25, blank=True, null=True)
+    hero_image = models.FileField(upload_to="homepage/", blank=True, null=True)
     hero_btn_secondary = models.CharField(max_length=25, blank=True, null=True)
     card_1_icon = models.CharField(max_length=70, blank=True, null=True)
     card_1_title = models.CharField(max_length=25, blank=True, null=True)
