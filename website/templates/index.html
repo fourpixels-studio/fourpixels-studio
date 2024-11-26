@@ -1,32 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
-<div class="container-fluid me-0 bg-dark-2">
-    <div class="row gy-5 justify-content-between align-items-end pt-0 pt-lg-5">
-        <div class="col-sm-12 col-lg-6">
-            <div class="mt-5 pt-5 px-sm-0 px-lg-5">
-                <p class="btn btn-outline-light rounded-5 btn-sm px-3" style="font-size: .6rem;">Web Design Agency</p>
-                <h1 class="display-6 text-white">{{ homepage_data.hero_h1|linebreaks }}</h1>
-                <p class="my-4 text-white">{{ homepage_data.hero_p|linebreaks }}</p>
-                <a href="{% url 'projects_list' %}" class="btn btn-light rounded-pill ps-4">
-                    <div class="d-flex flex-row align-items-center gap-2">
-                        <span>{{ homepage_data.hero_btn_primary }}</span>
-                        <span><i class="fa-solid fa-circle-arźow-right" style="font-size: 2rem; color: #0a2e2b"></i></span>
-                    </div>
-                </a>
-                <ul class="list-unstyled mt-5 d-flex flex-row flex-wrap gap-2 align-items-center">
-                    <li><a href="https://instagram.com/fourpixels.studio/" target="_blank" class="no-link text-light"><i class="fa-brands fa-instagram"></i></a></li>
-                    <li><a href="https://x.com/4ourPixels/" target="_blank" class="no-link text-light"><i class="fa-brands fa-twitter"></i></a></li>
-                    <li><a href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank" class="no-link text-light"><i class="fa-brands fa-sm fa-facebook-f"></i></a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-sm-12 col-lg-6">
-            <img src="{% static 'img/homepage/web_app_designer_hand.png' %}" alt="" class="img-fluid p-0 m-0" >
-        </div>
-    </div>
-</div>
-
+{% include "hero.html" %}
 <section class="container my-5 py-5">
     <div class="row">
         <div class="col-sm-12 col-lg-7">
