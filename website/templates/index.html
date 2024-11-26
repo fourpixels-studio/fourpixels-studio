@@ -11,21 +11,21 @@
     </div>
     <div class="row g-4">
         <div class="col-lg-4 fadeInUp">
-            <div class="rounded-5 border p-4">
+            <div class="rounded-2 border p-4">
                 <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_1_icon }} text-"></i>
                 <h5 class="mb-2">{{ homepage_data.card_1_title }}</h5>
                 <p class="m-0 text-muted fw-300">{{ homepage_data.card_1_paragraph }}</p>
             </div>
         </div>
         <div class="col-lg-4 zoomOut">
-            <div class="rounded-5 border bg-dark p-4">
+            <div class="rounded-2 border bg-dark p-4">
                 <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_2_icon }} text-white"></i>
                 <h5 class="mb-2 text-white">{{ homepage_data.card_2_title }}</h5>
                 <p class="m-0 text-white fw-300">{{ homepage_data.card_2_paragraph }}</p>
             </div>
         </div>
         <div class="col-lg-4 fadeInUp">
-            <div class="rounded-5 border p-4">
+            <div class="rounded-2 border p-4">
                 <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_3_icon }} text-"></i>
                 <h5 class="mb-2">{{ homepage_data.card_3_title }}</h5>
                 <p class="m-0 text-muted fw-300">{{ homepage_data.card_3_paragraph }}</p>
@@ -50,21 +50,21 @@
         <h1 class="my-5 text-white">By the End of Our Collaboration, You Will:</h1>
         <div class="row gy-5 align-items-start justify-content-between">
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="https://images.pexels.com/photos/67112/pexels-photo-67112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="img-fluid rounded-4">
+                <img src="https://images.pexels.com/photos/67112/pexels-photo-67112.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" class="img-fluid rounded-2">
                 <div class="mt-3">
                     <h5 class="text-white">Have a Professional, Custom-Designed Website or Web App</h5>
                     <p class="text-white small my-3 fw-300">We'll work together to create a website or web app that perfectly represents your brand and meets your unique needs.</p>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);" alt="" class="img-fluid rounded-4">
+                <img src="https://images.pexels.com/photos/4348401/pexels-photo-4348401.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);" alt="" class="img-fluid rounded-2">
                 <div class="mt-3">
                     <h5 class="text-white">Gain the Skills to Manage and Update Your Site with Confidence</h5>
                     <p class="text-white small my-3 fw-300">You'll learn how to easily make updates and changes to your website, ensuring it stays fresh and relevant.</p>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="https://images.pexels.com/photos/5383809/pexels-photo-5383809.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);" alt="" class="img-fluid rounded-4">
+                <img src="https://images.pexels.com/photos/5383809/pexels-photo-5383809.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2);" alt="" class="img-fluid rounded-2">
                 <div class="mt-3">
                     <h5 class="text-white">Enjoy Ongoing Support and Maintenance</h5>
                     <p class="text-white small my-3 fw-300">We’ll provide continuous support & maintenance, giving you peace of mind knowing your online presence is always optimized & secure.</p>
@@ -76,20 +76,16 @@
 
 <!-- Projects Start -->
 <section class="container px-4 my-6 fadeInUp">
-    <div class="d-flex flex-wrap flex-row justify-content-between align-items-center mb-5">
-        <div class="col-sm-12 col-lg-6">
+    <div class="d-flex mb-5">
+        <div class="col-sm-12 col-lg-5">
             <h2>Our Latest Creations</h2>
             <p class="text-muted">Visit our Portfolio Page to explore a wider selection of our work and see how we can bring your vision to life.</p>
-        </div>
-        <div class="pe-0 col-sm-12 col-lg-6">
-            <div class="float-end">
-                <a href="{% url 'projects_list' %}" class="btn btn-primary rounded-pill ps-4">
-                    <div class="d-flex flex-row align-items-center gap-2">
-                        <span>View Projects</span>
-                        <span><i class="fa-solid fa-circle-arrow-right" style="font-size: 2rem;"></i></span>
-                    </div>
-                </a>
-            </div>
+            <a href="{% url 'projects_list' %}" class="btn btn-outline-secondary rounded-3 mt-1 btn-sm px-4">
+                <div class="d-flex flex-row align-items-center gap-2">
+                    <span>View Projects</span>
+                    <span><i class="fa-solid fa-arrow-right-long" ></i></span>
+                </div>
+            </a>
         </div>
     </div>
     <div class="row g-4">
@@ -100,7 +96,7 @@
                 <div class="d-flex flex-row justify-content-between align-items-start mt-3">
                     <h6 class="hover-underline text-dark">{{ project.name }} - {{ project.company_category }}</h6>
                     <div class="float-end">
-                        <i class="fa-solid fa-square-arrow-up-right fa-lg text-secondary"></i>
+                        <i class="fa-solid fa-square-arrow-up-right fa-lg text-muted"></i>
                     </div>
                 </div>
             </a>
@@ -118,7 +114,7 @@
                 <p class="fw-400 text-white">At Four Pixels Studio we're passionate about customer experience and team culture. When you choose to work with us, you're collaborating with a team that genuinely loves what they do.</p>
             </div>
             <div class="col-sm-12 col-lg-3">
-                <a href="{% url 'about' %}" class="btn w-100 btn-lg rounded-4 btn-primary">Know more <i style="font-size: .8rem;" class="fa-solid fa-chevron-right ms-2"></i></a>
+                <a href="{% url 'about' %}" class="btn w-100 btn-lg rounded-2 btn-primary">Know more <i style="font-size: .8rem;" class="fa-solid fa-chevron-right ms-2"></i></a>
             </div>
         </div>
     </div>
@@ -141,7 +137,7 @@
         {% endfor %}
         <div class="col-lg-4 col-sm-12">
             <div class="">
-                <img class="img-fluid rounded-4 w-100 bg-secondary" src="{% static 'img/blogs_thumbnail.png' %}" alt="Blogs thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+                <img class="img-fluid rounded-2 w-100 bg-secondary" src="{% static 'img/blogs_thumbnail.png' %}" alt="Blogs thumbnail" style="height: 200px; width: 319px; object-fit: cover">
                 <div class="mt-2">
                     <a href="{% url 'blog_list' %}" class="no-btn">
                         <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
@@ -150,7 +146,7 @@
                         </div>
                         <h6 class="mt-2 fw-500 hover-underline text-">Stay updated with the latest trends, tips, & news in web design, development, & more.</h6>
                         <p class="fw-300 text-muted small">Explore our Blog Archive for a full collection of articles, tips, and news.</p>
-                        <button class="btn btn-secondary rounded-4 w-100">Browse our full collection</button>
+                        <button class="btn btn-secondary rounded-2 w-100">Browse our full collection</button>
                     </a>
                 </div>
             </div>
