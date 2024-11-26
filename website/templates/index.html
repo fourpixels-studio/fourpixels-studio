@@ -2,31 +2,44 @@
 {% block body %}
 {% load static %}
 {% include "hero.html" %}
-<section class="container my-5 py-5">
-    <div class="row">
+<section class="container">
+    <div class="row gy-5 align-items-center justify-content-evenly">
+        <div class="col-sm-12 col-lg-6">
+            <button class="btn-outline-secondary btn rounded-pill px-3 btn-sm" style="font-size: .7rem;">About Us</button>
+            <h2 class="mt-3">Delivering seamless digital solutions that drive success.</h2>
+            <p>We create user-focused websites and designs that help freelancers and small businesses shine online.</p>
+            <a href="{% url 'about' %}" class="btn btn-outline-dark px-3">Learn More <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <img src="{{ homepage_data.about_us_image.url }}" alt="" class="img-fluid rounded-4">
+        </div>
+    </div>
+</section>
+<section class="container my-5 py-5 fadeInUp">
+    <div class="row align-items-center justify-content-between gy-4">
         <div class="col-sm-12 col-lg-7">
             <h2 class="display-6 fw-500">Are You Struggling to Showcase Your Talent Online?</h2>
             <p class="text-muted mb-5">Our services are tailored for:</p>
         </div>
     </div>
     <div class="row g-4">
-        <div class="col-lg-4 fadeInUp">
+        <div class="col-lg-4">
             <div class="rounded-2 border p-4">
-                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_1_icon }} text-"></i>
+                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_1_icon }} text-dark"></i>
                 <h5 class="mb-2">{{ homepage_data.card_1_title }}</h5>
                 <p class="m-0 text-muted fw-300">{{ homepage_data.card_1_paragraph }}</p>
             </div>
         </div>
-        <div class="col-lg-4 zoomOut">
-            <div class="rounded-2 border bg-dark p-4">
+        <div class="col-lg-4">
+            <div class="rounded-2 border bg-dark-2 p-4">
                 <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_2_icon }} text-white"></i>
                 <h5 class="mb-2 text-white">{{ homepage_data.card_2_title }}</h5>
                 <p class="m-0 text-white fw-300">{{ homepage_data.card_2_paragraph }}</p>
             </div>
         </div>
-        <div class="col-lg-4 fadeInUp">
+        <div class="col-lg-4">
             <div class="rounded-2 border p-4">
-                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_3_icon }} text-"></i>
+                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_3_icon }} text-dark"></i>
                 <h5 class="mb-2">{{ homepage_data.card_3_title }}</h5>
                 <p class="m-0 text-muted fw-300">{{ homepage_data.card_3_paragraph }}</p>
             </div>
@@ -154,5 +167,6 @@
     </div>
 </section>
 <!-- Blogs End -->
+{% include 'components/contact_form.html' %}
 {% include 'components/testimonials.html' %}
 {% endblock %}
