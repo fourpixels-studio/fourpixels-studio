@@ -306,3 +306,10 @@ p {
     opacity: 1;
     transform: translateX(0);
 }
+
+.bg-dark-2{
+    background-color: #0a2e2b;
+}
+nav {
+    transition: transform 0.5s ease-in-out;
+}
