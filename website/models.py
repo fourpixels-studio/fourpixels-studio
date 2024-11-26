@@ -5,8 +5,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 
 class Newsletter(models.Model):
     email = models.EmailField(blank=True, null=True)
-    date_added = models.DateTimeField(
-        auto_now_add=True, blank=True, null=True)
+    date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     consent = models.BooleanField(default=True, null=True, blank=False)
 
     def __str__(self):
@@ -32,14 +31,6 @@ class Contact(models.Model):
     phone_number = models.CharField(max_length=20, null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
-
-    @property
-    def get_hit_count(self):
-        if self.hit_count_generic.exists():
-            return self.hit_count_generic.first().hits
-        return 0
 
     def __str__(self):
         return f'{self.name} | {self.message[:100]} | {self.date}'
@@ -63,10 +54,9 @@ class HomePage(models.Model):
     about_us_h1 = models.CharField(max_length=50, blank=True, null=True)
     about_us_p = models.TextField(blank=True, null=True)
     about_us_button = models.CharField(max_length=20, blank=True, null=True)
-    about_us_image = models.ImageField(
-        upload_to="homepage/", blank=True, null=True)
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
+    about_us_image = models.FileField(upload_to="homepage/", blank=True, null=True)
+    struggling_image = models.FileField(upload_to="homepage/", blank=True, null=True)
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     @property
     def get_hit_count(self):
@@ -98,8 +88,7 @@ class Accordion(models.Model):
 class About(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     content = models.TextField(blank=True, null=True)
-    hit_count_generic = GenericRelation(
-        HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
+    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
 
     @property
     def get_hit_count(self):
