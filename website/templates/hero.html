@@ -1,42 +1,36 @@
-{% load static %}
-<div class="container my-5 fadeInUp">
-    <div class="row align-items-center justify-content-center g-5">
-        <div class="col-sm-12 col-lg-8 text-center fadeInUp">
-            <h1 class="display-4 fw-bold">Life Feels Empty Without <br> <span class="text-primary">Beautiful Design</span></h1>
-            <p class="text-muted lead">We create and design applications, websites or other <br> digital products with profesionalism.</p>
-        </div>
-        <div class="col-12 text-center">
-            <img src="{% static '4pixels-icon.svg' %}" alt="" class="img-fluid" style="height: 300px; width: auto; object-fit: cover">
-        </div>
-        <div style="margin-top: -3rem;" class="col-12 fadeInUp">
-            <div class="p-5 bg-black rounded-5">
-                <div class="row justify-content-center g-3 align-items-center">
-                    <div class="col-sm-12 col-lg-3 fadeInUp">
-                        <div class="rounded-5 p-4 background-primary text-center">
-                            <h2 class="text-black display-1 fw-bold zoomOut">100+</h2>
-                            <small class="text-black">Satisfied clients</small>
-                        </div>
+<div class="container-fluid me-0 bg-dark-2 pt-5 position-relative">
+    <div class="row justify-content-evenly gy-0 align-items-start pb-0 pt-lg-5 position-relative" style="z-index: 1;">
+        <div class="col-sm-12 col-lg-5">
+            <div class="my-lg-5 py-5 px-sm-0">
+                <h1 class="display-4 text-white">{{ homepage_data.hero_h1|linebreaks }}</h1>
+                <p class="my-4 text-white">{{ homepage_data.hero_p }}</p>
+                <a href="{% url 'contact' %}" class="btn btn-light px-4">
+                    <div class="d-flex flex-row align-items-center gap-2">
+                        <span>{{ homepage_data.hero_btn_primary }}</span>
+                        <span><i class="fa-solid fa-arrow-right-long" style=" color: #0a2e2b"></i></span>
                     </div>
-                    <div class="col-sm-12 col-lg-3 fadeInUp">
-                        <div class="rounded-5 p-4 bg-white text-center">
-                            <h2 class="display-1 fw-bold zoomOut">10+</h2>
-                            <small>Years experience</small>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-3 fadeInUp">
-                        <div class="rounded-5 p-4 py-4 bg-white text-center">
-                            <h2 class="display-1 fw-bold zoomOut">4</h2>
-                            <small>Pro designer</small>
-                        </div>
-                    </div>
-                    <div class="col-sm-12 col-lg-3 fadeInUp">
-                        <div class="rounded-5 p-4 bg-white text-center">
-                            <h2 class="display-1 fw-bold zoomOut">1k+</h2>
-                            <small>Digital product</small>
-                        </div>
-                    </div>
-                </div>
+                </a>
+                <ul class="list-unstyled mt-5 d-flex flex-row flex-wrap gap-3 align-items-center">
+                    <li><a href="https://instagram.com/fourpixels.studio/" target="_blank" class="no-link text-light"><i class="fa-xl fa-brands fa-instagram"></i></a></li>
+                    <li><a href="https://x.com/4ourPixels/" target="_blank" class="no-link text-light"><i class="fa-xl fa-brands fa-twitter"></i></a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank" class="no-link text-light"><i class="fa-lg fa-brands fa-facebook-f"></i></a></li>
+                </ul>
             </div>
         </div>
+        <div class="col-sm-12 col-lg-5">
+            <img src="{{ homepage_data.hero_image.url }}" alt="Hero Image" class="img-fluid">
+        </div>
+    </div>
+    <div class="animated-background">
+        <div class="animated-row-1 animated-row"></div>
+        <div class="animated-row-2 animated-row"></div>
+        <div class="animated-row-3 animated-row"></div>
+        <div class="animated-row-4 animated-row"></div>
+        <div class="animated-row-5 animated-row"></div>
+        <div class="animated-row-6 animated-row"></div>
+        <div class="animated-row-7 animated-row"></div>
+        <div class="animated-row-8 animated-row"></div>
+        <div class="animated-row-9 animated-row"></div>
+        <div class="animated-row-10 animated-row"></div>
     </div>
 </div>
