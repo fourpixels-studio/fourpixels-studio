@@ -93,3 +93,52 @@
   animation: fadeInLeft 1.5s ease-out;
   transform-origin: center right;
 }
+
+/* Animated bg start */
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+.animated-row {
+  background: #0a2e2b;;
+  height: 10vh;
+  width: 100%;
+  animation: fade 5s infinite;
+  animation-direction: alternate;
+}
+.animated-row-2 {
+  animation-delay:0.5s;
+}
+.animated-row-3 {
+  animation-delay:1s;
+}
+.animated-row-4 {
+  animation-delay:1.5s;
+}
+.animated-row-5 {
+  animation-delay:2s;
+}
+.animated-row-6 {
+  animation-delay:2.5s;
+}
+.animated-row-7 {
+  animation-delay:3s;
+}
+.animated-row-8 {
+  animation-delay:3.5s;
+}
+.animated-row-9 {
+  animation-delay:4s;
+}
+.animated-row-10 {
+  animation-delay:4.5s;
+}
+@keyframes fade {
+  from { background: #0a2e2b; }
+  to { background: #0f4540; }
+}
