@@ -1,10 +1,9 @@
 from django.db import models
-from django.utils.text import slugify
 from django.urls import reverse
 from hitcount.models import HitCount
-from django.contrib.contenttypes.fields import GenericRelation
+from django.utils.text import slugify
 from django.utils.html import mark_safe
-
+from django.contrib.contenttypes.fields import GenericRelation
 
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
@@ -30,9 +29,11 @@ class Project(models.Model):
     highlight = models.BooleanField(default=False, null=True, blank=True)
     image_placeholder = models.TextField(blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    highlight = models.BooleanField(default=False, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
-
+    cover = models.FileField(upload_to="projects/cover/", blank=True, null=True)
+    
     def __str__(self):
         return f"{self.name} - {self.category}"
 
@@ -79,18 +80,20 @@ class Project(models.Model):
             )
         return media_list
 
+    @property
+    def get_cover_image(self):
+        try:
+            cover = self.cover.url
+        except:
+            cover = self.logo.url
+        return cover
 
 class ProjectMedia(models.Model):
-    project = models.ForeignKey(
-        Project, on_delete=models.CASCADE, null=True, blank=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
-    video = models.FileField(
-        blank=True, null=True,
-        upload_to="projects/media/")
-    image = models.FileField(
-        blank=True, null=True,
-        upload_to="projects/media/")
+    video = models.FileField(blank=True, null=True, upload_to="projects/media/")
+    image = models.FileField(blank=True, null=True, upload_to="projects/media/")
 
     def __str__(self):
         return f"{self.name} - {self.project.name}"
