@@ -51,7 +51,7 @@ class HomePage(models.Model):
     card_3_icon = models.CharField(max_length=70, blank=True, null=True)
     card_3_title = models.CharField(max_length=25, blank=True, null=True)
     card_3_paragraph = models.TextField(blank=True, null=True)
-    about_us_h1 = models.CharField(max_length=50, blank=True, null=True)
+    about_us_h1 = models.CharField(max_length=250, blank=True, null=True)
     about_us_p = models.TextField(blank=True, null=True)
     about_us_button = models.CharField(max_length=20, blank=True, null=True)
     about_us_image = models.FileField(upload_to="homepage/", blank=True, null=True)
