@@ -1,8 +1,8 @@
 <div class="container-fluid me-0 bg-dark-2 pt-5 position-relative" style="height: 100dvh;">
-    <div class="row justify-content-evenly gy-0 align-items-start pb-0 pt-lg-5 position-relative" style="z-index: 1;">
+    <div class="row justify-content-evenly gy-0 align-items-center pb-0 pt-lg-5 position-relative" style="z-index: 1;">
         <div class="col-sm-12 col-lg-5">
             <div class="my-lg-5 py-5 px-sm-0">
-                <h1 class="display-4 text-white">{{ homepage_data.hero_h1 }}</h1>
+                <h1 class="display-4 text-white mt-lg-5">{{ homepage_data.hero_h1 }}</h1>
                 <p class="my-4 text-white">{{ homepage_data.hero_p }}</p>
                 <a href="{% url 'index' %}#contact" class="btn btn-light px-4">
                     <div class="d-flex flex-row align-items-center gap-2">
@@ -17,7 +17,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-sm-12 col-lg-5">
+        <div class="col-sm-12 col-lg-5 mt-lg-5">
             <img src="{{ homepage_data.hero_image.url }}" alt="Hero Image" class="img-fluid">
         </div>
     </div>
