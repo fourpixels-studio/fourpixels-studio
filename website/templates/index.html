@@ -2,7 +2,7 @@
 {% block body %}
 {% load static %}
 {% include "hero.html" %}
-<section class="container">
+<section class="container mt-5">
     <div class="row gy-5 align-items-center justify-content-evenly">
         <div class="col-sm-12 col-lg-6">
             <button class="btn-outline-secondary btn rounded-pill px-3 btn-sm" style="font-size: .7rem;">About Us</button>
@@ -10,8 +10,8 @@
             <p>{{ homepage_data.about_us_p }}</p>
             <a href="{% url 'about' %}" class="btn btn-outline-dark px-3">{{ homepage_data.about_us_button }} <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
         </div>
-        <div class="col-sm-12 col-lg-6">
-            <img src="{{ homepage_data.about_us_image.url }}" alt="" class="img-fluid rounded-4">
+        <div class="col-sm-12 col-lg-6 m-0 p-0">
+            <img src="{{ homepage_data.about_us_image.url }}" alt="" class="img-fluid rounded-4 p-0 m-0">
         </div>
     </div>
 </section>
