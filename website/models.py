@@ -57,7 +57,16 @@ class HomePage(models.Model):
     about_us_image = models.FileField(upload_to="homepage/", blank=True, null=True)
     struggling_image = models.FileField(upload_to="homepage/", blank=True, null=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
-
+    collabo_title_1 = models.CharField(max_length=180, blank=True, null=True)
+    collabo_p_1 = models.TextField(blank=True, null=True)
+    collabo_img_1 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    collabo_title_2 = models.CharField(max_length=180, blank=True, null=True)
+    collabo_p_2 = models.TextField(blank=True, null=True)
+    collabo_img_2 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    collabo_title_3 = models.CharField(max_length=180, blank=True, null=True)
+    collabo_p_3 = models.TextField(blank=True, null=True)
+    collabo_img_3 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    
     @property
     def get_hit_count(self):
         if self.hit_count_generic.exists():
