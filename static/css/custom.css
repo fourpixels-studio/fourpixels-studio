@@ -313,3 +313,6 @@ p {
 nav {
     transition: transform 0.5s ease-in-out;
 }
+.text-dark-2{
+    color: #0a2e2b;
+}
