@@ -66,6 +66,7 @@ class HomePage(models.Model):
     collabo_title_3 = models.CharField(max_length=180, blank=True, null=True)
     collabo_p_3 = models.TextField(blank=True, null=True)
     collabo_img_3 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    process_image = models.FileField(upload_to="homepage/", blank=True, null=True)
     
     @property
     def get_hit_count(self):
