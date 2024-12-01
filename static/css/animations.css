@@ -138,6 +138,15 @@
 .animated-row-10 {
   animation-delay:4.5s;
 }
+.animated-row-11 {
+  animation-delay:5s;
+}
+.animated-row-12 {
+  animation-delay:5.5s;
+}
+.animated-row-13 {
+  animation-delay:6s;
+}
 @keyframes fade {
   from { background: #0a2e2b; }
   to { background: #0f4540; }
