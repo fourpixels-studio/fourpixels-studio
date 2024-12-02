@@ -4,6 +4,7 @@ const searchBox = document.getElementById("search-box");
 const searchResult = document.getElementById("search-result");
 const showMoreBtn = document.getElementById("show-more-btn");
 const searchQueryDisplay = document.getElementById("search-query-display");
+
 let keyword = "";
 let page = 1;
 
@@ -32,6 +33,7 @@ async function searchImages() {
     imageLink.appendChild(image);
     searchResult.appendChild(imageLink);
   });
+  hideSpinner();
   // Show button displays after (12) images are retrieved
   showMoreBtn.style.display = "block";
   // Update the content of the search query display element
@@ -57,3 +59,11 @@ showMoreBtn.addEventListener("click", () => {
   page++;
   searchImages();
 });
+
+function hideSpinner() {
+  const submitBtn = document.getElementById('submit-btn');
+  document.getElementById('submit-text').classList.remove('d-none');
+  document.getElementById('processing-text').classList.add('d-none');
+  submitBtn.disabled = false;
+  document.getElementById('spinner').classList.add('d-none');
+}
