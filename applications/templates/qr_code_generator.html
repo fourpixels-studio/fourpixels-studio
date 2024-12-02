@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container px-4 my-5">
-    <div class="row pb-5">
-        <div class="col-12">
-        <h1>Generate and Download Your Custom QR Code</h1>
-        <p class="mb-2">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
+<div class="container px-4 mb-5">
+    <div class="row">
+        <div class="col-12 py-5">
+            <h1 class="mt-5">Generate and Download Your Custom QR Code</h1>
+            <p class="mb-2">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
             <form id="qrForm" method="POST" onsubmit="showSpinner()">
                 {% csrf_token %}
                 <div class="shadow rounded-2 p-4 mt-4 bg-white">
