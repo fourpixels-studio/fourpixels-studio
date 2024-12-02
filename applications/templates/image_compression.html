@@ -13,7 +13,7 @@
                 <p class="text-muted lead text-center">Upload your image, select desired compression size, and click 'Compress Image' to reduce its size, then download the compressed version.</p>
                 {% csrf_token %}
                 <div class="col my-3">
-                    <input id="image" type="file" name="image" accept="image/*" required class="form-control form-control-lg" type="file" />
+                    <input id="image" name="image" accept="image/*" required class="form-control form-control-lg" type="file" />
                 </div>
                 <select name="compression_size" class="form-select mb-3">
                     <option selected>Select Compression Size</option>
