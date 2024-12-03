@@ -12,9 +12,9 @@
         </button>
         <div class="collapse navbar-collapse my-3 m-lg-0" id="navbarCollapse">
             <div class="navbar-nav mx-auto">
-                <a href="{% url 'about' %}" class="nav-item nav-link">About</a>
-                <a href="{% url 'projects_list' %}" class="nav-item nav-link">Our Work</a>
-                <a href="{% url 'blog_list' %}" class="nav-item nav-link">Blogs</a>
+                <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}text-primary{% endif %}">About</a>
+                <a href="{% url 'projects_list' %}" class="nav-item nav-link {% if request.path == '/projects/' %}text-primary{% endif %}">Our Work</a>
+                <a href="{% url 'blog_list' %}" class="nav-item nav-link {% if '/blogs/' in request.path %}text-primary{% endif %}">Blogs</a>
                 {% if request.user.is_authenticated %}
                 <a href="{% url 'dashboard' %}" class="nav-item nav-link">Dashboard</a>
                 <a href="/admin/" class="nav-item nav-link">Admin</a>
