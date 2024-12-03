@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 {% block body %}
+{% load static %}
+{% load hitcount_tags %}
 <main class="container my-6">
     <div class="fadeInUp">
         <h1 class="text-center">News, Blogs and Tutorials</h1>
@@ -7,9 +9,34 @@
     </div>
     <div class="row g-4">
         {% for blog in blogs %}
-        <div class="col-lg-4 col-sm-12">
-            {% include "components/blog.html" %}
+        {% if forloop.counter == 1 %}
+        <div class="col-lg-4 col-sm-12 bg">
+            <div class="bg-dark p-2 rounded-4">
+                {% if blog.cover %}
+                <img class="img-fluid rounded-4 w-100 bg-light" src="{{ blog.cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+                {% else %}
+                <img class="img-fluid rounded-4 w-100 bg-light" src="{% static 'img/blogs_thumbnail.png' %}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+                {% endif %}
+                <div class="mt-2">
+                    <a href="{{ blog.get_url }}" class="no-btn">
+                        <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
+                            <small class="badge-sm text-dark-2 bg-light-2">{{ blog.category }}</small> 
+                            <small class="text-white" style="font-size: .8rem;">{% get_hit_count for blog %} views</small> 
+                        </div>
+                        <h6 class="mt-2 fw-500 hover-underline text-white">{{ blog.title|truncatewords:13 }}</h6>
+                        <p class="fw-300 text-white small">{{ blog.summary|truncatewords:10   }}</p>
+                        <button class="btn btn-outline-light rounded-4 w-100">Read now</button>
+                    </a>
+                </div>
+            </div>
         </div>
+        {% else %}
+        <div class="col-lg-4 col-sm-12">
+            <div class="border p-2 rounded-4">
+                {% include "components/blog.html" %}
+            </div>
+        </div>
+        {% endif %}
         {% endfor %}
     </div>
 </main>
