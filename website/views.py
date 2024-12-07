@@ -44,35 +44,35 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+
 def contact(request):
     contact_form = ContactForm()
-    contact_model = Contact.objects.first()
     if request.method == 'POST':
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
-            email = contact_form.cleaned_data.get('email')
-            contact_form.save()
             name = contact_form.cleaned_data.get('name')
-            message = contact_form.cleaned_data.get('message')
             email = contact_form.cleaned_data.get('email')
+            message = contact_form.cleaned_data.get('message')
             phone_number = contact_form.cleaned_data.get('phone_number')
+            contact_form.save()
             send_contact_email(name, email, phone_number, message)
-            messages.success(request, (f'Thank you {name}! We have received your message!'))
-            return redirect('contact')
+            messages.success(request, str(f'Thank you {name}! We have received your message!'))
+            return redirect('index')
         else:
-            for field, errors in contact_form.errors.items():
-                for error in errors:
-                    messages.error(request, error)
+            if 'captcha' in contact_form.errors:
+                messages.error(request, "Please complete the captcha.")
+            else:
+                for field, errors in contact_form.errors.items():
+                    for error in errors:
+                        messages.error(request, error)
             contact_form = ContactForm()
 
     context = {
         'title_tag': "Contact Us",
         'contact_form': contact_form,
-        'contact_model': contact_model,
         'testimonials': get_testimonials(),
         'meta_thumbnail': seo.meta_thumbnail.url,
     }
-    update_views(request, contact_model)
     return render(request, 'contact.html', context)
 
 
