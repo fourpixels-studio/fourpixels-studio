@@ -62,14 +62,18 @@ class ContactForm(ModelForm):
 
     class Meta:
         model = Contact
-        fields = ['name', 'message', 'phone_number', 'email', 'captcha']
+        fields = [
+            'name', 'message', 'phone_number',
+            'email', 'subject', 'captacha'
+        ]
 
         def __init__(self, *args, **kwagrs):
             super(ContactForm, self).__init__(*args, **kwagrs)
             self.fields['name'].widget.attrs['class'] = 'form-control'
-            self.fields['message'].widget.attrs['class'] = 'form-control'
-            self.fields['phone_number'].widget.attrs['class'] = 'form-control'
             self.fields['email'].widget.attrs['class'] = 'form-control'
+            self.fields['message'].widget.attrs['class'] = 'form-control'
+            self.fields['subject'].widget.attrs['class'] = 'form-control'
+            self.fields['phone_number'].widget.attrs['class'] = 'form-control'
 
     def clean_captcha(self):
         captcha_value = self.cleaned_data.get('captcha')
