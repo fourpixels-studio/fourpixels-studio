@@ -322,3 +322,8 @@ nav {
 .text-light-2{
     color: #ebf9f3;
 }
+.alert-error{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
