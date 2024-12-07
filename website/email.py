@@ -1,14 +1,13 @@
-from django.core.mail import EmailMessage
 from django.conf import settings
+from django.core.mail import EmailMessage
 
 
-def send_contact_email(name, email, phone_number, message):
-    email_subject = f'Message from {name}.'
-    email_body = f'{message}\n\nPhone Number: {phone_number}\nEmail: {email}'
+def send_contact_email(name, subject, email, phone_number, message):
+    email_body = f'{message}\n\n{name}\n{phone_number}\n{email}'
     from_email = email
 
     email_message = EmailMessage(
-        subject=email_subject,
+        subject=subject,
         body=email_body,
         from_email=from_email,
         to=[settings.EMAIL_HOST_USER, settings.EMAIL_HOST_CC],
