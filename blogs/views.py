@@ -1,9 +1,7 @@
-from django.shortcuts import render, get_object_or_404
 from blogs.models import Blog
 from .utils import update_views
-from seo_management.models import SEO
-
-seo = SEO.objects.first()
+from django.db.models import Max
+from django.shortcuts import render, get_object_or_404
 
 
 def get_previous_and_next_blog(blog):
@@ -25,11 +23,6 @@ def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     previous_blog, next_blog = get_previous_and_next_blog(blog)
 
-    if blog.thumbnail:
-        meta_thumbnail = blog.thumbnail.url
-    else:
-        meta_thumbnail = None
-
     context = {
         'blog': blog,
         'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
@@ -37,19 +30,20 @@ def blog_detail(request, slug):
         'next_blog': next_blog,
         'cover_image': blog.cover,
         'title_tag': blog.title,
-        "meta_description": blog.meta_description,
+        "meta_description": blog.summary,
         "meta_keywords": blog.meta_keywords,
-        'meta_thumbnail': meta_thumbnail,
-        'meta_url': blog.meta_url,
+        'meta_thumbnail': blog.thumbnail.url,
     }
     update_views(request, blog)
     return render(request, 'blog_detail.html', context)
 
 
 def blog_list(request):
+    latest_pub_date = Blog.objects.aggregate(Max('pub_date'))['pub_date__max']
+    blogs = Blog.objects.exclude(pub_date=latest_pub_date).order_by('-pk')
     context = {
+        'blogs': blogs,
         'title_tag': "Blogs",
-        'blogs': Blog.objects.order_by('-pk'),
-        'meta_thumbnail': seo.meta_thumbnail.url,
+        'latest_blog': Blog.objects.latest('pub_date'),
     }
     return render(request, 'blog_list.html', context)
