@@ -19,8 +19,6 @@ urlpatterns = [
 admin.site.site_header = "Four Pixels Admin"
 
 # Tab/Site Title
-admin.site.site_header = "Four Pixels"
-
 admin.site.index_title = "Four Pixels - Admin"
 
 handler404 = error_404
