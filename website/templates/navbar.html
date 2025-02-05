@@ -1,6 +1,6 @@
 {% load static %}
-<nav style="z-index: 999;" class="w-100 bg-dark-2 position-fixed navbar navbar-expand-lg py-lg-2">
-    <div class="container">
+<nav style="z-index: 999;" class="w-100 position-fixed navbar pt-3 navbar-expand-lg px-3">
+    <div class="container bg-dark-2 rounded-4 py-3">
         <a href="{% url 'index' %}" class="navbar-brand m-0 p-0 logo-wrapper d-flex align-items-center">
             <img src="{% static '4pixels-icon.svg' %}" style="height: 40px; width: auto; object-fit: cover;" class="img-fluid" alt="Logo">
             <h5 class="ms-2 my-0 text-primary logo-text">Four Pixels Studio</h5>
@@ -11,7 +11,7 @@
             <span class="toggler-icon bottom-bar"></span>
         </button>
         <div class="collapse navbar-collapse my-3 m-lg-0" id="navbarCollapse">
-            <div class="navbar-nav mx-auto">
+            <div class="navbar-nav ms-auto">
                 <a href="{% url 'about' %}" class="nav-item nav-link {% if request.path == '/about/' %}text-primary{% endif %}">About</a>
                 <a href="{% url 'projects_list' %}" class="nav-item nav-link {% if request.path == '/projects/' %}text-primary{% endif %}">Our Work</a>
                 <a href="{% url 'blog_list' %}" class="nav-item nav-link {% if '/blogs/' in request.path %}text-primary{% endif %}">Blogs</a>
@@ -22,7 +22,7 @@
                 {% endif %}
             </div>
             <div class="col-sm-12 col-lg-2">
-                <a href="{% url 'index' %}#contact" class="btn btn-light w-100">Get Started</a>
+                <a href="{% url 'index' %}#contact" class="btn btn-primary w-100">Get Started</a>
             </div>
         </div>
     </div>
