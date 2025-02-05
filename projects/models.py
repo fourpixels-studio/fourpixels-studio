@@ -19,6 +19,7 @@ class Category(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
+    what_we_did = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     company_category = models.CharField(max_length=100, blank=True, null=True)
     website_link = models.TextField(blank=True, null=True)
@@ -33,7 +34,12 @@ class Project(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     cover = models.FileField(upload_to="projects/cover/", blank=True, null=True)
+    testimonial = models.TextField(blank=True, null=True)
+    show_in_porfolio = models.BooleanField(default=True)
     
+    class Meta:
+        ordering = ['-pk']
+        
     def __str__(self):
         return f"{self.name} - {self.category}"
 
@@ -87,6 +93,15 @@ class Project(models.Model):
         except:
             cover = self.logo.url
         return cover
+        
+    @property
+    def get_short_description(self):
+        if self.what_we_did:
+            return self.what_we_did
+        elif len(self.description) > 130:
+            return f"{self.description[:130]}..."
+        return f"{ self.category.name} for {self.name}."
+    
 
 class ProjectMedia(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
