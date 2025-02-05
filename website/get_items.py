@@ -7,7 +7,7 @@ def get_testimonials():
 
 
 def get_recent_projects():
-    return Project.objects.order_by("-pk")
+    return Project.objects.filter(show_in_porfolio=True)
 
 
 def get_project_highlights():
