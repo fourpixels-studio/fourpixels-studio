@@ -3,16 +3,18 @@
 {% block body %}
 {% load hitcount_tags %}
 <main class="container px-lg-0 px-3" style="padding-top: 8rem">
-    <div class="row fadeIn mb-5 position-relative overflow-hidden" style="background: url('https://images.unsplash.com/photo-1655841439659-0afc60676b70?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat; height: 30vh; border-radius: 24px">
-        <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
-            <h1 class="fw-bold display-5 text-white">Our Work</h1>
+    <div class="px-2">
+        <div class="row fadeIn mb-5 position-relative overflow-hidden" style="background: url('https://images.unsplash.com/photo-1655841439659-0afc60676b70?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat; height: 30vh; border-radius: 24px">
+            <div class="position-absolute top-50 start-50 translate-middle text-white text-center">
+                <h1 class="fw-bold display-5 text-white">Our Work</h1>
+            </div>
         </div>
     </div>
     {% for project in projects %}
-    <div class="mb-5 rounded-4" style="background-color: #ededed;">
-        <div class="row p-4 gy-4">
+    <div class="mb-5 rounded-4" style="background-color: #ededed; overflow: hidden">
+        <div class="row gy-4 align-items-center">
             <div class="col-sm-12 col-lg-4">
-                <div class="d-flex flex-column gap-5 justify-content-between">
+                <div class="d-flex flex-column gap-5 justify-content-between p-4">
                     {% if project.testimonial %}
                     <div class="bg-white rounded-3 p-3">
                         <h1 class="fw-800">"</h1>
@@ -27,8 +29,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-12 col-lg-8">
-                <img src="{{ project.get_cover_image }}" alt="{{ project.name }}'s Screenshot" class="img-fluid rounded-4 bg-white">
+            <div class="col-sm-12 col-lg-8 pt-4">
+                <img src="{{ project.get_cover_image }}" alt="{{ project.name }}'s Screenshot" class="img-fluid" style="margin-left: 1rem;">
             </div>
         </div>
     </div>
