@@ -52,7 +52,6 @@ def contact(request):
         if contact_form.is_valid():
             name = contact_form.cleaned_data.get('name')
             email = contact_form.cleaned_data.get('email')
-            subject = contact_form.cleaned_data.get('subject')
             message = contact_form.cleaned_data.get('message')
             phone_number = contact_form.cleaned_data.get('phone_number')
             contact_form.save()
