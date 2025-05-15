@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block body %}
-<main class="container my-6">
-    <div class="fadeInUp">
-        <h1 class="text-center mb-5">Try our applications</h1>
-    </div>
-    <div class="row g-4">
+<main class="container-fluid px-sm-0 my-6">
+    <div class="container px-0">
+        <div class="row g-4 px-0">
+        <h1 class="display-4 fw-500 pt-4">Try our applications</h1>
         <div class="col-sm-12 col-lg-4 fadeInUp">
-            <img class="img-fluid rounded-4 w-100 bg-light" src="{{ image_compression_cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <img class="rounded-2 img-fluid w-100 bg-light" src="{{ image_compression_cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
             <div class="mt-2">
                 <a href="{% url 'image_compression' %}" class="no-btn">
                     <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
@@ -15,13 +13,13 @@
                     </div>
                     <h6 class="mt-2 fw-500 hover-underline text-dark">Pixel Press - Image Compression App</h6>
                     <p class="fw-300 text-muted small">This user-friendly tool supports various file types, including videos and documents.</p>
-                    <button class="fadeInUp btn btn-outline-secondary rounded-4 w-100">Try now</button>
+                    <button class="fadeInUp btn btn-outline-secondary w-100">Try now</button>
                 </a>
             </div>
         </div>
         
         <div class="col-sm-12 col-lg-4 fadeInUp">
-            <img class="img-fluid rounded-4 w-100 bg-light" src="{{ image_search_cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <img class="rounded-2 img-fluid w-100 bg-light" src="{{ image_search_cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
             <div class="mt-2">
                 <a href="{% url 'image_search' %}" class="no-btn">
                     <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
@@ -29,13 +27,13 @@
                     </div>
                     <h6 class="mt-2 fw-500 hover-underline text-dark">Pixa Scout - Image Search</h6>
                     <p class="fw-300 text-muted small">Explore the fusion of creativity and technology in the Image Search Web App.</p>
-                    <button class="fadeInUp btn btn-outline-secondary rounded-4 w-100">Try now</button>
+                    <button class="fadeInUp btn btn-outline-secondary w-100">Try now</button>
                 </a>
             </div>
         </div>
 
         <div class="col-sm-12 col-lg-4 fadeInUp">
-            <img class="img-fluid rounded-4 w-100 bg-light" src="https://images.pexels.com/photos/5821296/pexels-photo-5821296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Bloomberg News Finder's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <img class="rounded-2 img-fluid w-100 bg-light" src="https://images.pexels.com/photos/5821296/pexels-photo-5821296.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Bloomberg News Finder's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
             <div class="mt-2">
                 <a href="{% url 'bloomberg_news_finder' %}" class="no-btn">
                     <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
@@ -43,12 +41,13 @@
                     </div>
                     <h6 class="mt-2 fw-500 hover-underline text-dark">Bloomberg News Finder</h6>
                     <p class="fw-300 text-muted small">Discover the latest in financial news and market trends directly from Bloomberg.</p>
-                    <button class="fadeInUp btn btn-outline-secondary rounded-4 w-100">Search Now</button>
+                    <button class="fadeInUp btn btn-outline-secondary w-100">Search Now</button>
                 </a>
             </div>
         </div>
+
         <div class="col-sm-12 col-lg-4 fadeInUp">
-            <img class="img-fluid rounded-4 w-100 bg-light" src="https://images.pexels.com/photos/278430/pexels-photo-278430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="QR Code Generator's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <img class="rounded-2 img-fluid w-100 bg-light" src="https://images.pexels.com/photos/278430/pexels-photo-278430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="QR Code Generator's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
             <div class="mt-2">
                 <a href="{% url 'qr_code_generator' %}" class="no-btn">
                     <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
@@ -56,10 +55,25 @@
                     </div>
                     <h6 class="mt-2 fw-500 hover-underline text-dark">QR Code Generator</h6>
                     <p class="fw-300 text-muted small">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
-                    <button class="fadeInUp btn btn-outline-secondary rounded-4 w-100">Generate Now</button>
+                    <button class="fadeInUp btn btn-outline-secondary w-100">Generate Now</button>
                 </a>
             </div>
         </div>
+
+        <div class="col-sm-12 col-lg-4 fadeInUp">
+            <img class="rounded-2 img-fluid w-100 bg-light" src="https://images.pexels.com/photos/6289029/pexels-photo-6289029.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="QR Code Generator's thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+            <div class="mt-2">
+                <a href="/applications/" class="no-btn">
+                    <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
+                        <small class="badge-sm" style="background-color: #bcbcbc;">Powered by Python</small> 
+                    </div>
+                    <h6 class="mt-2 fw-500 hover-underline text-dark">Invoice Generator</h6>
+                    <p class="fw-300 text-muted small">Customize your invoice and download the PDF</p>
+                    <button class="fadeInUp btn btn-outline-secondary w-100">Generate Invoice</button>
+                </a>
+            </div>
+        </div>
+    </div>
     </div>
 </main>
 {% endblock %}
