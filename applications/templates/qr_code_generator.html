@@ -1,26 +1,26 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container px-4 mb-5">
-    <div class="row">
-        <div class="col-12 py-5">
+<div class="container px-md-2">
+    <div class="row py-5">
+        <div class="col-12 pt-3">
             <h1 class="mt-5">Generate and Download Your Custom QR Code</h1>
             <p class="mb-2">Effortlessly create personalized QR codes and download them instantly with a few clicks.</p>
             <form id="qrForm" method="POST" onsubmit="showSpinner()">
                 {% csrf_token %}
-                <div class="shadow rounded-2 p-4 mt-4 bg-white">
+                <div class="border rounded-3 p-2 mt-4 bg-white">
                     <div class="form-group p-2">
                         <label for="qr_name" class="form-label fw-500 text-dark h5">Name your QR code</label>
                         <input type="text" class="form-control form-control-lg text-muted" id="qr_name" name="qr_name" placeholder="e.g. My first QR code" required>
                     </div>
                 </div>
-                <div class="shadow rounded-2 p-4 mt-4 bg-white">
+                <div class="border rounded-3 p-2 mt-4 bg-white">
                     <div class="form-group p-2">
                         <h5>Website address</h5>
                         <p class="small text-muted">Enter the URL to which the QR code will link</p>
                         <input type="text" class="form-control form-control-lg text-muted" id="qr_input" name="qr_input" placeholder="e.g. www.mywebsite.com" required>
                     </div>
                 </div>
-                <button id="submit-btn" type="submit" class="btn btn-primary rounded-3 mt-4 py-2 px-4 btn-lg">
+                <button id="submit-btn" type="submit" class="btn btn-primary w-100 rounded-3 mt-4 py-2 px-4 btn-lg">
                     <span id="submit-text">Generate QR Code</span>
                     <span id="processing-text" class="d-none">Generating...</span>
                     <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
