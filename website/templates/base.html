@@ -22,7 +22,9 @@
     <body class="bg-light">
         <main class="container-fluid px-0">
             {% include 'navbar.html' %}
+            {% if messages %}
             {% include "messages.html" %}
+            {% endif %}
             {% block body %}
             {% endblock %}
         </main>
