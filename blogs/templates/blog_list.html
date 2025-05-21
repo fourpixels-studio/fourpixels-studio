@@ -1,40 +1,14 @@
 {% extends 'base.html' %}
 {% block body %}
-{% load static %}
-{% load hitcount_tags %}
-<main class="container px-4 my-6">
-    <div class="row fadeInUp my-5">
-        <div class="col-sm-12 col-lg-6">
-            <h1>News, Blogs and Tutorials</h1>
-        </div>
-        <div class="col-sm-12 col-lg-6">
-            <p class="ttext-muted">Explore our latest articles, news updates, in-depth tutorials, and step-by-step guides. Whether you're looking to stay informed about the latest industry trends or learn how we built specific apps.</p>
-        </div>
-    </div>
-    <div class="row justify-content-between rounded-4 bg-light-2  align-items-center g-0">
-        <div class="col-sm-12 col-lg-7 order-md-2">
-            <img src="{{ latest_blog.thumbnail.url }}" alt="{{ latest_blog.title }}'s cover image" class="img-fluid rounded-4">
-        </div>
-        <div class="col-sm-12 col-lg-5 order-md-1">
-            <div class="rounded-3 py-4 ps-5 pe-4">
-                <a href="{{ latest_blog.get_url }}" class="no-link">
-                    <small class="text-muted">{{ latest_blog.category }}</small>
-                    <h3 class="text-dark-2 hover-underline my-3">{{ latest_blog.title }}</h3>
-                    <h6 class="text-muted mb-5 fw-400">{{ latest_blog.title }}</h6>
-                    <p class="text-muted">{{ latest_blog.pub_date|timesince }} ago</p>
-                </a>
-            </div>
+<div class="container-fluid px-0">
+    <div class="container-xl px-2 px-lg-0 py-5">
+        <h1 class="mt-4 mb-0">Our most recent articles</h1>
+        <p class="text-muted small">{{ meta_description }}</p>
+        <div class="row g-3 mt-3">
+            {% for blog in blogs %}
+            <div class="col-lg-4 col-md-6 col-sm-12">{% include "components/blog.html" %}</div>
+            {% endfor %}
         </div>
     </div>
-    <hr class="my-5 text-muted">
-    <div class="row g-3">
-        {% for blog in blogs %}
-        <div class="col-lg-4 col-sm-12">
-            <div class="border p-2 rounded-4">
-                {% include "components/blog.html" %}
-            </div>
-        </div>
-        {% endfor %}
-    </div>
-</main>
+</div>
 {% endblock %}
