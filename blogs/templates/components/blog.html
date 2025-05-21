@@ -1,20 +1,11 @@
-{% load static %}
-{% load hitcount_tags %}
-<div class="">
-    {% if blog.cover %}
-    <img class="img-fluid rounded-4 w-100 bg-light" src="{{ blog.cover.url }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
-    {% else %}
-    <img class="img-fluid rounded-4 w-100 bg-light" src="{% static 'img/blogs_thumbnail.png' %}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
-    {% endif %}
-    <div class="mt-2">
-        <a href="{{ blog.get_url }}" class="no-btn">
-            <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
-                <small class="badge-sm bg-dark-2 text-light-2">{{ blog.category }}</small> 
-                <small class="text-muted" style="font-size: .8rem;">{% get_hit_count for blog %} views</small> 
-            </div>
-            <h6 class="mt-2 fw-500 hover-underline text-dark">{{ blog.title|truncatewords:13 }}</h6>
-            <p class="fw-300 text-muted small">{{ blog.summary|truncatewords:10   }}</p>
-            <button class="btn btn-outline-secondary rounded-4 w-100">Read now</button>
-        </a>
-    </div>
+{% load custom_filters %}
+<div class="bg-white p-2 rounded-2">
+    <a href="{{ blog.get_url }}" class="no-btn">
+        <img class="img-fluid rounded-1 w-100 bg-light" src="{{ blog.get_meta_thumbnail }}" alt="{{ blog.title }}'s thumbnail" style="height: 200px; width: 319px; object-fit: cover">
+        <div class="mt-2">
+            <h6 class="fw-600 hover-underline text-dark">{{ blog.title|truncatechars:90 }}</h6>
+            <p class="fw-400 my-0 text-muted small">{{ blog.summary|truncatechars:60 }}</p>
+            <small class="text-muted text-sm">{{ blog.pub_date|round_timesince }} ago</small>
+        </div>
+    </a>
 </div>
