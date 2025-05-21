@@ -1,6 +1,7 @@
 from blogs.models import Blog
 from .utils import update_views
 from django.db.models import Max
+from seo_management.models import SEO
 from django.shortcuts import render, get_object_or_404
 
 
@@ -25,25 +26,26 @@ def blog_detail(request, slug):
 
     context = {
         'blog': blog,
-        'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
-        'previous_blog': previous_blog,
         'next_blog': next_blog,
-        'cover_image': blog.cover,
         'title_tag': blog.title,
-        "meta_description": blog.summary,
+        'cover_image': blog.cover,
+        'meta_url': blog.meta_url,
+        'previous_blog': previous_blog,
         "meta_keywords": blog.meta_keywords,
-        'meta_thumbnail': blog.thumbnail.url,
+        "meta_description": blog.meta_description,
+        'meta_thumbnail': blog.get_meta_thumbnail,
+        'tags': [item.strip() for item in blog.tags.split(',') if item.strip()],
     }
     update_views(request, blog)
     return render(request, 'blog_detail.html', context)
 
 
 def blog_list(request):
-    latest_pub_date = Blog.objects.aggregate(Max('pub_date'))['pub_date__max']
-    blogs = Blog.objects.exclude(pub_date=latest_pub_date).order_by('-pk')
+    seo = SEO.objects.first()
     context = {
-        'blogs': blogs,
         'title_tag': "Blogs",
-        'latest_blog': Blog.objects.latest('pub_date'),
+        'blogs': Blog.objects.order_by('-pk'),
+        'meta_thumbnail': seo.meta_thumbnail.url,
+        'meta_description': 'Stay informed about the latest industry trends or learn how we built specific apps. From News updates, in-depth tutorials, and step-by-step guides.',
     }
     return render(request, 'blog_list.html', context)
