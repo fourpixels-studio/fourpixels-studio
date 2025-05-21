@@ -5,6 +5,7 @@ from django.utils import timezone
 from hitcount.models import HitCount
 from django.utils.text import slugify
 from django_resized import ResizedImageField
+from django.templatetags.static import static
 from django.contrib.contenttypes.fields import GenericRelation
 
 
@@ -26,14 +27,20 @@ class Blog(models.Model):
     meta_keywords = models.TextField(blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
-    thumbnail = ResizedImageField(size=[1200, 630], crop=['middle', 'center'], quality=75, upload_to='thumbnails/', blank=True, null=True)
+    thumbnail = ResizedImageField(size=[1200, 633], crop=['middle', 'center'], quality=75, upload_to='thumbnails/', blank=True, null=True)
 
     def __str__(self):
         return f"{self.title} - Published On: {self.pub_date.strftime('%a, %b %d, %Y')}"
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super(Blog, self).save(*args, **kwargs)
+
+        if self.cover and (not self.thumbnail or self.thumbnail.name != f"{self.cover.name}"):
+            self.thumbnail.save(
+                f"{self.cover.name}", self.cover, save=False)
+            super(Blog, self).save(update_fields=['thumbnail'])
 
     @property
     def meta_url(self):
@@ -41,9 +48,7 @@ class Blog(models.Model):
 
     @property
     def get_url(self):
-        return reverse("blog_detail", kwargs={
-            "slug": self.slug,
-        })
+        return reverse("blog_detail", kwargs={"slug": self.slug})
 
     @property
     def get_hit_count(self):
@@ -53,6 +58,13 @@ class Blog(models.Model):
 
     @property
     def get_share_link(self):
-        current_site = settings.MY_SITE
-        blog_url = self.get_url
-        return f"{current_site}{blog_url}"
+        return f"{settings.MY_SITE}{self.get_url}"
+
+    def get_absolute_url(self):
+        return f"/blogs/{self.slug}/"
+
+    @property
+    def get_meta_thumbnail(self):
+        if self.thumbnail:
+            return self.thumbnail.url
+        return static('blogs_thumbnail.jpg')
