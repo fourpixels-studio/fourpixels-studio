@@ -1,12 +1,12 @@
-{% if messages %}
-<div class="container" style="padding: 4.5rem 1.25rem 0;">
+<div style="padding-top: 4rem;">
     {% for message in messages %}
-    <ol class="list-unstyled">    
-        <li class="alert alert-{{ message.tags }} alert-dismissible fade show text-center mb-2" role="alert">
-            {{ message }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </li>
-    </ol>
+    <div class="container-fluid alert-{{ message.tags }} p-0">
+        <div class="alert mb-0 alert-{{ message.tags }} alert-dismissible fade show text-start rounded-0" role="alert">
+            <div class="ps-1 ps-lg-5">
+                {{ message }}
+                <button type="button" class="btn-close me-lg-5" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
     {% endfor %}
 </div>
-{% endif %}
