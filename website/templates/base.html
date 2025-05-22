@@ -3,6 +3,7 @@
 <html lang="en">
 
     <head>
+        {% if not request.user.username == "djg400" %}
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQDWVPW7C3"></script>
         <script>
@@ -14,8 +15,8 @@
     
             gtag("config", "G-EQDWVPW7C3");
         </script>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5794740845106394" crossorigin="anonymous">
-        </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5794740845106394" crossorigin="anonymous"></script>
+        {% endif %}
         {% include 'head.html' %}
     </head>
         
