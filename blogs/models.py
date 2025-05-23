@@ -38,8 +38,7 @@ class Blog(models.Model):
         super(Blog, self).save(*args, **kwargs)
 
         if self.cover and (not self.thumbnail or self.thumbnail.name != f"{self.cover.name}"):
-            self.thumbnail.save(
-                f"{self.cover.name}", self.cover, save=False)
+            self.thumbnail.save(f"{self.cover.name}", self.cover, save=False)
             super(Blog, self).save(update_fields=['thumbnail'])
 
     @property
@@ -68,3 +67,11 @@ class Blog(models.Model):
         if self.thumbnail:
             return self.thumbnail.url
         return static('blogs_thumbnail.jpg')
+
+    @property
+    def get_hashtags(self):
+        main = "FourPixelsStudioBlogs"
+        tags = ''
+        if self.tags:
+            tags = ' '.join(f"#{item.strip().replace(' ', '')}" for item in self.tags.split(','))
+        return f"#{self.category.strip().replace(' ', '')} {tags} #{main}".strip()
