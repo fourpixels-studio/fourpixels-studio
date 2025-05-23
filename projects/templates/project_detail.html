@@ -1,52 +1,87 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block body %}
-{% load hitcount_tags %}
-<main class="container-fluid px-0 mb-5">
-    <div class="container mb-5">
-        <div class="row justify-content-center">
-            <div class="col-sm-12 col-lg-9 text-center">
-                <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" style="max-height: 200px; width: auto; object-fit: cover;" class="img-fluid">
-                <h1 class="display-5 mb-4 fw-500">{{ project.name }}</h1>
-                <p class="text-muted">{{ project.description }}</p>
-                {% if project.website_link %}
-                <div class="d-flex flex-row mt-3 gap-3 justify-content-center align-items-center">
-                    <a href="{{ project.website_link }}" target="_blank" class="btn btn-outline-secondary px-4 rounded-4">{{ project.link_name }}</a>
+<div class="container-fluid px-0">
+    <div class="container-md px-3 px-md-3 px-lg-0 py-5">
+        <h1 class="mt-4 mt-lg-5">{{ project.name }}</h1>
+        <p class="text-muted lead">{{ project.description }}</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-light px-0 mt-3">
+                <div class="d-flex flex-row justify-content-between">
+                    <h6 class="text-muted">CLIENT</h6>
+                    <h6>{{ project.client }}</h6>
                 </div>
-                {% endif %}
-                <!-- <h6 class="lead text-muted">Tools</h6>
-                <div class="d-flex flex-row justify-content-center flex-wrap gap-3">
-                    <p class="text-muted rounded-1 px-2 border">Photoshop</p>
-                    <p class="text-muted rounded-1 px-2 border">Adobe Illustrator</p>
-                    <p class="text-muted rounded-1 px-2 border">Figma</p>
-                    <p class="text-muted rounded-1 px-2 border">Figma</p>
-                </div> -->
+            </li>
+            <li class="list-group-item bg-light px-0 mt-2">
+                <div class="d-flex flex-row justify-content-between">
+                    <h6 class="text-muted">YEAR</h6>
+                    <h6>{{ project.year.year }}</h6>
+                </div>
+            </li>
+            <li class="list-group-item bg-light px-0 my-2">
+                <div class="d-flex flex-row justify-content-between">
+                    <h6 class="text-muted">CATEGORY</h6>
+                    <h6>{{ project.category.name }}</h6>
+                </div>
+            </li>
+            {% if project.website_link %}
+            <li class="list-group-item bg-light px-0 mb-3">
+                <div class="d-flex flex-row justify-content-between">
+                    <h6 class="text-muted">LINK</h6>
+                    <a href="{{ project.website_link }}" class="link text-dark hover-underline h6">{{ project.link_name|upper }}</a>
+                </div>
+            </li>
+            {% endif %}
+        </ul>
+        {% if project.image_placeholder %}
+        <img src="{{ project.image_placeholder }}" alt="{{ project.name }}" class="img-fluid my-4 rounded-4 fadeIn">
+        {% endif %}
+        <div class="mt-4 row g-4 justify-content-between align-items-start">
+            <div class="col-12 fadeIn">
+                <article id="article">{{ project.content|safe }}</article>
             </div>
         </div>
-    </div>
-    <img src="{{ project.image_placeholder }}" alt="" class="img-fluid fadeIn">
-    {% if project.get_project_media %}
-    <section class="container mt-5">
-        <h2 class="text-center fadeInUp">About Project</h2>
-        <div class="row gy-5 gx-3 fadeInUp">
-            {% for pk, media, name, description in project.get_project_media %}
-            <div class="col-sm-12 col-lg-6">
-                <hr class="text-muted">
-                <button type="button" data-bs-toggle="modal" data-bs-target="#projectMediaModal{{ pk }}" class="no-btn text-start">
-                    <h6 class="hover-underline">{{ name }}</h6>
-                    <p class="small text-muted">{{ description|truncatechars:60 }} <strong class="hover-underline">Read more...</strong></p>
-                    {{ media|safe }}
-                </button>
+        {% if project.testimonial %}
+        <div class="d-flex flex-column mb-4">
+            <h2 class="display-2 mb-0 pb-0">“</h2>
+            <h4 class="text-dark-2 pt-0 mb-3">“{{ project.testimonial.testimonial }}”</h4>
+            <div class="d-flex flex-row justify-content-start align-items-center mb-4">
+                <div class="d-flex flex-row gap-3 justify-content-center align-items-center">
+                    {% if project.testimonial.image %}
+                    <img src="{{ project.testimonial.image.url }}" alt="{{ project.testimonial.name }}' Image" style="height: 50px; width: 50px; object-fit: cover; border-radius: 50%;">
+                    {% else %}
+                    <img src="https://images.pexels.com/photos/1570779/pexels-photo-1570779.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Abstract painting" style="height: 50px; width: 50px; object-fit: cover; border-radius: 50%;">
+                    {% endif %}
+                    <div>
+                        <p class="text-dark-2 fw-500 small my-0">{{ project.testimonial.name }}</p>
+                        <p class="small fw-300 my-0">{{ project.testimonial.department }}</p>
+                    </div>
+                </div>
             </div>
-            {% include "modals/project_media.html" with pk=pk media=media name=name description=description %}
+        </div>
+        {% endif %}
+        <div class="mt-4 gy-4 row justify-content-start align-items-start">
+            <h2>More Works</h2>
+            {% for related_project in project.get_related_projects %}
+            <div class="col-sm-12 col-lg-6">
+                <div class="bg-white" style="border-radius: .6rem">
+                    <img src="{{ related_project.get_cover_image }}" alt="{{ related_project.name }}'s Cover" class="img-fluid w-100" style="border-radius: .6rem .6rem 0 0">
+                    <a href="{{ related_project.get_url }}" class="no-link">
+                        <div class="d-flex flex-row justify-content-between align-items-center p-3">
+                            <div>
+                                <h6 class="fw-500 text-dark hover-underline">{{ related_project.name }}</h6>
+                                <small class="text-muted fw-400">{{ related_project.category.name }}</small>
+                            </div>
+                            <button role="button" class="btn btn-light btn-sm px-3">{{ related_project.year.year }}</button>
+                        </div>
+                    </a>
+                </div>
+            </div>
             {% endfor %}
         </div>
-    </section>
-    {% endif %}
-    <div class="container">
-        <div class="container mt-5 bg-dark rounded-5 p-5">
+        <div class="container mt-5 bg-dark rounded-2 p-5">
             <div class="row">
-                <h1 class="display-5 text-center fw-400 text-white">Share your experience, 
+                <h1 class="display-6 text-center fw-400 text-white">Share your experience, 
                     <span>
                         <button type="button" class="hover-underline text-primary" data-bs-toggle="modal" data-bs-target="#postTestimonialModal">
                             Post Testimonial
@@ -56,6 +91,30 @@
             </div>
         </div>
     </div>
-</main>
+</div>
 {% include "modals/submit_testimonial.html" %}
+{% if project.get_images %}
+{% include "modals/project_images.html" %}
+<script src="{% static 'js/projectMediaModal.js' %}"></script>
+{% endif %}
+<script>
+    var article = document.getElementById("article");
+    if (article) {
+        var img_elements = article.getElementsByTagName("img");
+        var iframe_elements = article.getElementsByTagName("iframe");
+        for (var i = 0; i < img_elements.length; i++) {
+            img_elements[i].classList.add("img-fluid");
+            img_elements[i].classList.add("border");
+            img_elements[i].classList.add("rounded-4");
+            img_elements[i].classList.add("w-auto");
+        }
+        for (var i = 0; i < p_elements.length; i++) {
+            p_elements[i].style.fontFamily = "Space Grotesk, sans-serif";
+            var spans = p_elements[i].getElementsByTagName("span");
+            for (var j = 0; j < spans.length; j++) {
+                spans[j].style.fontFamily = "Space Grotesk, sans-serif";
+            }
+        }
+    }
+</script>
 {% endblock %}
