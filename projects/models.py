@@ -2,6 +2,7 @@ from django.db import models
 from django.urls import reverse
 from hitcount.models import HitCount
 from django.utils.text import slugify
+from website.models import Testimonial
 from django.utils.html import mark_safe
 from django.contrib.contenttypes.fields import GenericRelation
 
@@ -19,6 +20,8 @@ class Category(models.Model):
 
 class Project(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
+    client = models.CharField(max_length=100, blank=True, null=True)
+    year = models.DateField(blank=True, null=True)
     what_we_did = models.TextField(blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     company_category = models.CharField(max_length=100, blank=True, null=True)
@@ -34,8 +37,10 @@ class Project(models.Model):
     slug = models.SlugField(unique=True, null=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     cover = models.FileField(upload_to="projects/cover/", blank=True, null=True)
-    testimonial = models.TextField(blank=True, null=True)
+    testimonial = models.ForeignKey(Testimonial, on_delete=models.CASCADE, null=True, blank=True)
     show_in_porfolio = models.BooleanField(default=True)
+    similar_projects = models.ManyToManyField("self", blank=True)
+    content = models.TextField(null=True, blank=True)
     
     class Meta:
         ordering = ['-pk']
@@ -49,9 +54,7 @@ class Project(models.Model):
 
     @property
     def get_url(self):
-        return reverse("project_detail", kwargs={
-            "slug": self.slug,
-        })
+        return reverse("project_detail", kwargs={"slug": self.slug})
 
     @property
     def get_short_name(self):
@@ -65,26 +68,6 @@ class Project(models.Model):
         if self.hit_count_generic.exists():
             return self.hit_count_generic.first().hits
         return 0
-
-    @property
-    def get_project_media(self):
-        project_media_list = ProjectMedia.objects.filter(project=self)
-        media_list = []
-        for project_media in project_media_list:
-            media_element = None
-            if project_media.video:
-                media_element = mark_safe(
-                    f'<video controls class="img-fluid rounded-4 w-100"><source src="{project_media.video.url}" type="video/mp4"></video>')
-            elif project_media.image:
-                media_element = mark_safe(
-                    f'<img src="{project_media.image.url}" class="img-fluid rounded-4 border w-100"/>')
-            media_list.append(
-                (
-                    project_media.pk, media_element,
-                    project_media.name, project_media.description
-                )
-            )
-        return media_list
 
     @property
     def get_cover_image(self):
@@ -102,7 +85,24 @@ class Project(models.Model):
             return f"{self.description[:130]}..."
         return f"{ self.category.name} for {self.name}."
     
+    @property
+    def get_related_projects(self):
+        if self.similar_projects:
+            projects = Project.objects.filter(category=self.category, show_in_porfolio=True).exclude(pk=self.pk)
+            if projects:
+                return projects
+            else:
+                projects = Project.objects.filter(show_in_porfolio=True).exclude(pk=self.pk)
+            return projects
+        return None
 
+    @property
+    def get_images(self):
+        if ProjectMedia.objects.filter(project=self).exists():
+            return ProjectMedia.objects.filter(project=self)
+        return None
+        
+        
 class ProjectMedia(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, blank=True, null=True)
