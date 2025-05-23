@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'blogs',
     'django_summernote',
     'django_recaptcha',
-    'traphalisi',
     'utils',
 ]
 
@@ -138,8 +137,8 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR / 'staticfiles')
 ]
 
-MEDIA_ROOT = '/home/fourpixe/public_html/media'
-STATIC_ROOT = '/home/fourpixe/public_html/static'
+MEDIA_ROOT = '/home4/fourpixe/public_html/media'
+STATIC_ROOT = '/home4/fourpixe/public_html/static'
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
@@ -173,7 +172,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 custom_file_limit = 20 * 1024 * 1024
 SUMMERNOTE_CONFIG = {
     'attachment_filesize_limit': custom_file_limit,
-    'attachment_upload_to': 'blogs/attachments',
+    'attachment_upload_to': 'attachments',
     'width': '100%',
     'height': 300,
     'toolbar': [
