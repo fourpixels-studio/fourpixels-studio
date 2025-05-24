@@ -1,8 +1,11 @@
 from .models import Project
+from .forms import ProjectForm
+from django.contrib import messages
 from blogs.utils import update_views
 from website.forms import TestimonialForm
 from website.get_items import get_recent_projects
-from django.shortcuts import render, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404, redirect
 
 
 def projects_list(request):
@@ -27,3 +30,27 @@ def project_detail(request, slug):
     }
     update_views(request, project)
     return render(request, 'project_detail.html', context)
+
+
+@login_required()
+def update_project(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    if request.method == "POST":
+        form = ProjectForm(request.POST, request.FILES, instance=project)
+        if form.is_valid():
+            form.save()
+            messages.success(request, f"Succesfully updated '{project.name}'")
+            return redirect("project_detail", slug=project.slug)
+        else:
+            for field, errors in form.errors.items():
+                for error in errors:
+                    messages.error(request, error)
+    else:
+        form = ProjectForm(instance=project)
+
+    context = {
+        "form": form,
+        "project": project,
+        'title_tag': f"Updating {project.name} Project",
+    }
+    return render(request, "update_project.html", context)
