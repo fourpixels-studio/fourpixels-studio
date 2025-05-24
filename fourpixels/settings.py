@@ -169,12 +169,11 @@ EMAIL_USE_TLS = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-custom_file_limit = 20 * 1024 * 1024
 SUMMERNOTE_CONFIG = {
-    'attachment_filesize_limit': custom_file_limit,
+    'attachment_filesize_limit': 20 * 1024 * 1024,
     'attachment_upload_to': 'attachments',
     'width': '100%',
-    'height': 300,
+    'height': 600,
     'toolbar': [
         ['style', ['style']],
         ['style', ['bold', 'italic', 'underline', 'clear']],
