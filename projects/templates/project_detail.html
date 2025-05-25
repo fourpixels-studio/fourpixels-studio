@@ -7,6 +7,7 @@
             <h1>{{ project.name }}</h1>
             {% if request.user.is_superuser %}
             <a href="{% url 'update_project' project.pk %}" class="btn btn-secondary btn-sm rounded-0">Update</a>
+            <small>{{ project.get_hit_count }}</small>
             {% endif %}
         </div>
         <p class="text-muted lead">{{ project.description }}</p>
