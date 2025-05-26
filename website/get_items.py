@@ -11,4 +11,4 @@ def get_recent_projects():
 
 
 def get_project_highlights():
-    return Project.objects.filter(highlight=True)
+    return Project.objects.filter(highlight=True, show_in_porfolio=True)
