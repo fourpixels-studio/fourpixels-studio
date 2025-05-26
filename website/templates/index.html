@@ -173,7 +173,7 @@
         </div>
     </div>
     <div class="row g-4">
-        {% for project in get_recent_projects %}
+        {% for project in get_project_highlights %}
         <div class="col-sm-12 col-lg-4">
             <a href="{{ project.get_url }}" class="no-link">
                 <img class="rounded-3 bg-white" src="{{ project.get_cover_image }}" alt="{{ project.name }}'s Logo" style="height: 200px; width: 100%; object-fit: cover">
