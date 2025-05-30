@@ -335,3 +335,14 @@ nav {
 .text-sm{
     font-size: 10px;
 }
+.bg-muted{
+    background-color: #a4a4a4;
+}
+.hover-zoom{
+    transform: scale(1);
+    transition: .2s ease-in-out;
+}
+.hover-zoom:hover{
+    transform: scale(1.1);
+    transition: .2s ease-in-out;
+}
