@@ -3,22 +3,11 @@
 <div class="container-fluid px-0">
     <div class="container-md px-2 px-lg-0 py-5">
         <h1 class="my-4 mt-lg-5">Selected Projects</h1>
-        {% for project in projects %}
-        <div class="mb-5 rounded-4" style="background-color: #ededed; overflow: hidden">
-            <div class="row gy-4 align-items-center">
-                <div class="col-sm-12 col-lg-4">
-                    <div class="d-flex flex-column gap-5 justify-content-between p-4">
-                        <h6 class="fw-600 mb-3">{{ project.name }}</h6>
-                        <p class="fw-300 text-dark">{{ project.get_short_description }}</p>
-                        <a href="{{ project.get_url }}" class="btn btn-dark rounded-1 px-4">Read Case Study</a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-8 pt-4">
-                    <img src="{{ project.get_cover_image }}" alt="{{ project.name }}'s Screenshot" class="img-fluid" style="margin-left: 1rem;">
-                </div>
-            </div>
+        <div class="row g-4 align-items-start">
+            {% for project in projects %}
+            <div class="col-sm-12 col-lg-6">{% include 'project_card.html' %}</div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
