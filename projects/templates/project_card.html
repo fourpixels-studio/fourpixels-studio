@@ -1,0 +1,14 @@
+<a href="{{ project.get_url }}" class="no-link">
+    <div class="bg-white" style="border-radius: .9rem;">
+        <div style="overflow: hidden">
+            <img src="{{ project.get_cover_image }}" class="hover-zoom" alt="{{ project.name }}'s Cover" style="border-radius: .9rem .9rem 0 0; max-height: 314px; width: 100%; object-fit: cover">
+        </div>
+        <div class="p-3">
+            <h6 class="fw-500 text-dark hover-underline">{{ project.name }}</h6>
+            <p class="small mb-1 text-muted fw-400">{{ project.get_short_description }}</p>
+            <p class="small mb-0">
+                <span class="badge bg-muted rounded-1 fw-300">{{ project.company_category }}</span>
+            </p>
+        </div>
+    </div>
+</a>
