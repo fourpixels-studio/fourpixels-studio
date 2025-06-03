@@ -1,188 +1,216 @@
 {% extends 'base.html' %}
 {% block body %}
 {% load static %}
-{% include "hero.html" %}
-<section class="container my-5 py-5 fadeInUp">
-    <div class="row g-4">
-        <div class="col-lg-4">
-            <div class="rounded-4 p-4" style="background-color: #fff;">
-                <h3 class="text-dark-2 mb-2">Websites</h3>
-                <h5 class="lead mt-0 mb-4 text-muted fw-300">Responsive and fast websites designed to meet your business needs.</h5>
-                <img src="{% static 'img/homepage/css-9.svg' %}" alt="" class="img-fluid py-2 m-0">
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="rounded-4 p-4" style="background-color: #fff;">
-                <h3 class="text-dark-2 mb-2">UI/UX</h3>
-                <p class="lead mt-0 mb-4 text-muted fw-300">Beautiful and intuitive designs that make your website or app easy to use and love.</p>
-                <img src="{% static 'img/homepage/user-interface-89.svg' %}" alt="" class="img-fluid p-0 m-0">
-            </div>
-        </div>
-        <div class="col-lg-4">
-            <div class="rounded-4 p-4" style="background-color: #fff;">
-                <h3 class="text-dark-2 mb-2">Branding Specialist</h3>
-                <p class="lead mt-0 mb-4 text-muted fw-300">Unique logos, fonts, icons, and brand guidelines that bring your vision to life.</p>
-                <img src="{% static 'img/homepage/designer-59.svg' %}" alt="" class="img-fluid p-0 m-0">
+<div class="container-fluid bg-dark-2 position-relative">
+    <div class="row justify-content-center px-0 gy-0 align-items-center pb-0 py-lg-5 position-relative" style="z-index: 1;">
+        <div class="col-sm-12 col-lg-5">
+            <div class="py-5 px-sm-0  text-center">
+                <p style="margin-top: 5rem;" class="small text-white">{{ homepage.hero_p }}</p>
+                <h1 class="display-2 mb-4 text-white">{{ homepage.hero_h1 }}</h1>
+                <a href="{% url 'index' %}#contact" class="btn btn-light px-4 mb-5">
+                    <div class="d-flex flex-row align-items-center gap-2">
+                        <span>{{ homepage.hero_btn_primary }}</span>
+                        <span><i class="fa-solid fa-arrow-right-long" style=" color: #0a2e2b"></i></span>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
-</section>
-
-<section class="container-fluid bg-light-2" style="margin: 5rem auto 7rem;">
-    <div class="container py-5">
-        <div class="row gy-5 gx-4 align-items-center justify-content-between">
-            <div class="col-sm-12 col-lg-5 order-md-2">
-                <h2 class="my-3 text-dark-2">{{ homepage_data.about_us_h1 }}</h2>
-                <p class="text-muted">{{ homepage_data.about_us_p }}</p>
-                <a href="{% url 'about' %}" class="hover-underline text-dark-2">{{ homepage_data.about_us_button }} <i class="fa-solid fa-arrow-right-long ms-1"></i></a>
-            </div>
-            <div class="col-sm-12 col-lg-6 order-md-1">
-                <img src="{{ homepage_data.about_us_image.url }}" alt="" class="img-fluid rounded-4 p-0 m-0">
-            </div>
+    <div class="animated-background">
+        <div class="animated-row-1 animated-row"></div>
+        <div class="animated-row-2 animated-row"></div>
+        <div class="animated-row-3 animated-row"></div>
+        <div class="animated-row-4 animated-row"></div>
+        <div class="animated-row-5 animated-row"></div>
+        <div class="animated-row-6 animated-row"></div>
+        <div class="animated-row-7 animated-row"></div>
+        <div class="animated-row-8 animated-row"></div>
+        <div class="animated-row-9 animated-row"></div>
+        <div class="animated-row-10 animated-row"></div>
+        <div class="animated-row-11 animated-row"></div>
+        <div class="animated-row-12 animated-row"></div>
+        <div class="animated-row-13 animated-row"></div>
+    </div>
+</div>
+<!-- <div class="container-fluid my-5">
+    <div class="row justify-content-center px-0 row-cols-2 py-4">
+        {% for project in get_project_highlights %}
+        {% if project.highlight %}
+        <div class="col-sm-6 col-md-4 col-lg-2 text-center">
+            <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" class="img-fluid" style="filter: brightness(0) invert(0.5); height: 70px; width: auto; object-fit: cover">
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div> -->
+<picture>
+    <source media="(min-width: 1200px)" srcset="{% static 'img/homepage/hero-sales-02-desktop.jpg' %}">
+    <source media="(min-width: 992px)" srcset="{% static 'img/homepage/hero-sales-02-desktop.jpg' %}">
+    <source media="(min-width: 576px)" srcset="{% static 'img/homepage/hero-sales-01-mobile.jpg' %}">
+    <img src="{% static 'img/homepage/hero-sales-01-mobile.jpg' %}" alt="Sales" loading="lazy" class="img-fluid w-100">
+</picture>
+<div class="container pb-4 px-lg-0">
+    <div class="row justify-content-center" style="margin: 6rem auto;">
+        <div class="col-sm-12 col-lg-10 text-center">
+            <p class="text-muted fw-400">WHAT WE DO</p>
+            <h2 class="display-5 text-dark-2 fw-400">{{ homepage.about_us_p }}</>
         </div>
     </div>
-</section>
-
-<section class="container my-5 py-5 fadeInUp">
-    <div class="row align-items-center justify-content-between gy-4">
-        <div class="col-sm-12 col-lg-6">
-            <h2 class="display-6 fw-500 text-dark-2">Are You Struggling to Showcase Your Talent Online? Our services are tailored for...</h2>
+    <div class="row g-4 mb-6 justify-content-between align-items-center">
+        <div class="col-lg-5">
+            <h3 class="text-dark-2 fw-400 mb-2">Websites</h3>
+            <p class="lead my-0 text-muted fw-300">Responsive and fast websites designed to meet your business needs.</p>
         </div>
-        <div class="col-sm-12 col-lg-6">
-            <img src="{{ homepage_data.struggling_image.url }}" alt="" class="img-fluid rounded-4 p-0 m-0">
+        <div class="col-lg-6">
+            <picture>
+                <source media="(min-width: 1200px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}">
+                <source media="(min-width: 992px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}">
+                <source media="(min-width: 576px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}}">
+                <img src="{% static 'img/homepage/websites-slide-1-1280.jpg' %}" alt="Websites" loading="lazy" class="img-fluid w-100 rounded-4">
+            </picture>
         </div>
     </div>
-    <div class="row g-4 mt-5">
-        <div class="col-lg-4">
+    <div class="row g-4 mb-6 justify-content-between align-items-center">
+        <div class="col-lg-5 order-md-2">
+            <h3 class="text-dark-2 fw-400 mb-2">User Interface (UI/UX)</h3>
+            <p class="lead my-0 text-muted fw-300">Beautiful and intuitive designs that make your website or app easy to use and love.</p>
+        </div>
+        <div class="col-lg-6 order-md-1">
+            <img src="{% static 'img/homepage/wireframe-ui-ux.jpg' %}" alt="User Interface (UI/UX)" loading="lazy" class="border img-fluid w-100 rounded-4">
+        </div>
+    </div>
+    <div class="row g-4 mb-6 justify-content-between align-items-center">
+        <div class="col-lg-5">
+            <h3 class="text-dark-2 fw-400 mb-2">Branding Specialist</h3>
+            <p class="lead my-0 text-muted fw-300">Unique logos, fonts, icons, and brand guidelines that bring your vision to life.</p>
+        </div>
+        <div class="col-lg-6">
+            <picture>
+                <source media="(min-width: 1200px)" srcset="{% static 'img/homepage/brand-specialist-UHD.jpg' %}">
+                <source media="(min-width: 992px)" srcset="{% static 'img/homepage/brand-specialist-1080.jpg' %}">
+                <source media="(min-width: 576px)" srcset="{% static 'img/homepage/brand-specialist-720.jpg' %}">
+                <img src="{% static 'img/homepage/brand-specialist-UHD.jpg' %}" alt="Branding Specialist" loading="lazy" class="img-fluid w-100 rounded-4">
+            </picture>
+        </div>
+    </div>
+    <div class="row my-5 g-4">
+        <h2 class="fw-500 display-5 text-dark-2">Our services are tailored for...</h3>
+        <div class="col-sm-12 col-lg-4">
             <div class="rounded-2 border p-4">
-                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_1_icon }} text-dark-2"></i>
-                <h5 class="text-dark-2 mb-2">{{ homepage_data.card_1_title }}</h5>
-                <p class="m-0 text-muted fw-300">{{ homepage_data.card_1_paragraph }}</p>
+                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage.card_1_icon }} text-dark-2"></i>
+                <h5 class="text-dark-2 mb-2">{{ homepage.card_1_title }}</h5>
+                <p class="m-0 text-muted fw-300">{{ homepage.card_1_paragraph }}</p>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-sm-12 col-lg-4">
             <div class="rounded-2 border p-4">
-                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_2_icon }} text-dark-2"></i>
-                <h5 class="text-dark-2 mb-2">{{ homepage_data.card_2_title }}</h5>
-                <p class="m-0 fw-300">{{ homepage_data.card_2_paragraph }}</p>
+                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage.card_2_icon }} text-dark-2"></i>
+                <h5 class="text-dark-2 mb-2">{{ homepage.card_2_title }}</h5>
+                <p class="m-0 fw-300">{{ homepage.card_2_paragraph }}</p>
             </div>
         </div>
-        <div class="col-lg-4">
+        <div class="col-sm-12 col-lg-4">
             <div class="rounded-2 border p-4">
-                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage_data.card_3_icon }} text-dark-2"></i>
-                <h5 class="text-dark-2 mb-2">{{ homepage_data.card_3_title }}</h5>
-                <p class="m-0 text-muted fw-300">{{ homepage_data.card_3_paragraph }}</p>
+                <i style="font-size: 2.5rem; margin: 1rem auto 2rem auto" class="{{ homepage.card_3_icon }} text-dark-2"></i>
+                <h5 class="text-dark-2 mb-2">{{ homepage.card_3_title }}</h5>
+                <p class="m-0 text-muted fw-300">{{ homepage.card_3_paragraph }}</p>
             </div>
         </div>
     </div>
-</section>
-
-<section class="container-fluid bg-dark-2 py-5 my-5">
-    <div class="container mb-5 px-0 px-lg-4 fadeInUp">
-        <h1 class="my-5 text-white text-center">By the End of Our Collaboration, You Will:</h1>
+</div>
+<div class="container-fluid py-5 bg-dark-2">
+    <div class="container my-5 px-0 fadeInUp">
         <div class="row gy-5 align-items-start justify-content-between mb-5 pb-5">
+            <h2 class="text-white fw-500 mb-2">By the End of Our Collaboration, you will...</h2>
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="{{ homepage_data.collabo_img_1.url }}" alt="" class="img-fluid bg-light p-4 rounded-4">
+                <img src="{{ homepage.collabo_img_1.url }}" alt="" class="img-fluid bg-light p-4 rounded-2">
                 <div class="mt-3">
-                    <h5 class="text-white">{{ homepage_data.collabo_title_1 }}</h5>
-                    <p class="text-white small my-3 fw-300">{{ homepage_data.collabo_p_1 }}</p>
+                    <h5 class="text-white">{{ homepage.collabo_title_1 }}</h5>
+                    <p class="text-white small my-3 fw-300">{{ homepage.collabo_p_1 }}</p>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="{{ homepage_data.collabo_img_2.url }}" alt="" class="img-fluid bg-light p-4 rounded-4">
+                <img src="{{ homepage.collabo_img_2.url }}" alt="" class="img-fluid bg-light p-4 rounded-2">
                 <div class="mt-3">
-                    <h5 class="text-white">{{ homepage_data.collabo_title_2 }}</h5>
-                    <p class="text-white small my-3 fw-300">{{ homepage_data.collabo_p_2 }}</p>
+                    <h5 class="text-white">{{ homepage.collabo_title_2 }}</h5>
+                    <p class="text-white small my-3 fw-300">{{ homepage.collabo_p_2 }}</p>
                 </div>
             </div>
             <div class="col-sm-12 col-lg-4 fadeInUp">
-                <img src="{{ homepage_data.collabo_img_3.url }}" alt="" class="img-fluid bg-light p-4 rounded-4">
+                <img src="{{ homepage.collabo_img_3.url }}" alt="" class="img-fluid bg-light p-4 rounded-2">
                 <div class="mt-3">
-                    <h5 class="text-white">{{ homepage_data.collabo_title_3 }}</h5>
-                    <p class="text-white small my-3 fw-300">{{ homepage_data.collabo_p_3 }}</p>
+                    <h5 class="text-white">{{ homepage.collabo_title_3 }}</h5>
+                    <p class="text-white small my-3 fw-300">{{ homepage.collabo_p_3 }}</p>
                 </div>
             </div>
         </div>
     </div>
-</section>
-
-<section class="container px-4 fadeInUp" style="margin: 6rem auto;">
-    <h3 class="display-4 mb-5 fw-500 text-dark-2 text-center">The Process</h3>
+</div>
+<div class="container mb-5 pb-5 mt-6 px-lg-0">
     <div class="row g-4 align-items-start justify-content-between">
-        <div class="col-sm-12 col-lg-3">
-            <h3 class="text-dark-2">01. Planning</h3>
-            <p class="text-muted">In the Planning phase, we define goals, audience, and strategy to align with your vision.</p>
+        <div class="col-sm-12 col-lg-6 sticky-sidebar" style="top: 4.5rem;">
+            <h3 class="display-3 fw-500 text-dark-2">Our Process</h3>
         </div>
-        <div class="col-sm-12 col-lg-3">
-            <h3 class="text-dark-2">02. Design</h3>
-            <p class="text-muted">In the Design phase, we craft custom, user-friendly designs that reflect your brand identity.</p>
-        </div>
-        <div class="col-sm-12 col-lg-3">
-            <h3 class="text-dark-2">03. Development</h3>
-            <p class="text-muted">In Development, we build a functional, responsive platform with features tailored to your needs.</p>
-        </div>
-        <div class="col-sm-12 col-lg-3">
-            <h3 class="text-dark-2">04. Support</h3>
-            <p class="text-muted">In Support, we ensure your site stays secure, updated, and running smoothly with ongoing maintenance.</p>
+        <div class="col-sm-12 col-lg-6">
+            <ol class="list-unstyled">
+                <li class="sticky-sidebar bg-light border p-4 rounded-3 mb-3" style="top: 8rem;">
+                    <h6 class="display-5 text-dark-2 fw-400">Step 1: Planning</h6>
+                    <p class="text-muted">Involves defining goals, audience, and strategy to align with your vision.</p>
+                </li>
+                <li class="sticky-sidebar bg-light border p-4 rounded-3 mb-3" style="top: 9rem;">
+                    <h6 class="display-5 text-dark-2 fw-400">Step 2: Design</h6>
+                    <p class="text-muted">We craft custom, user-friendly designs that reflect your brand identity.</p>
+                </li>
+                <li class="sticky-sidebar bg-light border p-4 rounded-3 mb-3" style="top: 10rem;">
+                    <h6 class="display-5 text-dark-2 fw-400">Step 3: Development</h6>
+                    <p class="text-muted">We build a functional, responsive platform with features tailored to your needs.</p>
+                </li>
+                <li class="sticky-sidebar bg-light border p-4 rounded-3" style="top: 10rem;">
+                    <h6 class="display-5 text-dark-2 fw-400">Step 4: Support</h6>
+                    <p class="text-muted">We ensure your site stays secure, updated, and running smoothly with ongoing maintenance.</p>
+                </li>
+            </ol>
         </div>
     </div>
-</section>
-
-<section class="container-fluid bg-light-2">
-    <div class="container px-4 my-6 fadeInUp">
-        <div class="row justify-content-between align-items-start">
+</div>
+<div class="container-fluid bg-dark-2">
+    <div class="container px-0 py-5 fadeInUp">
+        <div class="row gy-4 justify-content-between align-items-center">
             <div class="col-sm-12 col-lg-6">
-                <h4 class="text-muted fw-300">Why choose</h4>
-                <h1 class="display-1 text-dark-2">Four Pixels Studio?</h1>
+                <h3 class="display-2 text-white">Why choose Four Pixels Studio?</h3>
             </div>
             <div class="col-sm-12 col-lg-6">
                 <ol class="list-unstyled">
-                    <li class="mb-3 d-flex pt-0 flex-row gap-3 align-items-start">
-                        <span><i class="fa-solid fa-star text-dark-2"></i></span>
-                        <span class="fw-300">Tailored solutions at competitive rates, designed for small businesses and creatives.</span>
+                    <li class="mb-4 d-flex pt-0 flex-row gap-3 align-items-start">
+                        <span><i class="fa-solid fa-star text-white"></i></span>
+                        <span class="text-white fw-300">Tailored solutions at competitive rates, designed for small businesses and creatives.</span>
                     </li>
-                    <li class="mb-3 d-flex pt-0 flex-row gap-3 align-items-start">
-                        <span><i class="fa-solid fa-star text-dark-2"></i></span>
-                        <span class="fw-300">Expert in modern design, creating responsive and visually engaging platforms.</span>
+                    <li class="mb-4 d-flex pt-0 flex-row gap-3 align-items-start">
+                        <span><i class="fa-solid fa-star text-white"></i></span>
+                        <span class="text-white fw-300">Expert in modern design, creating responsive and visually engaging platforms.</span>
                     </li>
-                    <li class="mb-3 d-flex pt-0 flex-row gap-3 align-items-start">
-                        <span><i class="fa-solid fa-star text-dark-2"></i></span>
-                        <span class="fw-300">Client-focused approach with planning, development, and ongoing support included.</span>
+                    <li class="mb-4 d-flex pt-0 flex-row gap-3 align-items-start">
+                        <span><i class="fa-solid fa-star text-white"></i></span>
+                        <span class="text-white fw-300">Client-focused approach with planning, development, and ongoing support included.</span>
                     </li>
-                    <li class="mb-3 d-flex pt-0 flex-row gap-3 align-items-start">
-                        <span><i class="fa-solid fa-star text-dark-2"></i></span>
-                        <span class="fw-300">Global accessibility and reliable maintenance to keep your site secure.</span>
+                    <li class="mb-4 d-flex pt-0 flex-row gap-3 align-items-start">
+                        <span><i class="fa-solid fa-star text-white"></i></span>
+                        <span class="text-white fw-300">Global accessibility and reliable maintenance to keep your site secure.</span>
                     </li>
                 </ol>
             </div>
         </div>
     </div>
-</section>
-<!-- Projects Start -->
-<section class="container px-4 my-6 fadeInUp">
-    <div class="d-flex mb-5">
-        <div class="col-sm-12 col-lg-5">
-            <h2>Our Latest Creations</h2>
-            <p class="text-muted">Visit our Portfolio Page to explore a wider selection of our work and see how we can bring your vision to life.</p>
-            <a href="{% url 'projects_list' %}" class="btn btn-outline-secondary rounded-3 mt-1 btn-sm px-4">
-                <div class="d-flex flex-row align-items-center gap-2">
-                    <span>View Projects</span>
-                    <span><i class="fa-solid fa-arrow-right-long" ></i></span>
-                </div>
-            </a>
-        </div>
-    </div>
-    <div class="row g-4">
-        {% for project in get_project_highlights %}
+</div>
+<div class="container px-lg-0">
+    <div class="row g-4 my-5 pb-5">
+        <h2 class="text-dark-2">Our Latest Creations</h2>
+        {% for project in get_recent_projects %}
         <div class="col-sm-12 col-lg-4">{% include 'project_card.html' %}</div>
         {% endfor %}
     </div>
-</section>
-<!-- Projects End -->
-
-<section class="container my-6 fadeInUp">
-    <div class="bg-dark p-5 rounded-5">
-        <h1 class="display-1 text-white fw-500">Digital solution with 10+ years of experience.</h1>
+    <div class="bg-dark-2 p-4 rounded-4 my-5">
+        <h3 class="display-1 text-white fw-500">Digital solution with 10+ years of experience.</h3>
         <div class="row mt-4 g-3 justify-content-between align-items-center fadeInUp">
             <div class="col-sm-12 col-lg-7">
                 <p class="fw-400 text-white">At Four Pixels Studio we're passionate about customer experience and team culture. When you choose to work with us, you're collaborating with a team that genuinely loves what they do.</p>
@@ -192,42 +220,32 @@
             </div>
         </div>
     </div>
-</section>
-
-
-<!-- Blogs Start -->
-<section class="container px-4 my-6 fadeInUp">
-    <div class="row">
-        <div class="col-sm-12 col-lg-7">
-            <h3>Blogs, News, and Tutorials</h3>
-            <p class="text-muted">Explore our latest articles, news updates, in-depth tutorials, and step-by-step guides. Whether you're looking to stay informed about the latest industry trends or learn how we built specific apps, this section has something for everyone.</p>
-        </div>
-    </div>
-    <div class="row my-4 g-4">
-        {% for blog in blogs|slice:2 %}
-        <div class="col-lg-4 col-sm-12">
-            {% include "components/blog.html" %}
-        </div>
+    <div class="row g-4 my-5">
+        <h2 class="text-dark-2">Blogs, News & Tutorials</h2>
+        {% for blog in blogs %}
+        <div class="col-sm-12 col-lg-4">{% include 'blog_summary_card.html' %}</div>
         {% endfor %}
-        <div class="col-lg-4 col-sm-12">
-            <div class="">
-                <img class="img-fluid rounded-2 w-100 bg-secondary" src="{% static 'img/blogs_thumbnail.png' %}" alt="Blogs thumbnail" style="height: 200px; width: 319px; object-fit: cover">
-                <div class="mt-2">
-                    <a href="{% url 'blog_list' %}" class="no-btn">
-                        <div class="d-flex flex-row flex-wrap gap-2 align-items-center">
-                            <small class="badge-sm" style="background-color: #bcbcbc;">All</small> 
-                            <small class="text-muted" style="font-size: .8rem;">4 Topics</small> 
+    </div>
+    <div class="row mt-5 pt-5">
+        <div class="col-12">
+            <h2 class="text-dark-2 mb-4">Frequently Asked Questions</h2>
+            <div class="accordion" id="accordionExample">
+                {% for faq in faqs %}
+                <div class="accordion mb-3" id="accordionFAQ{{ faq.pk }}">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFAQ{{ faq.pk }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFAQ{{ faq.pk }}" aria-expanded="false" aria-controls="collapseFAQ{{ faq.pk }}">{{ faq.title }}</button>
+                        </h2>
+                        <div id="collapseFAQ{{ faq.pk }}" class="accordion-collapse collapse" aria-labelledby="headingFAQ{{ faq.pk }}" data-bs-parent="#accordionFAQ{{ faq.pk }}">
+                            <div class="accordion-body">{{ faq.content }}</div>
                         </div>
-                        <h6 class="mt-2 fw-500 hover-underline text-">Stay updated with the latest trends, tips, & news in web design, development, & more.</h6>
-                        <p class="fw-300 text-muted small">Explore our Blog Archive for a full collection of articles, tips, and news.</p>
-                        <button class="btn btn-secondary rounded-2 w-100">Browse our full collection</button>
-                    </a>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
-</section>
-<!-- Blogs End -->
+</div>
 {% include 'components/contact_form.html' %}
 {% include 'components/testimonials.html' %}
 {% endblock %}

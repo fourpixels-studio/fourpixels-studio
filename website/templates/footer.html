@@ -1,12 +1,12 @@
 {% load static %}
 <div class="container-fluid bg-dark-2 py-6">
-    <div class="container rounded-5 bg-primary p-5">
+    <div class="container rounded-4 bg-primary p-4">
         <div class="row justify-content-between align-items-center gy-3 gx-5">
-            <div class="col-sm-12 col-lg-7">
-                <h1 class="display-3 fw-400">Have An Awesome Project?</h1>
+            <div class="col-sm-12 col-lg-8">
+                <h4 class="display-5 fw-400">Have An Awesome Project?</h4>
             </div>
             <div class="col-sm-12 col-lg-3">
-                <a href="{% url 'index' %}#contact" class="btn mb-3 btn-outline-dark btn-lg px-4 w-100 rounded-4">Contact <i style="font-size: .8rem;" class="fa-solid fa-chevron-right ms-2"></i></a>
+                <a href="{% url 'index' %}#contact" class="btn mb-3 btn-outline-dark btn-lg px-4 w-100 rounded-2">Contact <i style="font-size: .8rem;" class="fa-solid fa-chevron-right ms-2"></i></a>
             </div>
         </div>
         <div class="row my-4 px-2">    
@@ -14,7 +14,10 @@
         </div>
         <div class="row g-5">
             <div class="col-md-6 col-lg-2">
-                <p class="section-title text-dark h5 mb-4">Main Pages<span></span></p>
+                <img src="{% static '4pixels-dark.svg' %}" style="height: 150px; width: auto; object-fit: cover;" class="img-fluid" alt="Logo">
+            </div>
+            <div class="col-md-6 col-lg-2">
+                <p class="section-title text-dark h5 mb-4">Pages<span></span></p>
                 <a class="hover-underline text-dark" href="{% url 'index' %}">Home</a> <br>
                 <a class="hover-underline text-dark" href="{% url 'about' %}">About</a> <br>
                 <a class="hover-underline text-dark" href="{% url 'index' %}#contact">Contact</a> <br>
@@ -32,16 +35,16 @@
                 <a class="hover-underline text-dark" href="{% url 'blog_list' %}">All Blogs</a>
             </div>
         </div>
-        <div class="row mt-4">
-            <div class="col-md-6 text-center text-md-start">
-                <a class="text-dark small no-btn hover-underline" href="{% url 'index' %}">&copy; 2017 - 
+        <div class="row mt-5">
+            <div class="col-md-6 text-start text-md-start">
+                <a class="text-dark small no-btn hover-underline" href="{% url 'index' %}">&copy;2017 - 
                     <script>document.write(new Date().getFullYear());</script>
                     All Rights Reserved by Four Pixels Studio
                 </a>
             </div>
-            <div class="col-md-6 text-center text-md-end">
+            <div class="col-md-6 text-start text-md-end">
                 <div class="footer-menu">
-                    <a class="text-dark no-btn me-2" href="https://x.com/fourpixels_/" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a class="text-dark no-btn me-2" href="https://x.com/4ourPixels?t=mcuYBOjkEhg52xlZS1IDWA&s=09" target="_blank"><i class="fab fa-twitter fa-lg"></i></a>
                     <a class="text-dark no-btn me-2" href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank"><i class="fab fa-facebook-f fa-lg"></i></a>
                     <a class="text-dark no-btn" href="https://www.instagram.com/fourpixels.studio/" target="_blank"><i class="fab fa-instagram fa-xl"></i></a>
                 </div>
