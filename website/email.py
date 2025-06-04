@@ -10,7 +10,8 @@ def send_contact_email(name, subject, email, phone_number, message):
         subject=subject,
         body=email_body,
         from_email=from_email,
-        to=[settings.EMAIL_HOST_USER, settings.EMAIL_HOST_CC],
+        to=[settings.EMAIL_HOST_USER],
+        cc=[settings.EMAIL_HOST_CC],
     )
 
     try:
