@@ -53,9 +53,10 @@ def contact(request):
             name = contact_form.cleaned_data.get('name')
             email = contact_form.cleaned_data.get('email')
             message = contact_form.cleaned_data.get('message')
+            subject = contact_form.cleaned_data.get('subject')
             phone_number = contact_form.cleaned_data.get('phone_number')
             contact_form.save()
-            send_contact_email(name, email, phone_number, message)
+            send_contact_email(name, subject, email, phone_number, message)
             messages.success(request, str(f'Thank you {name}! We have received your message!'))
             return redirect('index')
         else:
