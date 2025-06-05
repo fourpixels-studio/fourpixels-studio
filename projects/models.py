@@ -102,7 +102,10 @@ class Project(models.Model):
             return ProjectMedia.objects.filter(project=self)
         return None
         
-        
+    def get_absolute_url(self):
+        return f"/projects/{self.slug}/"
+
+
 class ProjectMedia(models.Model):
     project = models.ForeignKey(Project, on_delete=models.CASCADE, null=True, blank=True)
     name = models.CharField(max_length=100, blank=True, null=True)
