@@ -79,7 +79,12 @@
                 </div>
                 <p class="text-muted small my-0">{{ blog.pub_date|round_timesince }} ago</p>
             </div>
-            <img src="{{ blog.cover.url }}" alt="{{ blog.title }}'s cover photo" class="img-fluid rounded-3 my-4 w-100 fadeIn">
+            <picture>
+                <source media="(min-width: 1200px)" srcset="{{ blog.cover.url }}">
+                <source media="(min-width: 992px)" srcset="{{ blog.get_meta_thumbnail }}">
+                <source media="(min-width: 576px)" srcset="{{ blog.get_meta_thumbnail }}">
+                <img src="{{ blog.get_meta_thumbnail }}" alt="{{ blog.title }}'s cover photo" loading="lazy" class="img-fluid rounded-3 my-4 w-100 fadeIn">
+            </picture>
             <article class="blog-post summernote-content text-dark">{{ blog.content|safe }}</article>
             <ul class="list-unstyled d-flex flex-row flex-wrap gap-3 mt-4">
                 <li class="small">{{ blog.get_hashtags }}</li>
