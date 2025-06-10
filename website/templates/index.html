@@ -32,17 +32,6 @@
         <div class="animated-row-13 animated-row"></div>
     </div>
 </div>
-<!-- <div class="container-fluid my-5">
-    <div class="row justify-content-center px-0 row-cols-2 py-4">
-        {% for project in get_project_highlights %}
-        {% if project.highlight %}
-        <div class="col-sm-6 col-md-4 col-lg-2 text-center">
-            <img src="{{ project.logo.url }}" alt="{{ project.name }}'s Logo" class="img-fluid" style="filter: brightness(0) invert(0.5); height: 70px; width: auto; object-fit: cover">
-        </div>
-        {% endif %}
-        {% endfor %}
-    </div>
-</div> -->
 <picture>
     <source media="(min-width: 1200px)" srcset="{% static 'img/homepage/hero-sales-02-desktop.jpg' %}">
     <source media="(min-width: 992px)" srcset="{% static 'img/homepage/hero-sales-02-desktop.jpg' %}">
@@ -65,7 +54,7 @@
             <picture>
                 <source media="(min-width: 1200px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}">
                 <source media="(min-width: 992px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}">
-                <source media="(min-width: 576px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}}">
+                <source media="(min-width: 576px)" srcset="{% static 'img/homepage/websites-slide-1-1280.jpg' %}">
                 <img src="{% static 'img/homepage/websites-slide-1-1280.jpg' %}" alt="Websites" loading="lazy" class="img-fluid w-100 rounded-4">
             </picture>
         </div>
