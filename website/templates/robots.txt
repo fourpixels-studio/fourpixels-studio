@@ -1,6 +1,5 @@
 User-agent: *
 Disallow: /admin/
-Disallow: /success/
 Disallow: /dashboard/
 Disallow: /account/login/
 Disallow: /account/logout/
