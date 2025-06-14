@@ -117,16 +117,7 @@ def error_500(request):
         'meta_thumbnail': seo.meta_thumbnail.url,
     }
     return render(request, '500.html', context)
-
-
-def testimonials_list(request):
-    context = {
-        'title_tag': "Testimonials",
-        'testimonials': get_testimonials(),
-        'meta_thumbnail': seo.meta_thumbnail.url,
-    }
-    return render(request, 'testimonials_list.html', context)
-
+    
 
 def help(request):
     context = {
