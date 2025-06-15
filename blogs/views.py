@@ -28,7 +28,6 @@ def blog_detail(request, slug):
         'blog': blog,
         'next_blog': next_blog,
         'title_tag': blog.title,
-        'cover_image': blog.cover,
         'meta_url': blog.meta_url,
         'previous_blog': previous_blog,
         "meta_keywords": blog.meta_keywords,
