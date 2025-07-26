@@ -4,21 +4,21 @@ from django.core.mail import EmailMessage
 
 def send_contact_email(name, subject, email, phone_number, message):
     email_body = f'{message}\n\n{name}\n{phone_number}\n{email}'
-    from_email = email
+    user_email = email
 
     email_message = EmailMessage(
         subject=subject,
         body=email_body,
-        from_email=from_email,
+        from_email=settings.DEFAULT_FROM_EMAIL,
         to=[settings.EMAIL_HOST_USER],
-        cc=[settings.EMAIL_HOST_CC],
+        bcc=[getattr(settings, 'EMAIL_HOST_BCC', '')],
+        reply_to=[user_email],
     )
 
     try:
         email_message.send(fail_silently=False)
     except Exception as e:
         print(f"An error occurred while sending email: {e}")
-
 
 def send_testimonial_email(email, name, message_1, message_2):
     email_subject = str('Thank You for Your Testimonial!')
@@ -31,6 +31,7 @@ def send_testimonial_email(email, name, message_1, message_2):
         body=email_body,
         from_email=from_email,
         to=[email,],
+        bcc=[settings.EMAIL_HOST_BCC],
     )
 
     try:
