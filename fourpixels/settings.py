@@ -158,10 +158,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'mail.fourpixels.studio'
 EMAIL_PORT = '465'
-EMAIL_HOST_USER = '@fourpixels.studio'
-EMAIL_HOST_CC = '@gmail.com'
-DEFAULT_FROM_EMAIL = '@fourpixels.studio'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = 'hello@fourpixels.studio'
+EMAIL_HOST_BCC = '4ourpixels@gmail.com'
+DEFAULT_FROM_EMAIL = 'hello@fourpixels.studio'
+EMAIL_HOST_PASSWORD = 'superuser400'
 EMAIL_USE_SSL = True
 EMAIL_USE_TLS = False
 # Four Pixels Email SMTP Configuration Settings End
