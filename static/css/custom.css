@@ -150,7 +150,7 @@ p {
     position: absolute;
     height: 3px;
     width: 100%;
-    background: #30d5c8;
+    background: #0a2e2b;
     border-radius: 1px;
     opacity: 1;
     left: 0;
@@ -195,7 +195,7 @@ p {
 
 /* Color of the three lines */
 .navbar-toggler.collapsed .toggler-icon{
-    background: linear-gradient(263deg, #30d5c8, #30d5c8 100%);
+    background: linear-gradient(263deg, #0a2e2b, #0a2e2b 100%);
 }
 
 /* Navbar toggler button animation end */
@@ -352,3 +352,26 @@ nav {
 .mt-6{
     margin-top: 6rem;
 }
+/* custom summary/accordion */
+details summary {
+    list-style: none;
+    position: relative;
+    cursor: pointer;
+    padding-right: 2rem;
+}
+
+details summary::after {
+    content: "›";
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(0deg);
+    transition: transform 0.3s ease;
+    font-size: 1.7rem;
+    color: #6c757d;
+}
+
+details[open] summary::after {
+    transform: translateY(-50%) rotate(90deg);
+}
+/* custom summary/accordion */
