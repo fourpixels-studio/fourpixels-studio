@@ -1,9 +1,8 @@
 import json
 from django.shortcuts import render
 from blogs.models import Blog
-from djg400.models import Track
 from projects.models import Project
-from .models import HomePage, About, Contact, Newsletter
+from .models import HomePage, About, Contact
 from django.contrib.auth.decorators import login_required
 
 
@@ -17,16 +16,13 @@ def dashboard(request):
 
     context = {
         "title_tag": "Dashboard",
-        "newsletters": Newsletter.objects.order_by("-pk"),
         "contacts": Contact.objects.order_by("-pk")[:5],
         "contacts_count": Contact.objects.count(),
-        "newsletters_count": Newsletter.objects.count(),
         "blogs": Blog.objects.order_by("-pk"),
         "projects": projects,
         "home": HomePage.objects.first(),
         "about": About.objects.first(),
         "contact_page": Contact.objects.first(),
-        "remixes": Track.objects.order_by("-pk"),
         "projects_data": projects_data,
     }
     return render(request, "dashboard.html", context)
