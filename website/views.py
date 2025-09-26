@@ -36,9 +36,9 @@ def about(request):
     context = {
         'title_tag': "About Us",
         'about_data': about_data,
-        'homepage_data': HomePage.objects.first(),
         'accordions': Accordion.objects.all(),
         'meta_thumbnail': seo.meta_thumbnail.url,
+        'homepage_data': HomePage.objects.first(),
     }
     update_views(request, about_data)
     return render(request, 'about.html', context)
