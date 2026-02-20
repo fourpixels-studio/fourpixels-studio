@@ -1,0 +1,21 @@
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered rounded-0">
+        <div class="modal-content rounded-0 border-0" style="background: none;">
+            <div class="modal-body text-center p-0 position-relative">
+                <div class="d-flex flex-row justify-content-end pe-4">
+                    <button type="button" class="btn-close btn-close-white btn-lg" data-bs-theme="dark" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <img id="modalImage" style="max-height: 88vh; max-width: 100%; width: auto; height: auto; object-fit: contain;" alt="{{ project.name }} Preview">
+                <h5 id="modalImageName" class="text-white mb-1"></h5>
+                <p id="modalImageDescription" class="text-white small"></p>
+                <button id="prevButton" class="no-btn position-absolute top-50 start-0 translate-middle-y">
+                    <i class="fa-solid fa-circle-chevron-left fa-2xl text-white"></i>
+                </button>
+                <button id="nextButton" class="no-btn position-absolute top-50 end-0 translate-middle-y">
+                    <i class="fa-solid fa-circle-chevron-right fa-2xl text-white"></i>
+                </button>
+            </div>
+            <div id="carouselIndicators" class="position-absolute bottom-0 start-50 translate-middle-x pb-3 d-flex gap-2"></div>
+        </div>
+    </div>
+</div>
