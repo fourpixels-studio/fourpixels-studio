@@ -1,0 +1,11 @@
+<a href="{{ blog.get_url }}" class="no-link">
+    <div class="border p-3 d-flex flex-column" style="height: 340px; border-radius: 18px">
+        <div>
+            <img class="w-100 mb-3" src="{{ blog.get_meta_thumbnail }}" alt="{{ blog.title }}'s blog thumbnail" style="height: 200px; width: 319px; object-fit: cover; border-radius: 14px">
+            <h5 class="fw-600 mb-0 hover-underline text-dark">{{ blog.title|truncatechars:57 }}</h6>
+        </div>
+        <div class="mt-auto">
+            <p class="small my-0 text-muted">{{ blog.pub_date|date:"M j, Y" }}</p>
+        </div>
+    </div>
+</a>

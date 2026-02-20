@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+{% load hitcount_tags %}
+<link rel="stylesheet" href="{% static 'css/image-search.css' %}" />
+<main class="container py-5 fadeInUp">
+    <div class="row justify-content-center pt-4">
+        <div class="col-lg-6 col-sm-12">
+            <h1 class="text-center">Pixa Scout</h1>
+            <p class="text-muted text-center lead">Search for beautiful, free images and photos that you can download and use for any project.</p>
+            <form id="search-form" class="d-flex input-group" onsubmit="showSpinner()">
+                <input required id="search-box" class="form-control" type="text" placeholder="Try cat, car, texture..."/>
+                <button id="submit-btn" type="submit" class="btn btn-dark">
+                    <span id="submit-text">Search</span>
+                    <span id="processing-text" class="d-none">Searching...</span>
+                    <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    <div class="container my-5">
+        <div class="row justify-content-center" id="search-result"></div>
+    </div>
+    <button type="submit" class="btn text-center text-center btn-lg mx-auto btn-dark" id="show-more-btn">Show more</button>
+    <div class="container my-5">
+        <div class="text-center border-top pt-4">
+            <a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="hover-underline text-dark">
+                Click here to read more about Pixa Scout.
+            </a><br>
+            <small class="text-muted small">Images provided by Unsplash API</small>
+        </div>
+    </div>
+</main>
+<script src="{% static 'js/image-search.js' %}"></script>
+{% endblock %}
