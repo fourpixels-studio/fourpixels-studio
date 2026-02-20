@@ -1,17 +1,40 @@
 asgiref==3.8.1
+beautifulsoup4==4.13.4
 bleach==6.2.0
 certifi==2025.4.26
+chardet==5.2.0
 charset-normalizer==3.4.2
+cssselect2==0.8.0
 Django==5.2.1
-django-etc==1.4.0django-hitcount==1.3.5
+django-classy-tags==4.1.0
+django-etc==1.4.0
+django-filer==3.3.1
+django-formtools==2.5.1
+django-hitcount==1.3.5
+django-meta==2.5.0
+django-polymorphic==4.1.0
 django-recaptcha==4.1.0
 django-resized==1.0.3
+django-sekizai==4.1.0
 django-summernote==0.8.20.0
+djangocms-admin-style==3.3.1
+djangocms-page-meta==1.4.5
+easy-thumbnails==2.10
 idna==3.10
-pillow==11.2.1python-dotenv==1.1.0
+lxml==5.4.0
+packaging==25.0
+pillow==11.2.1
+python-dotenv==1.1.0
 qrcode==8.2
-requests==2.32.3sqlparse==0.5.3
+reportlab==4.4.1
+requests==2.32.3
+soupsieve==2.7
+sqlparse==0.5.3
+svglib==1.5.1
+tinycss2==1.4.0
+typing_extensions==4.14.0
+Unidecode==1.4.0
 urllib3==2.4.0
 webencodings==0.5.1
 
-pip install django pillow django-hitcount django-resized requests python-dotenv django-recaptcha django-summernote django-taggit qrcode
+pip django pillow install beautifulsoup4 django-hitcount django-recaptcha django-resized django-summernote python-dotenv reportlab requests qrcode
