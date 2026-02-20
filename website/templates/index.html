@@ -1,0 +1,327 @@
+{% extends 'base.html' %}
+{% block body %}
+{% load static %}
+<div class="container px-lg-0 py-5">
+    <div class="row pt-5 gy-4 justify-content-center align-items-center">
+        <div class="col-lg-6 col-md-12">
+            <div class="badge bg-primary-light rounded-2 mb-3 px-2"><small class="fw-400 text-dark">CREATIVE PRODUCTION STUDIO</small></div>
+            <h1 class="display-5">{{ homepage.hero_h1 }}</h1>
+            <p class="small text-muted my-3">{{ homepage.hero_p }}</p>
+            <div class="mt-4">
+                <div class="row justify-content-start g-3">
+                    <div class="col-sm-12 col-lg-4">
+                        <a href="{% url 'contact' %}" class="btn btn-dark btn-lg w-100">{{ homepage.hero_btn_primary }}</a>
+                    </div>
+                    <div class="col-sm-12 col-lg-4">
+                        <a href="{% url 'projects_list' %}" class="btn btn-outline-dark btn-lg w-100">{{ homepage.hero_btn_secondary }}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <img src="{{ homepage.hero_image.url }}" alt="" class="img-fluid w-100 d-none d-lg-block">
+            <img src="{% static 'img/homepage/hero-sales-02-desktop.jpg' %}" alt="" class="img-fluid rounded-3 w-100 d-lg-none d-md-block">
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-primary-light py-5 my-5">
+    <div class="container py-4 px-0">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-sm-12 col-lg-11 text-center">
+                <h2 class="display-6">Your Business, Powered by Modern Web Design</h2>
+            </div>
+            <div class="col-sm-12 col-lg-9 text-center">
+                <p class="text-muted mt-2">Four Pixels Studio creates responsive websites and digital designs that give you the tools to grow your business, connect with your audience, and stand out online.</p>
+            </div>
+        </div>
+        <div class="row g-4 justify-content-center">
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="d-flex flex-row align-items-center bg-white rounded-4 p-3" style="height: 200px;">
+                    <div class="d-flex flex-column">
+                        <i class="text-primary-dark fa-solid mt-3 fa-earth-africa fa-2xl mb-1"></i>
+                        <h4 class="mt-4">Web Development</h3>
+                        <p class="my-0">Responsive, scalable websites tailored to your goals.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="d-flex flex-row align-items-center bg-white rounded-4 p-3" style="height: 200px;">
+                    <div class="d-flex flex-column">
+                        <i class="text-primary-dark fa-solid mt-3 fa-pen-nib fa-2xl mb-1"></i>
+                        <h4 class="mt-4">UI/UX Design</h3>
+                        <p class="my-0">User-focused design that enhances engagement.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="d-flex flex-row align-items-center bg-white rounded-4 p-3" style="height: 200px;">
+                    <div class="d-flex flex-column">
+                        <i class="text-primary-dark fa-solid mt-3 fa-palette fa-2xl mb-1"></i>
+                        <h4 class="mt-4">Graphic Design</h3>
+                        <p class="my-0">Visual storytelling that strengthens your brand.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mt-5">
+            <div class="col-sm-12 col-lg-2 text-center">
+                <div class="d-flex flex-row align-items-center gap-3 justify-content-center">
+                    <a href="{% url 'projects_list' %}" class="btn btn-outline-dark btn-lg w-100">{{ homepage.hero_btn_secondary }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container px-lg-0 py-5 my-5">
+    <div class="row justify-content-between align-items-center gx-5 gy-3 mb-5 pb-3">
+        <div class="col-sm-12 col-lg-6 order-md-2 text-center">
+            <img src="{% static 'img/homepage/freelancers-graphic.png' %}" alt="Are you a {{ homepage.card_1_title }}? Image" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+            <img src="{% static 'img/homepage/freelancers-graphic-sm.jpg' %}" alt="Are you a {{ homepage.card_1_title }}? Image" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+        </div>
+        <div class="col-sm-12 col-lg-6 order-md-1">
+            <h3 class="text-dark-2 mb-2 fw-600">Are you a {{ homepage.card_1_title }}?</h3>
+            <p class="m-0 text-muted fw-300 lead">{{ homepage.card_1_paragraph }}</p>
+        </div>
+    </div>
+    <div class="row justify-content-between align-items-center gx-5 gy-3 my-5 py-3">
+        <div class="col-sm-12 col-lg-6 text-center">
+            <img src="{% static 'img/homepage/creative-professionalgraphic-lg.jpg' %}" alt="Or a {{ homepage.card_2_title }}?" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+            <img src="{% static 'img/homepage/creative-professionalgraphic-sm.jpg' %}" alt="Or a {{ homepage.card_2_title }}?" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <h3 class="text-dark-2 mb-2 fw-600">Or a {{ homepage.card_2_title }}?</h3>
+            <p class="m-0 text-muted fw-300 lead">{{ homepage.card_2_paragraph }}</p>
+        </div>
+    </div>
+    <div class="row justify-content-between align-items-center gx-5 gy-3 mb-5">
+        <div class="col-sm-12 col-lg-6 order-md-2 text-center">
+            <img src="{% static 'img/homepage/business-owner-graphic-lg.png' %}" alt="Maybe a {{ homepage.card_3_title }}?" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+            <img src="{% static 'img/homepage/business-owner-graphic-sm.jpg' %}" alt="Maybe a {{ homepage.card_3_title }}?" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+        </div>
+        <div class="col-sm-12 col-lg-6 order-md-1">
+            <h3 class="text-dark-2 mb-2 fw-600">Maybe a {{ homepage.card_3_title }}?</h3>
+            <p class="m-0 text-muted fw-300 lead">{{ homepage.card_3_paragraph }}</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid bg-primary-light py-5 my-5">
+    <div class="container py-4 px-0">
+        <div class="row mb-5 justify-content-center">
+            <div class="col-sm-12 col-lg-11 text-center">
+                <h2 class="display-6">What you will get</h2>
+            </div>
+            <div class="col-sm-12 col-lg-9 text-center">
+                <p class="text-muted mt-2">By the end of our collaboration, here is what you will get.</p>
+            </div>
+        </div>
+        <div class="row gx-5 gy-3 justify-content-between align-items-center mb-5">
+            <div class="col-sm-12 col-lg-6">
+                <img src="{% static 'img/homepage/pro-custom-web-graphic-lg.png' %}" alt="{{ homepage.collabo_title_1 }} Image" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+                <img src="{% static 'img/homepage/pro-custom-web-graphic-sm.jpg' %}" alt="{{ homepage.collabo_title_1 }} Image" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="mt-3">
+                    <h3>{{ homepage.collabo_title_1 }}</h3>
+                    <p class=" small my-3 fw-300">{{ homepage.collabo_p_1 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5 gy-3 justify-content-between align-items-center my-5">
+            <div class="col-sm-12 col-lg-6 order-lg-2">
+                <img src="{% static 'img/homepage/update-skills-graphic-lg.png' %}" alt="{{ homepage.collabo_title_2 }} Image" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+                <img src="{% static 'img/homepage/update-skills-graphic-sm.jpg' %}" alt="{{ homepage.collabo_title_2 }} Image" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+            </div>
+            <div class="col-sm-12 col-lg-6 order-lg-1">
+                <div class="mt-3">
+                    <h3>{{ homepage.collabo_title_2 }}</h3>
+                    <p class=" small my-3 fw-300">{{ homepage.collabo_p_2 }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="row gx-5 gy-3 justify-content-between align-items-center">
+            <div class="col-sm-12 col-lg-6">
+                <img src="{% static 'img/homepage/support-maint-graphic-lg.png' %}" alt="{{ homepage.collabo_title_3 }} Image" class="img-fluid rounded-4 w-100 d-none d-lg-block" loading="lazy">
+                <img src="{% static 'img/homepage/support-maint-graphic-sm.jpg' %}" alt="{{ homepage.collabo_title_3 }} Image" class="img-fluid rounded-4 w-100 d-lg-none d-md-block" loading="lazy">
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <div class="mt-3">
+                    <h3>{{ homepage.collabo_title_3 }}</h3>
+                    <p class=" small my-3 fw-300">{{ homepage.collabo_p_3 }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container px-lg-0 my-5 py-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-12">
+            <h2 class="display-6 text-center">Our Process</h2>
+        </div>
+        <div class="col-sm-12 col-lg-9">
+            <p class="text-muted mt-2 text-center">At Four Pixels Studio, we will typically work with you in the following way.</p>
+        </div>
+    </div>
+    <div class="row g-4 justify-content-center align-items-center">
+        <div class="col-sm-12 col-lg-3">
+            <div class="bg-grey p-3 rounded-circle text-muted d-flex justify-content-center align-items-center mx-auto h5" style="width:50px;height:50px;">1</div>
+            <h5 class="text-center mt-3">Planning</h5>
+            <p class="fw-300 mb-0 text-center">Involves defining goals, audience, and strategy to align with your vision.</p>
+            <div class="text-center mt-4 d-lg-none">
+                <i class="fa-solid fa-long-arrow-down text-muted"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <div class="bg-grey p-3 rounded-circle text-muted d-flex justify-content-center align-items-center mx-auto h5" style="width:50px;height:50px;">2</div>
+            <h5 class="text-center mt-3">Design</h5>
+            <p class="fw-300 mb-0 text-center">We craft custom, user-friendly designs that reflect your brand identity.</p>
+            <div class="text-center mt-4 d-lg-none">
+                <i class="fa-solid fa-long-arrow-down text-muted"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <div class="bg-grey p-3 rounded-circle text-muted d-flex justify-content-center align-items-center mx-auto h5" style="width:50px;height:50px;">3</div>
+            <h5 class="text-center mt-3">Development</h5>
+            <p class="fw-300 mb-0 text-center">We build a functional, responsive platform with features tailored to your needs.</p>
+            <div class="text-center mt-4 d-lg-none">
+                <i class="fa-solid fa-long-arrow-down text-muted"></i>
+            </div>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <div class="bg-grey p-3 rounded-circle text-muted d-flex justify-content-center align-items-center mx-auto h5" style="width:50px;height:50px;">4</div>
+            <h5 class="text-center mt-3">Support</h5>
+            <p class="fw-300 mb-0 text-center">We ensure your site stays secure, updated, and running smoothly with ongoing maintenance.</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5">
+    <div class="container py-5 px-3 my-5 rounded-4 bg-primary-dark">
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <h3 class="display-6 text-white fw-400 mb-4">Ready to get started?</h3>
+                <a href="{% url 'contact' %}" class="btn btn-light px-4 rounded-1">Contact</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container px-lg-0 my-5 py-5">
+    <div class="row justify-content-center my-5">
+        <div class="col-12">
+            <h2 class="display-6 text-center">Why choose Four Pixels Studio?</h2>
+        </div>
+        <div class="col-sm-12 col-lg-8">
+            <p class="text-muted mt-2 text-center">At Four Pixels Studio we're passionate about customer experience and team culture. When you choose to work with us, you're collaborating with a team that genuinely loves what they do.</p>
+        </div>
+    </div>
+    <div class="row g-4 justify-content-between align-items-center">
+        <div class="col-sm-12 col-lg-3">
+            <span class="bg-grey rounded-3 p-2"><i class="fa-solid fa-star text-grey"></i></span>
+            <h5 class="mt-4">Tailored solutions</h5>
+            <p class="fw-300">at competitive rates, designed for small businesses and creatives.</p>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <span class="bg-grey rounded-3 p-2"><i class="fa-solid fa-star text-grey"></i></span>
+            <h5 class="mt-4">Expert in modern design</h5>
+            <p class="fw-300">creating responsive and visually engaging platforms.</p>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <span class="bg-grey rounded-3 p-2"><i class="fa-solid fa-star text-grey"></i></span>
+            <h5 class="mt-4">Client-focused approach</h5>
+            <p class="fw-300">with planning, development, and ongoing support included.</p>
+        </div>
+        <div class="col-sm-12 col-lg-3">
+            <span class="bg-grey rounded-3 p-2"><i class="fa-solid fa-star text-grey"></i></span>
+            <h5 class="mt-4">Global accessibility</h5>
+            <p class="fw-300">and reliable maintenance to keep your site secure.</p>
+        </div>
+    </div>
+</div>
+<div class="container px-lg-0 py-5 my-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-12">
+            <h2 class="display-6 text-center">Selected Projects</h2>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <p class="text-muted mt-2 text-center">Check out our latest creations</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        {% for project in get_recent_projects|slice:6 %}
+        <div class="col-lg-4 col-sm-12">
+            {% include "project_card.html" %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="container px-lg-0 my-5 py-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-12">
+            <h2 class="display-6 text-center">FAQs</h2>
+        </div>
+    </div>
+    <div class="row g-4 justify-content-center">
+        <div class="col-sm-12 col-lg-11">
+            {% for faq in faqs %}
+            <details class="mb-4">
+                <summary class="h4 text-dark">{{ faq.title }}</summary>
+                <p class="mt-3">{{ faq.content }}</p>
+            </details>
+            <hr class="text-muted mb-4">
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid my-5 py-5 bg-primary-light">
+    <div class="container px-0">
+        <div class="row justify-content-center mb-5">
+            <div class="col-12">
+                <h2 class="display-6 text-center">Real stories. Real results.</h2>
+            </div>
+            <div class="col-sm-12 col-lg-6">
+                <p class="text-muted mt-2 text-center">Discover how our clients use our websites and designs to scale their brands, reach more customers, and achieve their goals.</p>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div id="testimonialsCarousel" class="carousel slide" data-bs-ride="false" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        {% for testimonial in testimonials %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="bg-white rounded-4 p-4">
+                                <h4 class="fw-500 mb-2">{{ testimonial.department }}</h6>
+                                <p class="mb-0">{{ testimonial.testimonial }} - <b>{{ testimonial.name }}</b></p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="d-flex flex-row gap-2 align-items-center mt-3 justify-content-end">
+                    <button class="btn btn-outline-dark" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="prev">
+                        <i class="fa-solid fa-arrow-left-long"></i>
+                    </button>
+                    <button class="btn btn-outline-dark" type="button" data-bs-target="#testimonialsCarousel" data-bs-slide="next">
+                        <i class="fa-solid fa-arrow-right-long"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'components/contact_form.html' %}
+<div class="container px-lg-0 py-5 my-5">
+    <div class="row justify-content-center mb-5">
+        <div class="col-12">
+            <h2 class="display-6 text-center">Blogs</h2>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <p class="text-muted mt-2 text-center">From News updates, in-depth tutorials, and step-by-step guides.</p>
+        </div>
+    </div>
+    <div class="row g-4">
+        {% for blog in blogs|slice:4 %}
+        <div class="col-lg-4 col-sm-12">
+            {% include "blog_card.html" %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block body %}
+<div class="container-md px-lg-0 py-5">
+    <div class="row mt-4 mt-lg-5 justify-content-center">
+        <div class="col-lg-6 text-center">
+            <i style="font-size: 5rem;" class="fa-regular fa-circle-check text-success"></i>
+            <h1 class="display-1 text-dark-2">Thank You!</h1>
+            <p class="lead">{{ message_1 }}</p>
+            {% if message_2 %}
+            <p class="text-muted">{{ message_2 }}</p>
+            {% endif %}
+            <a class="btn btn-dark btn-lg rounded-3 px-5" href="{% url 'index' %}">Home</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

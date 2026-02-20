@@ -1,0 +1,80 @@
+{% load static %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#30d5c8" />
+<!-- Meta Tags -->
+<title>Four Pixels — {{ title_tag }}</title>
+<meta name="author" content="Four Pixels" />
+<meta name="description" content="{{ meta_description }}" />
+<meta name="keywords" content="{{ meta_keywords }}" />
+{% if meta_thumbnail %}
+<meta name="image" content="https://fourpixels.studio{{ meta_thumbnail }}">
+{% else %}
+<meta name="image" content="https://fourpixels.studio{% static 'brands/fourpixelsstudio_thumbnail.jpg' %}">
+{% endif %}
+<meta name="robots" content="index, follow">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:title" content="Four Pixels — {{ title_tag }}">
+<meta property="og:locale" content="en_EU">
+<meta property="og:type" content="website">
+<meta property="og:description" content="{{ meta_description }}">
+<meta property="og:keywords" content="{{ meta_keywords }}">
+<meta property="og:site_name" content="Four Pixels">
+{% if meta_thumbnail %}
+<meta property="og:image" content="https://fourpixels.studio{{ meta_thumbnail }}">
+{% else %}
+<meta property="og:image" content="https://fourpixels.studio{% static 'brands/fourpixelsstudio_thumbnail.jpg' %}">
+{% endif %}
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:title" content="Four Pixels — {{ title_tag }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="{{ meta_description }}">
+{% if meta_thumbnail %}
+<meta name="twitter:image" content="https://fourpixels.studio{{ meta_thumbnail }}">
+{% else %}
+<meta name="twitter:image" content="https://fourpixels.studio{% static 'brands/fourpixelsstudio_thumbnail.jpg' %}">
+{% endif %}
+<meta name="twitter:image:width" content="1200">
+<meta name="twitter:image:height" content="630">
+<meta name="twitter:site" content="www.fourpixels.studio">
+<meta name="twitter:creator" content="@fourpixels.studio">
+
+<!-- LinkedIn Meta Tags -->
+{% if meta_thumbnail %}
+<meta property="og:image" content="https://fourpixels.studio{{ meta_thumbnail }}">
+{% else %}
+<meta property="og:image" content="https://fourpixels.studio{% static 'brands/fourpixelsstudio_thumbnail.jpg' %}">
+{% endif %}
+<meta property="og:image:alt" content="{{ meta_description }}">
+<meta property="linkedin:site" content="https://www.linkedin.com/company/4ourpixels/">
+
+<!-- Favicons -->
+<link rel="android-chrome" sizes="192x192" href="{% static 'favicon/android-chrome-192x192.png' %}" />
+<link rel="android-chrome" sizes="512x512" href="{% static 'favicon/android-chrome-512x512.png' %}" />
+<link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicon/apple-touch-icon.png' %}" />
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicon/favicon-16x16.png' %}" />
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicon/favicon-32x32.png' %}" />
+<link href="{% static 'favicon/favicon.ico' %}" rel="icon" />
+<link rel="manifest" href="{% static 'favicon/site.webmanifest' %}" />
+
+<!-- Bootstrap  -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<!-- Fontawesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/custom.css' %}" rel="stylesheet">
+<link href="{% static 'css/animations.css' %}" rel="stylesheet">
+<link href="{% static 'css/colors.css' %}" rel="stylesheet">
+<link href="{% static 'css/image-search.css' %}" rel="stylesheet">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
