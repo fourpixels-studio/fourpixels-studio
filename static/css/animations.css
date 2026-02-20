@@ -1,0 +1,153 @@
+@keyframes zoomOut {
+  from {
+    transform: scale(1.2);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.zoomOut {
+  animation: zoomOut 1s ease-in-out;
+  transform-origin: center center;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fadeInUp {
+  opacity: 1;
+  animation: fadeInUp 1.3s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.fadeInRight {
+  opacity: 1;
+  animation: fadeInRight 1.5s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes hoverZoomOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.2);
+  }
+}
+.hoverZoomOut {
+  transform: scale(1);
+  cursor: pointer;
+}
+.hoverZoomOut:hover {
+  animation: hoverZoomOut 1s ease-in-out forwards;
+  transform-origin: center center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  opacity: 1;
+  animation: fadeIn 1.5s ease-out;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.fadeInLeft {
+  opacity: 1;
+  animation: fadeInLeft 1.5s ease-out;
+  transform-origin: center right;
+}
+
+/* Animated bg start */
+.animated-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  overflow: hidden;
+}
+.animated-row {
+  background: #0a2e2b;;
+  height: 10vh;
+  width: 100%;
+  animation: fade 5s infinite;
+  animation-direction: alternate;
+}
+.animated-row-2 {
+  animation-delay:0.5s;
+}
+.animated-row-3 {
+  animation-delay:1s;
+}
+.animated-row-4 {
+  animation-delay:1.5s;
+}
+.animated-row-5 {
+  animation-delay:2s;
+}
+.animated-row-6 {
+  animation-delay:2.5s;
+}
+.animated-row-7 {
+  animation-delay:3s;
+}
+.animated-row-8 {
+  animation-delay:3.5s;
+}
+.animated-row-9 {
+  animation-delay:4s;
+}
+.animated-row-10 {
+  animation-delay:4.5s;
+}
+.animated-row-11 {
+  animation-delay:5s;
+}
+.animated-row-12 {
+  animation-delay:5.5s;
+}
+.animated-row-13 {
+  animation-delay:6s;
+}
+@keyframes fade {
+  from { background: #0a2e2b; }
+  to { background: #0f4540; }
+}
