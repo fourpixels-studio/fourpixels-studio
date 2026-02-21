@@ -1,11 +1,41 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container-md px-lg-0 py-5">
-    <h1 class="my-4 mt-lg-5">Selected Projects</h1>
-    <div class="row g-4 align-items-start">
-        {% for project in projects %}
-        <div class="col-sm-12 col-lg-6">{% include 'project_card.html' %}</div>
+<main class="container pb-5 px-3 mb-5">
+    <header class="row my-4 my-lg-5">
+        <div class="col-sm-12 col-md-6">
+            <h1 class="display-5">Selected Projects</h1>
+            <p class="mb-0">Journey through my diverse projects, unveiling innovation, creativity through technology, and excellence</p>
+        </div>
+    </header>
+    <ul class="nav nav-pills mb-5" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button style="padding: .2rem .5rem;" class="nav-link active" id="cat-all-tab" data-bs-toggle="tab" data-bs-target="#cat-all" type="button" role="tab" aria-selected="true">
+                All
+            </button>
+        </li>
+        {% for category in categories %}
+        <li class="nav-item" role="presentation">
+            <button style="padding: .2rem .5rem;" class="nav-link" id="cat-{{ category.pk }}-tab" data-bs-toggle="tab" data-bs-target="#cat-{{ category.pk }}" type="button" role="tab" aria-selected="false">{{ category.name }}</button>
+        </li>
         {% endfor %}
-    </div>
-</div>
+    </ul>
+    <section class="tab-content">
+        <div class="tab-pane fade show active" id="cat-all" role="tabpanel" aria-labelledby="cat-all-tab" tabindex="0">
+            <div class="row g-3 align-items-start mb-5">
+                {% for project in all_projects %}
+                <article class="col-12">{% include 'project_card_landscape.html' %}</article>
+                {% endfor %}
+            </div>
+        </div>
+        {% for category in categories %}
+        <div class="tab-pane fade" id="cat-{{ category.pk }}" role="tabpanel" aria-labelledby="cat-{{ category.pk }}" tabindex="0">
+            <div class="row g-3 align-items-start mb-5">
+                {% for project in category.projects.all %}
+                <article class="col-12">{% include 'project_card_landscape.html' %}</article>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</main>
 {% endblock %}
