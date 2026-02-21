@@ -28,7 +28,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ["4ourpixels.pythonanywhere.com"]
 
 
 # Application definition
@@ -201,7 +201,7 @@ RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 # recaptcha keys
 
-MY_SITE = "https://4pixels.pythonanywhere.com"
+MY_SITE = "https://4ourpixels.pythonanywhere.com"
 
 # LOGGING = {
 #     'version': 1,
