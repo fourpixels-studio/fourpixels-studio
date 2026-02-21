@@ -1,6 +1,5 @@
 from django.db import models
 from django.urls import reverse
-from django.conf import settings
 from django_resized import ResizedImageField
 
 
@@ -40,3 +39,4 @@ class Application(models.Model):
             return reverse("bloomberg_news_finder")
         if self.pk == 4:
             return reverse("qr_code_generator")
+
