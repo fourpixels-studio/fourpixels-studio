@@ -1,0 +1,13 @@
+<a href="{{ project.get_url }}" class="no-link">
+    <div class="bg-highlight p-2 rounded-3">
+        <div class="row align-items-center justify-content-between">
+            <div class="col-md-4 col-sm-12">
+                <img src="{{ project.get_cover_image }}" class="img-fluid rounded-2" alt="{{ project.name }}'s Cover">
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <p class="my-1 hover-underline text-dark">{{ project.get_short_description }}</p>
+                <span class="badge-outline fw-400">{{ project.company_category }} Department</span>
+            </div>
+        </div>
+    </div>
+</a>
