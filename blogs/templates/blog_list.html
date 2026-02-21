@@ -1,12 +1,43 @@
 {% extends 'base.html' %}
 {% block body %}
-<div class="container-md px-lg-0 py-5">
-    <h1 class="mt-4 mt-lg-5 mb-0">Blogs, Tutorials and our most recent articles</h1>
-    <p class="text-muted small">{{ meta_description }}</p>
-    <div class="row g-4 mt-3">
-        {% for blog in blogs %}
-        <div class="col-md-6 col-lg-4 col-sm-12">{% include "blog_card.html" %}</div>
+<main class="container pb-5 px-3 mb-5">
+    <header class="row my-4 my-lg-5">
+        <div class="col-sm-12 col-md-7">
+            <h1 class="display-5">Blogs, Tutorials & Articles</h1>
+            <p class="mb-0">{{ meta_description }}</p>
+        </div>
+    </header>
+    <ul class="nav nav-pills mb-5" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button style="padding: .2rem .5rem;" class="nav-link active" id="tab-all-tab" data-bs-toggle="tab" data-bs-target="#tab-all" type="button" role="tab" aria-selected="true">
+                All
+            </button>
+        </li>
+        {% for category in categories %}
+        <li class="nav-item" role="presentation">
+            <button style="padding: .2rem .5rem;" class="nav-link" id="tab-{{ category.id }}-tab" data-bs-toggle="tab" data-bs-target="#tab-{{ category.id }}" type="button" role="tab" aria-selected="false">
+                {{ category.name }}
+            </button>
+        </li>
         {% endfor %}
-    </div>
-</div>
+    </ul>
+    <section class="tab-content">
+        <div class="tab-pane fade show active" id="tab-all" role="tabpanel" aria-labelledby="tab-all-tab" tabindex="0">
+            <div class="row g-4 align-items-start mb-5">
+                {% for blog in all_blogs %}
+                <article class="col-sm-12 col-md-6">{% include 'blog_card_portrait.html' %}</article>
+                {% endfor %}
+            </div>
+        </div>
+        {% for category in categories %}
+        <div class="tab-pane fade" id="tab-{{ category.id }}" role="tabpanel" aria-labelledby="tab-{{ category.id }}-tab" tabindex="0">
+            <div class="row g-4 align-items-start mb-5">
+                {% for blog in category.blogs.all %}
+                <article class="col-sm-12 col-md-6">{% include 'blog_card_portrait.html' %}</article>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</main>
 {% endblock %}
