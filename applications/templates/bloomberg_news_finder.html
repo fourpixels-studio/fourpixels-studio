@@ -2,10 +2,16 @@
 {% load static %}
 {% block body %}
 {% load hitcount_tags %}
-<main class="container pb-5 px-4">
-    <div class="row justify-content-center pt-5">
-        <div class="col-lg-6 col-sm-10 pt-3">
-            <h1 class="text-center mb-3 mt-4">Bloomberg News Finder</h1>
+<main class="container pb-5 px-3 mb-5">
+    <header class="row my-4 mt-lg-5">
+        <div class="col-sm-12 col-md-7">
+            <a href="{% url 'applications_list' %}" onclick="if (document.referrer && document.referrer !== window.location.href) { history.back(); return false; }" class="no-link"><i class="fa-solid fa-arrow-left me-2"></i> Applications</a>
+            <h1 class="display-5 mt-2">Free News Finder</h1>
+            <p class="mb-0">Powered by Bloomberg, this service provides financial news, data, and analysis through the Bloomberg Terminal.</p>
+        </div>
+    </header>
+    <div class="row justify-content-start mb-4">
+        <div class="col-12">
             <form id="news-search-form" class="d-flex input-group" onsubmit="showSpinner()">
                 <input id="search-box" name="search_box" class="form-control rounded-start" type="text" required placeholder="Search for the latest news in any topic..."/>
                 <button id="submit-btn" type="submit" class="btn btn-dark">
@@ -16,14 +22,15 @@
             </form>
         </div>
     </div>
-    <div id="news-list" class="row justify-content-center">
-        <div class="col-sm-12 col-lg-8">
-            <h4 id="loading-text" class="text-center text-muted fw-400 my-4"></h4>
-            <div class="list-group" id="news-items"></div>
+    <div id="news-list" class="row justify-content-start">
+        <div class="col-12">
+            <div id="loading-text" class="d-none">
+                <h5 class="my-0 text-secondary"><i class="fa-solid fa-circle-notch fa-spin me-2 fa-sm"></i>Fetching...</h5>
+            </div>
+            <div class="mt-2" id="news-items"></div>
         </div>
     </div>
 </main>
-
 <script>
     document.getElementById("news-search-form").addEventListener("submit", function(event) {
         event.preventDefault();
@@ -39,7 +46,7 @@
         }
 
         // Show loading text
-        loadingText.textContent = `Getting news for "${keyword}"...`;
+        loadingText.classList.remove("d-none");
         newsList.innerHTML = ""; // Clear previous results
 
         // Send AJAX request
@@ -56,7 +63,7 @@
         .then(response => response.json())
         .then(data => {
             // Update loading text
-            loadingText.textContent = `Here's what we've got on "${data.loading_text}"`;
+            loadingText.classList.add("d-none");
 
             // Clear existing news
             newsList.innerHTML = "";
@@ -65,14 +72,16 @@
             if (data.news_items.length > 0) {
                 data.news_items.forEach(post => {
                     let newsItem = document.createElement("a");
-                    newsItem.classList.add("list-group-item", "list-group-item-action");
+                    newsItem.classList.add("no-link", "text-dark");
                     newsItem.href = post.longURL;
                     newsItem.target = "_blank";
 
                     let content = `
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">${post.title}</h5>
-                            <small class="text-muted">${new Date(post.date * 1000).toLocaleDateString()}</small>
+                        <div class="rounded-3 p-3 bg-highlight mb-2">
+                            <div class="flex-row d-flex w-100 justify-content-between align-items-center">
+                                <p class="text-dark my-0 hover-underline">${post.title}</p>
+                                <small class="text-muted hover-underline">${new Date(post.date * 1000).toLocaleDateString()}</small>
+                            </div>
                         </div>
                     `;
 
@@ -81,12 +90,12 @@
                     hideSpinner();
                 });
             } else {
-                newsList.innerHTML = "<p class='text-center'>No news found.</p>";
+                newsList.innerHTML = "<h5 class='my-0 text-secondary'>No news found.</h5>";
             }
         })
         .catch(error => {
             console.error("Error fetching news:", error);
-            loadingText.textContent = "Error fetching news. Please try again later.";
+            loadingText.innerHTML = "<h5 class='my-0 text-secondary'>Error fetching news. Please try again later.</h5>";
         });
     });
 </script>

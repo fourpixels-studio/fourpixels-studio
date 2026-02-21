@@ -3,11 +3,21 @@
 {% block body %}
 {% load hitcount_tags %}
 <link rel="stylesheet" href="{% static 'css/image-search.css' %}" />
-<main class="container py-5 fadeInUp">
-    <div class="row justify-content-center pt-4">
-        <div class="col-lg-6 col-sm-12">
-            <h1 class="text-center">Pixa Scout</h1>
-            <p class="text-muted text-center lead">Search for beautiful, free images and photos that you can download and use for any project.</p>
+<main class="container pb-5 px-3 mb-5">
+    <header class="row my-4 mt-lg-5">
+        <div class="col-sm-12 col-md-7">
+            <a href="{% url 'applications_list' %}" onclick="if (document.referrer && document.referrer !== window.location.href) { history.back(); return false; }" class="no-link"><i class="fa-solid fa-arrow-left me-2"></i> Applications</a>
+            <h1 class="display-5 mt-2">Free Image Search</h1>
+            <p class="mb-0">Pixa Scout is a free stock photo and video web application that helps designers, bloggers, and everyone who is looking for visuals to find great photos and videos for <span class="text-primary">free</span>. 
+                <a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="link fw-700">
+                    Click here
+                </a>
+                to learn how this project was made.
+            </p>
+        </div>
+    </header>
+    <div class="row justify-content-start mb-4">
+        <div class="col-lg-7 col-sm-12">
             <form id="search-form" class="d-flex input-group" onsubmit="showSpinner()">
                 <input required id="search-box" class="form-control" type="text" placeholder="Try cat, car, texture..."/>
                 <button id="submit-btn" type="submit" class="btn btn-dark">
@@ -18,18 +28,9 @@
             </form>
         </div>
     </div>
-    <div class="container my-5">
-        <div class="row justify-content-center" id="search-result"></div>
-    </div>
+    <div class="row pt-3 justify-content-center" id="search-result"></div>
     <button type="submit" class="btn text-center text-center btn-lg mx-auto btn-dark" id="show-more-btn">Show more</button>
-    <div class="container my-5">
-        <div class="text-center border-top pt-4">
-            <a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="hover-underline text-dark">
-                Click here to read more about Pixa Scout.
-            </a><br>
-            <small class="text-muted small">Images provided by Unsplash API</small>
-        </div>
-    </div>
+    <small class="text-muted my-5">Images provided by Unsplash API</small>
 </main>
 <script src="{% static 'js/image-search.js' %}"></script>
 {% endblock %}

@@ -1,42 +1,61 @@
 {% extends 'base.html' %}
 {% block body %}
-<main class="container mb-5 py-5">
-    <div class="row justify-content-center text-center">
-        <div class="col-lg-6 col-sm-12 pt-5">
-            <form method="POST" enctype="multipart/form-data" id="compression-form" class="border p-3 bg-white rounded-4 mt-4">
-                <h1>Pixel Press</h1>
-                <p class="text-muted">Upload your image, select desired compression size, and click 'Compress Image' to reduce its size, then download the compressed version.</p>
+{% load static %}
+<main class="container pb-5 px-3 mb-5">
+    <header class="row my-4 mt-lg-5">
+        <div class="col-sm-12 col-md-7">
+            <a href="{% url 'applications_list' %}" onclick="if (document.referrer && document.referrer !== window.location.href) { history.back(); return false; }" class="no-link"><i class="fa-solid fa-arrow-left me-2"></i> Applications</a>
+            <h1 class="display-5 mt-2">Free Image Compressor</h1>
+            <p class="mb-0">Pixel Press is an application that uses smart lossy compression techniques to reduce the file size of WebP, JPEG, and PNG images by up to 80% without visible loss of quality. Upload your image, select desired compression size, and click 'Compress Image' to reduce its size, then download the compressed version.</p>
+        </div>
+    </header>
+    <div class="row align-items-start justify-content-between">
+        <div class="col-lg-6 col-sm-12">
+            <form method="POST" enctype="multipart/form-data" id="compression-form">
                 {% csrf_token %}
-                <div class="col my-3">
-                    <input id="image" type="file" name="image" accept="image/*" required class="form-control form-control-lg" type="file" />
+                <div class="mb-3">
+                    <label for="image" class="mb-1 text-muted">Upload image</label>
+                    <input id="image" type="file" name="image" accept="image/*" required class="form-control" type="file" />
                 </div>
+                <label for="image" class="mb-1 text-muted">Select compression size</label>
                 <div class="d-flex flex-row align-items-center gap-4 mb-4">
-                    <div class="form-check text-start">
+                    <div class="form-check text-start hover">
                         <input class="form-check-input hover" type="radio" name="compression_size" id="compression_size" value="512">
-                        <label class="h5 text-muted fw-400 form-check-label m-0" for="compression_size">
+                        <label class="fw-400 form-check-label m-0" for="compression_size">
                             Small
                         </label>
                     </div>
-                    <div class="form-check text-start">
+                    <div class="form-check text-start hover">
                         <input class="form-check-input hover" type="radio" name="compression_size" id="compression_size" value="1024" checked>
-                        <label class="h5 text-muted fw-400 form-check-label m-0" for="compression_size">
+                        <label class="form-check-label m-0" for="compression_size">
                             Best
                         </label>
                     </div>
-                    <div class="form-check text-start">
+                    <div class="form-check text-start hover">
                         <input class="form-check-input hover" type="radio" name="compression_size" id="compression_size" value="2048">
-                        <label class="h5 text-muted fw-400 form-check-label m-0" for="compression_size">
+                        <label class="form-check-label m-0" for="compression_size">
                             Higher
                         </label>
                     </div>
                 </div>
-                <button class="btn btn-dark btn-lg" type="submit">Compress Image</button>
+                <button class="btn btn-dark btn-lg w-100" type="submit">Compress Image</button>
             </form>
         </div>
+        <div class="col-lg-5 d-none d-lg-block">
+            <div class="row justify-content-center">
+                <div class="col-5 text-center">
+                    <img src="{% static 'img/file-compression-icon.png' %}" alt="File compression icon" class="img-fluid" style="margin-top: -5rem;">
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="text-center mt-4">
-        <a href="{% url 'blog_detail' slug='introducing-pythons-image-compressing-app-your-all-in-one-solution' %}" class="link text-dark">
-        Click here to read more about this app.</a>
+    <div class="mt-5">
+        <p>
+            <span>
+                <a href="{% url 'blog_detail' slug='introducing-pythons-image-compressing-app-your-all-in-one-solution' %}" class="link fw-500">Click here</a>
+            </span>
+            to read more about this app.
+        </p>
     </div>
 </main>
 
