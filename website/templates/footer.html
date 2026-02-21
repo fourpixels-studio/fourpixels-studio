@@ -1,56 +1,55 @@
 {% load static %}
-<div class="container-fluid bg-primary-dark py-6">
-    <div class="container px-0">
-        <div class="row gy-5 justify-content-center align-items-start">
+<footer class="container-fluid py-5" style="background: linear-gradient(180deg, #1e1e1e, #000);">
+    <div class="container px-3 pt-5">
+        <div class="row gy-5 pb-4 justify-content-center align-items-start">
             <div class="col-sm-12 col-lg-4">
                 <img src="{% static '4pixels-icon.svg' %}" style="height: 150px; width: auto; object-fit: cover;" class="img-fluid" alt="Logo">
-                <h3 class="text-primary mt-3">Four Pixels Studio</h3>
+                <h3 class="mt-3 text-white">Four Pixels Studio</h3>
+                <ul class="list-unstyled mt-4 d-flex flex-row flex-wrap gap-3">
+                    <li><a href="https://www.instagram.com/fourpixels.studio/" target="_blank" class="no-link"><i class="fa-brands text-grey fa-instagram hover-primary fa-xl"></i></a></li>
+                    <li><a href="https://x.com/4ourPixels?t=mcuYBOjkEhg52xlZS1IDWA&s=09" target="_blank" class="no-link"><i class="fa-brands text-grey fa-twitter hover-primary fa-xl"></i></a></li>
+                    <li><a href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank" class="no-link"><i class="fa-brands text-grey fa-square-facebook hover-primary fa-xl"></i></a></li>
+                    <li><a href="https://linkedin.com/in/mosesbartena" target="_blank" class="no-link"><i class="fa-brands text-grey fa-linkedin hover-primary fa-xl"></i></a></li>
+                </ul>
             </div>
             <div class="col-sm-12 col-lg-8">
-                <div class="row g-4">
-                    <div class="col-sm-12 col-lg-4">
-                        <h5 class="fw-400 mb-3 text-white">Pages</h5>
+                <div class="row row-cols-2 g-4">
+                    <div class="col-sm-6 col-lg-4">
+                        <h5 class="fw-400 mb-3 text-white-50">Pages</h5>
                         <ul class="list-unstyled">
-                            <li><a href="{% url 'index' %}" class="hover-underline text-white">Home</a></li>
-                            <li><a href="{% url 'contact' %}" class="hover-underline text-white">Contact</a></li>
-                            <li><a href="{% url 'projects_list' %}" class="hover-underline text-white">Projects</a></li>
+                            <li><a href="{% url 'index' %}" class="hover-underline {% if request.path == '/' %}text-primary{% else %}text-grey{% endif %} hover-primary">Home</a></li>
+                            <li><a href="{% url 'contact' %}" class="hover-underline {% if '/contact/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">Contact</a></li>
+                            <li><a href="{% url 'projects_list' %}" class="hover-underline {% if '/projects/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">Projects</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <h5 class="fw-400 mb-3 text-white">Applications</h5>
+                    <div class="col-sm-6 col-lg-4">
+                        <h5 class="fw-400 mb-3 text-white-50">Applications</h5>
                         <ul class="list-unstyled">
-                            <li><a href="{% url 'applications_list' %}" class="hover-underline text-white">All Apps</a></li>
-                            <li><a href="{% url 'image_search' %}" class="hover-underline text-white">Image Search</a></li>
-                            <li><a href="{% url 'image_compression' %}" class="hover-underline text-white">Image Compressor</a></li>
-                            <li><a href="{% url 'qr_code_generator' %}" class="hover-underline text-white">QR Code Generator</a></li>
+                            <li><a href="{% url 'applications_list' %}" class="hover-underline {% if '/applications/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">All Apps</a></li>
+                            <li><a href="{% url 'image_search' %}" class="hover-underline text-grey hover-primary">Image Search</a></li>
+                            <li><a href="{% url 'image_compression' %}" class="hover-underline text-grey hover-primary">Image Compressor</a></li>
+                            <li><a href="{% url 'qr_code_generator' %}" class="hover-underline text-grey hover-primary">QR Code Generator</a></li>
                         </ul>
                     </div>
-                    <div class="col-sm-12 col-lg-4">
-                        <h5 class="fw-400 mb-3 text-white">Blogs</h5>
+                    <div class="col-sm-6 col-lg-4">
+                        <h5 class="fw-400 mb-3 text-white-50">Blogs</h5>
                         <ul class="list-unstyled">
-                            <li><a href="{% url 'applications_list' %}" class="hover-underline text-white">All Blogs & News</a></li>
-                            <li><a href="{% url 'blog_detail' slug='building-a-bloomberg-news-finder-app-with-django-and-ajax' %}" class="hover-underline text-white">Image Search Blog</a></li>
-                            <li><a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="hover-underline text-white">Image Compressor Blog</a></li>
+                            <li><a href="{% url 'blog_list' %}" class="hover-underline {% if '/blogs/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">All Blogs</a></li>
+                            <li><a href="{% url 'blog_detail' slug='building-a-bloomberg-news-finder-app-with-django-and-ajax' %}" class="hover-underline text-grey hover-primary">Image Search</a></li>
+                            <li><a href="{% url 'blog_detail' slug='building-an-image-search-web-app-with-django-and-unsplash-api' %}" class="hover-underline text-grey hover-primary">Image Compressor</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row gy-4 mt-5">
-            <hr class="text-white"> <br> <br>
-            <div class="col-md-6 text-start text-md-start">
-                <a class="text-white small no-btn hover-underline" href="{% url 'index' %}">&copy;2017 - 
+        <hr class="text-white-50">
+        <div class="row justify-contetn-center pt-4 pb-5">
+            <div class="col-12 text-center">
+                <small class="text-white-50">&copy;2017 - 
                     <script>document.write(new Date().getFullYear());</script>
                     All Rights Reserved by Four Pixels Studio
-                </a>
-            </div>
-            <div class="col-md-6 text-start text-md-end">
-                <div class="footer-menu">
-                    <a class="text-white no-btn me-3" href="https://x.com/4ourPixels?t=mcuYBOjkEhg52xlZS1IDWA&s=09" target="_blank"><i class="fab fa-twitter fa-xl"></i></a>
-                    <a class="text-white no-btn me-3" href="https://www.facebook.com/profile.php?id=100094291777581" target="_blank"><i class="fab fa-facebook-f fa-xl"></i></a>
-                    <a class="text-white no-btn" href="https://www.instagram.com/fourpixels.studio/" target="_blank"><i class="fab fa-instagram fa-2xl"></i></a>
-                </div>
+                </small>
             </div>
         </div>
     </div>
-</div>
+</footer>
