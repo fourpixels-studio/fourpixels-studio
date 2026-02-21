@@ -201,7 +201,7 @@ RECAPTCHA_PUBLIC_KEY = os.environ.get('RECAPTCHA_PUBLIC_KEY')
 RECAPTCHA_PRIVATE_KEY = os.environ.get('RECAPTCHA_PRIVATE_KEY')
 # recaptcha keys
 
-MY_SITE = "https://www.fourpixels.studio"
+MY_SITE = "https://4pixels.pythonanywhere.com"
 
 # LOGGING = {
 #     'version': 1,
