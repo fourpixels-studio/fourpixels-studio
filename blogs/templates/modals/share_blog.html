@@ -1,6 +1,6 @@
 <div class="modal fade" id="shareBlog" tabindex="-1" aria-labelledby="shareBlogLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content border-0 rounded-4 shadow">
+        <div class="modal-content border-0 shadow">
             <div class="modal-body">
                 <div class="container p-0">
                     <div class="d-flex mb-3 flex-row align-items-center justify-content-between">
@@ -12,8 +12,8 @@
                         <div class="col-lg-8 col-lg-12">
                             <input type="text" class="form-control rounded-3" id="blogShareLink" value="{{ blog.get_share_link }}" readonly>
                             <div class="d-flex flex-row gap-2 justify-content-end mt-3">
-                                <button data-bs-dismiss="modal" type="button" class="btn rounded-3 px-4 btn-outline-secondary">Done</button>
-                                <button class="btn px-4 btn-secondary rounded-3" type="button" id="copy-btn" onclick="copyToClipboard()">Copy</button>
+                                <button data-bs-dismiss="modal" type="button" class="btn btn-outline-secondary">Done</button>
+                                <button class="btn btn-secondary" type="button" id="copy-btn" onclick="copyToClipboard()">Copy</button>
                             </div>
                         </div>
                     </div>
