@@ -1,0 +1,11 @@
+<a href="{{ blog.get_url }}" class="no-link">
+    <div class="bg-highlight overflow-hidden">
+        <img src="{{ blog.get_meta_thumbnail }}" alt="{{ blog.title }} Thumbnail" class="img-fluid w-100 hover-expand">
+        <div class="p-3 p-lg-4 d-flex flex-column gap-2">
+            <small>{{ blog.pub_date|date:"j M, Y" }}</small>
+            <h4 class="hover-underline">{{ blog.title|truncatechars:84 }}</h4>
+            <hr class="text-muted">
+            <small class="text-muted">{{ blog.summary|truncatechars:200 }}</small>
+        </div>
+    </div>
+</a>
