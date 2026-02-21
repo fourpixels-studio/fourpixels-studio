@@ -18,10 +18,9 @@
         </script>
         {% include 'head.html' %}
     </head>
-        
-    <body class="bg-light">
-        <main class="container-fluid px-0">
-            {% include 'navbar.html' %}
+    <body>
+        {% include 'navbar.html' %}
+        <main class="container-fluid px-0" style="padding-top: 3rem;">
             {% if messages %}
             {% include "messages.html" %}
             {% endif %}
