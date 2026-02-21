@@ -1,0 +1,162 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap");
+
+:root {
+    --primary: #30d5c8;
+    --secondary: #78bfba;
+    --light: #f7fffe;
+    --dark: #0a2e2b;
+}
+
+/* Navbar toggler button animation start */
+.navbar-toggler{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transition: .5s ease-in-out;
+}
+.navbar-toggler,
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus{
+    outline: none;
+    box-shadow: none;
+    border: 0;
+}
+.navbar-toggler span{
+    margin: 0;
+    padding: 0;
+}
+.toggler-icon{
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #0a2e2b;
+    border-radius: 1px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: .25s ease-in-out;
+}
+.middle-bar{
+    margin-top: 0px;
+}
+/* When navigation is clicked */
+.navbar-toggler .top-bar{
+    margin-top: 0px;
+    transform: rotate(135deg);
+}
+
+.navbar-toggler .middle-bar{
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.navbar-toggler .bottom-bar{
+    margin-top: 0px;
+    transform: rotate(-135deg);
+}
+
+/* State when the navbar is collapsed */
+
+.navbar-toggler.collapsed .top-bar{
+    margin-top: -20px;
+    transform: rotate(0deg);
+}
+
+.navbar-toggler.collapsed .middle-bar{
+    opacity: 1;
+    filter: alpha(opacity=100);
+}
+
+.navbar-toggler.collapsed .bottom-bar{
+    margin-top: 20px;
+    transform: rotate(0deg);
+}
+
+/* Color of the three lines */
+.navbar-toggler.collapsed .toggler-icon{
+    background: linear-gradient(263deg, #0a2e2b, #0a2e2b 100%);
+}
+
+/* Navbar toggler button animation end */
+
+.fw-300{
+    font-weight: 300 !important;
+}
+.fw-400{
+    font-weight: 400 !important;
+}
+.fw-500{
+    font-weight: 500 !important;
+}
+.fw-600{
+    font-weight: 600 !important;
+}
+.fw-700{
+    font-weight: 700 !important;
+}
+.text-grey{
+    color: #c1c1c1
+}
+.bg-grey{
+    background-color: #c1c1c1
+}
+.hover-underline{
+    text-decoration: none;
+}
+.hover-underline:hover{
+    text-decoration: underline;
+}
+.hover-primary:hover{
+    color: #35b7ad
+}
+.no-btn{
+    background: none;
+    text-decoration: none;
+    color: inherit;
+    border: none;
+}
+.no-link{
+    text-decoration: none;
+    color: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.hover-highlight:hover{
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+.badge-outline{
+    color: #fff;
+    background-color: #737373;
+    border-radius: .35rem;
+    font-size: 0.75em;
+    padding: 0.25em 0.55em;
+}
+.hover{
+    cursor: pointer;
+}
+.hover:hover{
+    cursor: pointer;
+}
+.bg-highlight{
+    background-color: #f6f6f6;
+}
+.bg-highlight:hover{
+    background-color: #eeeeee;
+}
+.hover-expand{
+    transform: scale(1);
+    transition: .2s ease-in-out;
+}
+.hover-expand:hover{
+    transform: scale(1.01);
+    transition: .1s ease-in-out;
+}
+.alert-error{
+    color: #842029;
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+}
