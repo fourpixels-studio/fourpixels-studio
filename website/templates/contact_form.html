@@ -1,0 +1,30 @@
+<form action="{% url 'contact' %}" method="POST" onsubmit="showSpinner()">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label class="mb-1 text-secondary" for="name">Full name</label>
+        <input type="text" class="form-control" name="name" id="name" required placeholder="John Doe">
+    </div>
+    <div class="mb-3">
+        <label class="mb-1 text-secondary" for="phone_number">Phone number</label>
+        <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="+1234 567 890">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="mb-1 text-secondary">Email address</label>
+        <input type="email" class="form-control" id="email" name="email" required placeholder="mail@example.com">
+    </div>
+    <div class="mb-3">
+        <label class="mb-1 text-secondary" for="message">Message</label>
+        <textarea required class="form-control" placeholder="Tell us about your business needs and timeline" name="message" id="message" style="height: 150px"></textarea>
+    </div>
+    <div class="mb-3">
+        {{ contact_form.captcha }}
+        {% if contact_form.captcha.errors %}
+        <div class="text-danger">{{ contact_form.captcha.errors }}</div>
+        {% endif %}
+    </div>
+    <button id="submit-btn" type="submit" class="btn btn-dark w-100 btn-lg rounded-3">
+        <span id="submit-text">Send message</span>
+        <span id="processing-text" class="d-none">Sending message...</span>
+        <span id="spinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+    </button>
+</form>
