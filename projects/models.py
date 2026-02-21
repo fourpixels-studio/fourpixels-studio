@@ -89,11 +89,11 @@ class Project(models.Model):
     @property
     def get_related_projects(self):
         if self.similar_projects:
-            projects = Project.objects.filter(category=self.category, show_in_porfolio=True).exclude(pk=self.pk)
+            projects = Project.objects.filter(category=self.category, show_in_portfolio=True).exclude(pk=self.pk)
             if projects:
                 return projects
             else:
-                projects = Project.objects.filter(show_in_porfolio=True).exclude(pk=self.pk)
+                projects = Project.objects.filter(show_in_portfolio=True).exclude(pk=self.pk)
             return projects
         return None
 
