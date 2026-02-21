@@ -7,8 +7,8 @@ def get_testimonials():
 
 
 def get_recent_projects():
-    return Project.objects.filter(show_in_porfolio=True)
+    return Project.objects.filter(show_in_portfolio=True)
 
 
 def get_project_highlights():
-    return Project.objects.filter(highlight=True, show_in_porfolio=True)
+    return Project.objects.filter(highlight=True, show_in_portfolio=True)
