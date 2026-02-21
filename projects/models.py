@@ -6,6 +6,7 @@ from website.models import Testimonial
 from django.utils.html import mark_safe
 from django.contrib.contenttypes.fields import GenericRelation
 
+
 class Category(models.Model):
     name = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
@@ -32,13 +33,13 @@ class Project(models.Model):
     logo = models.ImageField(upload_to="projects/logos/", blank=True, null=True)
     highlight = models.BooleanField(default=False, null=True, blank=True)
     image_placeholder = models.TextField(blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, blank=True, related_name="projects")
     highlight = models.BooleanField(default=False, null=True, blank=True)
     slug = models.SlugField(unique=True, null=True, blank=True)
     hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
     cover = models.FileField(upload_to="projects/cover/", blank=True, null=True)
     testimonial = models.ForeignKey(Testimonial, on_delete=models.CASCADE, null=True, blank=True)
-    show_in_porfolio = models.BooleanField(default=True)
+    show_in_portfolio = models.BooleanField(default=True)
     similar_projects = models.ManyToManyField("self", blank=True)
     content = models.TextField(null=True, blank=True)
     
