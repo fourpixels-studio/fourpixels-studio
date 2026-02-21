@@ -3,10 +3,8 @@ from website.sitemaps import *
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from website.views import error_404, error_500
 from django.contrib.sitemaps.views import sitemap
 from django.views.generic.base import TemplateView
-from django.conf.urls import handler404, handler500
 
 
 sitemaps = {
@@ -31,6 +29,3 @@ urlpatterns = [
 
 admin.site.site_header = "Four Pixels Studio"
 admin.site.index_title = "Four Pixels Studio"
-
-handler404 = error_404
-handler500 = error_500
