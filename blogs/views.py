@@ -1,7 +1,7 @@
 from blogs.models import Blog
 from .utils import update_views
-from django.db.models import Max
 from seo_management.models import SEO
+from django.db.models import Count, Prefetch
 from django.shortcuts import render, get_object_or_404
 
 
@@ -42,11 +42,25 @@ def blog_detail(request, slug):
 
 def blog_list(request):
     seo = SEO.objects.first()
+    
+    categories = (
+        Category.objects
+        .annotate(visible_blogs=Count('blogs'))
+        .filter(visible_blogs__gt=0)
+        .prefetch_related(
+            Prefetch(
+                'blogs',
+                queryset=Blog.objects.all().order_by('-pub_date')
+            )
+        )
+        .order_by('-id')
+    )
+    
     context = {
         'title_tag': "Blogs",
-        'blogs': Blog.objects.order_by('-pk'),
+        'categories': categories,
         'meta_thumbnail': seo.meta_thumbnail.url,
+        'all_blogs': Blog.objects.all().order_by('-pub_date'),
         'meta_description': 'Stay informed about the latest industry trends or learn how we built specific apps. From News updates, in-depth tutorials, and step-by-step guides.',
     }
     return render(request, 'blog_list.html', context)
-
