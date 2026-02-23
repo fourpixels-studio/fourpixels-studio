@@ -20,6 +20,7 @@
                             <li><a href="{% url 'index' %}" class="hover-underline {% if request.path == '/' %}text-primary{% else %}text-grey{% endif %} hover-primary">Home</a></li>
                             <li><a href="{% url 'contact' %}" class="hover-underline {% if '/contact/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">Contact</a></li>
                             <li><a href="{% url 'projects_list' %}" class="hover-underline {% if '/projects/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">Projects</a></li>
+                            <li><a href="{% url 'about' %}" class="hover-underline {% if '/about/' in request.path %}text-primary{% else %}text-grey{% endif %} hover-primary">About</a></li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-lg-4">

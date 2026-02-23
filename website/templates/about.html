@@ -1,88 +1,103 @@
 {% extends 'base.html' %}
-{% load static %}
 {% block body %}
-{% load hitcount_tags %}
-<main class="container-fluid px-0" style="padding-top: 8rem">
-    <div class="container px-4 fadeInUp">
-        {% if request.user.is_authenticated and request.user.is_superuser %}
-        <p class="text-center">Viewed {% get_hit_count for about_data %} times</p>
-        {% endif %}
-        <div class="row g-4 fadeInUp justify-content-between align-items-center">
-            <div class="col-sm-12 col-lg-8">
-                <h1 class="display-6 fw-500">Creating, designing, and developing high-quality websites and web applications for you.</h1>
-            </div>
-            <div class="col-sm-12 col-lg-4">
-                <p class="text-muted">Delivering user-friendly designs and engaging content, tailored to meet the unique needs of freelancers, creative professionals, and small business owners.</p>
+{% load static %}
+<header class="container-fluid bg-black" style="background: linear-gradient(0deg, #1e1e1e, #000)">
+    <div class="container px-3 py-5">
+        <div class="row justify-content-center align-items-center py-5">
+            <div class="col-sm-12 col-md-10 text-center py-5">
+                <p class="lead mb-0 text-white">Hi, I'm Moses</p>
+                <h1 class="display-2 text-white">A full-stack web developer with <span class="text-primary">10+</span> years of graphic design experience</h1>
+                <h1 class="na-font text-white">FOnt</h1>
             </div>
         </div>
     </div>
-    <img src="https://images.unsplash.com/photo-1719179497918-f43bec73cfde?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Digital artist image" class="fadeInUp img-fluid mt-5">
-    <div class="container my-6 px-4">
-        <div class="row g-4 justify-content-evenly align-items-center">
-            <div class="col-sm-12 col-lg-6">
-                <h1 class="display-4 fw-500 fadeInLeft">Our focus</h1>
-            </div>
-            <div class="col-sm-12 col-lg-6 fadeInRight">
-                <p class="text-muted lead">Delivering user-friendly designs and engaging content, tailored to meet the unique needs of freelancers, creative professionals, and small business owners</p>
+</header>
+<main class="container pb-5 px-3 mt-5">
+    <section class="row g-4 py-5 justify-content-between">
+        <div class="col-sm-12 col-md-4 text-center">
+            <img src="{% static 'img/moses-bartena.jpg' %}" alt="Moses Bartena Image" class="img-fluid rounded-4" style="filter: grayscale(1)">
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <h2 class="display-6">Get to Know Me!</h3>
+            <p>Web development isn't just my job, it's my craft. I create intuitive, high-quality digital experiences that work. Let's collaborate and make something exceptional</p>
+        </div>
+    </section>
+    <section class="row g-4 my-5">
+        <div class="col-sm-12 col-md-6">
+            <h2 class="display-6">Other Skills that make me multi-disciplinary</h3>
+        </div>
+        <div class="col-sm-12 col-md-6">
+            <ul class="list-unstyled d-flex flex-column gap-3">
+                {% for service in services %}
+                <li class="rounded-4 p-3 {% if forloop.counter == 1 %}bg-grey{% else %}bg-light{% endif %} d-flex flex-column gap-2">
+                    <i class="fa {{ service.icon }}" style="font-size: 1.5rem;"></i>
+                    <h4 class="mb-0 fw-bold">{{ service.title }}</h4>
+                    <small class="text-muted">{{ service.paragraph }}</small>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+    <section class="row pb-lg-5 pt-5 justify-content-between">
+        <div class="col-12 mb-5">
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-lg-9">
+                    <h2 class="display-4 text-start text-lg-center">It's About Solving Problems Not Just How it Looks</h3>
+                </div>
             </div>
         </div>
-        <div class="row g-4 my-5 justify-content-evenly align-items-start">
-            <hr class="mb-5 fadeInUp">
-            <div class="col-sm-12 col-lg-6 fadeInLeft">
-                <h1 class="display-4 fw-500">Our Services</h1>
-                <p class="text-muted lead">With a passion for technology and design, we offer a range of services including:</p>
+        {% for project in projects %}
+        <article class="col-12 my-5">
+            <div class="row gy-lg-5 gy-2 justify-content-between align-items-center">
+                <div class="col-sm-12 col-lg-8 order-md-2">
+                    <img src="{{ project.get_cover_image }}" alt="{{ project.name }} Image" class="img-fluid rounded-4">
+                </div>
+                <div class="col-sm-12 col-lg-4 order-md-1">
+                    <div class="bg-light rounded-4 p-3">
+                        <div class="d-flex gap-5 flex-column justify-content-between">
+                            <div>
+                                <h5 class="fw-bold">{{ project.name }} <span class="text-muted fw-300">- {{ project.year|date:"Y" }}</span></h5>
+                                <small class="text-muted">{{ project.what_we_did }}</small>
+                            </div>
+                            <a href="{{ project.get_url }}" class="no-link">
+                                <div class="d-flex flex-row justify-content-between border rounded-pill align-items-center px-3 py-2 bg-highlight">
+                                    <small class="fw-bold text-dark">Show Case</small>
+                                    <i class="fa-solid fa-arrow-up rotate-diagonal"></i>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
-            <div class="col-sm-12 col-lg-6 px-2 px-lg-0 fadeInRight">
-                <ul>
-                    <li class="mb-2"><strong>Website & Web App Design/Development:</strong> We build responsive, visually appealing websites and web applications that are both functional and user-centric.</li>
-                    <li class="mb-2"><strong>UI/UX Design:</strong> We craft intuitive user interfaces that enhance user experiences, making your digital presence more engaging and effective.</li>
-                    <li class="mb-2"><strong>Graphic Design:</strong> Our graphic design services bring your brand to life, creating visually stunning assets that resonate with your audience.</li>
-                    <li><strong>Media Editing:</strong> We offer professional media editing services to ensure your content is polished and impactful.</li>
-                </ul>
-            </div>
+        </article>
+    </section>
+    <section class="row pb-5 justify-content-center">
+        <div class="col-12">
+            <ul class="list-unstyled d-flex flex-row justify-content-center flex-wrap gap-4">
+                {% for logo in logos %}
+                    {% if logo.logo %}
+                    <li>
+                        <img src="{{ logo.logo.url }}" alt="{{ logo.name }}'s Logo" class="img-fluid greyscale" style="filter: grayscale(1) saturate(0); height: 80px;">
+                    </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         </div>
-        <div class="row g-4 my-5 justify-content-evenly align-items-start">
-            <hr class="mb-5 fadeInUp">
-            <div class="col-sm-12 col-lg-6 fadeInLeft">
-                <h1 class="display-4 fw-500">Our Process</h1>
-                <p class="text-muted lead">We believe in a structured, collaborative approach to every project. Our process includes four key phases:</p>
-            </div>
-            <div class="col-sm-12 col-lg-6 px-2 px-lg-0 fadeInRight">
-                <ul>
-                    <li class="mb-2"><strong>Planning</strong> Understanding your goals and mapping out a strategy that aligns with your vision.</li>
-                    <li class="mb-2"><strong>Design:</strong> Creating custom designs that reflect your brand and captivate your audience..</li>
-                    <li class="mb-2"><strong>Development:</strong> Building a responsive, robust platform that performs seamlessly across all devices.</li>
-                    <li><strong>Support:</strong> Providing ongoing maintenance to keep your site up-to-date, secure, and running smoothly.</li>
-                </ul>
-            </div>
-        </div>
-        <div class="row g-4 justify-content-evenly align-items-start">
-            <hr class="my-5 fadeInUp">
-            <div class="col-sm-12 col-lg-6 fadeInLeft">
-                <h1 class="display-4 fw-500">Our Work</h1>
-            </div>
-            <div class="col-sm-12 col-lg-6 fadeInRight">
-                <p class="text-muted lead">We’re proud of the work we’ve done and the impact it has had on our clients' businesses. From sleek portfolio sites to dynamic e-commerce platforms, our projects showcase our commitment to excellence in design and development. Visit our <a href="{% url 'projects_list' %}" class="hover-underline text-primary">Portfolio Page</a> to see our latest creations and discover how we can bring your vision to life.</p>
-            </div>
-        </div>
-        <div class="row g-4 justify-content-evenly align-items-start">
-            <hr class="my-5 fadeInUp">
-            <div class="col-sm-12 col-lg-6 fadeInLeft">
-                <h1 class="display-4 fw-500">Our Content</h1>
-            </div>
-            <div class="col-sm-12 col-lg-6 fadeInRight">
-                <p class="text-muted lead">In addition to our services, we also share valuable insights through our Blogs, News, Tutorials, and Step-by-Step Guides. These resources are designed to keep you informed about the latest trends in web design, development, and more, while also offering practical advice on how to improve your digital presence.</p>
-            </div>
-        </div>
-        <div class="row g-4 justify-content-evenly align-items-start">
-            <hr class="my-5 fadeInUp">
-            <div class="col-sm-12 col-lg-6 fadeInLeft">
-                <h1 class="display-4 fw-500">Why Choose Us?</h1>
-            </div>
-            <div class="col-sm-12 col-lg-6 fadeInRight">
-                <p class="text-muted lead">Our business model is built around creating lasting relationships with our clients. We not only design and develop your website or app but also provide continuous support and maintenance to ensure it evolves with your needs. Our remote work model allows us to serve clients from anywhere, making our services accessible and flexible.</p>
-            </div>
-        </div>
-    </div>
+    </section>
 </main>
+<section class="container-fluid py-5" style="background-color: #1e1e1e;">
+    <div class="px-lg-4 px-1 pt-5">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <div class="d-flex flex-column gap-4 text-center">
+                    <h3 class="display-3 text-white fw-300">Let's Create Impactful Designs Together</h3>
+                    <div>
+                        <a href="mailto:4ourpixels@gmail.com" class="btn btn-grey px-4 text-white rounded-pill btn-lg"><i class="fa-solid fa-envelope me-2"></i> 4ourpixels@gmail</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
