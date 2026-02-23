@@ -68,7 +68,7 @@ class ProjectForm(forms.ModelForm):
         required=False,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input hover rounded-1'})
     )
-    show_in_porfolio = forms.BooleanField(
+    show_in_portfolio = forms.BooleanField(
         required=False,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input hover rounded-1'})
     )
