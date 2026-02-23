@@ -1,6 +1,5 @@
 from blogs.models import Blog
 from django.contrib import messages
-from blogs.utils import update_views
 from seo_management.models import SEO
 from django.shortcuts import render, redirect
 from .email import send_contact_email, send_testimonial_email
@@ -24,24 +23,25 @@ def index(request):
         'testimonials': get_testimonials(),
         'meta_description': seo.meta_description,
         'meta_thumbnail': seo.meta_thumbnail.url,
-        'blogs': Blog.objects.order_by("-pk")[:3],
+        'blogs': Blog.objects.order_by("-pk")[:4],
         'get_recent_projects': get_recent_projects()[:6],
         'get_project_highlights': get_project_highlights()[:6],
     }
-    update_views(request, homepage)
     return render(request, 'index.html', context)
 
 
 def about(request):
     about_data = About.objects.first()
     context = {
-        'title_tag': "About Us",
+        'title_tag': "About",
         'about_data': about_data,
-        'homepage_data': HomePage.objects.first(),
+        'services': Service.objects.all(),
         'accordions': Accordion.objects.all(),
         'meta_thumbnail': seo.meta_thumbnail.url,
+        'homepage_data': HomePage.objects.first(),
+        'logos': Project.objects.order_by("?")[:6],
+        'projects': Project.objects.filter(highlight=True, show_in_portfolio=True).order_by("?")[:3],
     }
-    update_views(request, about_data)
     return render(request, 'about.html', context)
 
 
