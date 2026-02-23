@@ -76,7 +76,7 @@
 
 /* Color of the three lines */
 .navbar-toggler.collapsed .toggler-icon{
-    background: linear-gradient(263deg, #0a2e2b, #0a2e2b 100%);
+    background: #0a2e2b;
 }
 
 /* Navbar toggler button animation end */
@@ -101,6 +101,9 @@
 }
 .bg-grey{
     background-color: #c1c1c1
+}
+.bg-light-grey{
+    background-color: #e0e0e0
 }
 .hover-underline{
     text-decoration: none;
@@ -159,4 +162,21 @@
     color: #842029;
     background-color: #f8d7da;
     border-color: #f5c2c7;
+}
+.rotate-diagonal{
+    transform: rotate(45deg);
+}
+.greyscale{
+    filter: grayscale(1);
+}
+.border-grey{
+    border-color: #c1c1c1;
+}
+.btn-grey{
+    background: linear-gradient(90deg,#2a2a2a, #8e8e8e);
+    border: 1px solid #7a7a7a;
+}
+.btn-grey:hover{
+    background: linear-gradient(90deg,#8e8e8e, #2a2a2a);
+    border: 1px solid #7a7a7a;
 }
