@@ -1,4 +1,4 @@
-from blogs.models import Blog
+from .models import Blog, Category
 from .utils import update_views
 from seo_management.models import SEO
 from django.db.models import Count, Prefetch
