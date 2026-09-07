@@ -1,6 +1,4 @@
 from django.db import models
-from hitcount.models import HitCount
-from django.contrib.contenttypes.fields import GenericRelation
 
 
 class Newsletter(models.Model):
@@ -19,7 +17,8 @@ class Testimonial(models.Model):
     testimonial = models.TextField(blank=True, null=True)
     post_testimonial = models.BooleanField(default=True, blank=True, null=True)
     pub_date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
-    image = models.ImageField(upload_to="testimonial-images/", blank=True, null=True)
+    image = models.ImageField(
+        upload_to="testimonial-images/", blank=True, null=True)
 
     def __str__(self):
         return f"{self.name}' Testimonial - Posted On: {self.pub_date.strftime('%A, %B %d, %Y')}"
@@ -34,7 +33,7 @@ class Contact(models.Model):
     date = models.DateTimeField(auto_now_add=True, blank=True, null=True)
 
     def __str__(self):
-        return f'{self.name} | {self.subject} | {self.date}'
+        return f'{self.name} | {self.date}'
 
 
 class HomePage(models.Model):
@@ -55,25 +54,24 @@ class HomePage(models.Model):
     about_us_h1 = models.CharField(max_length=250, blank=True, null=True)
     about_us_p = models.TextField(blank=True, null=True)
     about_us_button = models.CharField(max_length=20, blank=True, null=True)
-    about_us_image = models.FileField(upload_to="homepage/", blank=True, null=True)
-    struggling_image = models.FileField(upload_to="homepage/", blank=True, null=True)
-    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
+    about_us_image = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
+    struggling_image = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
     collabo_title_1 = models.CharField(max_length=180, blank=True, null=True)
     collabo_p_1 = models.TextField(blank=True, null=True)
-    collabo_img_1 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    collabo_img_1 = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
     collabo_title_2 = models.CharField(max_length=180, blank=True, null=True)
     collabo_p_2 = models.TextField(blank=True, null=True)
-    collabo_img_2 = models.FileField(upload_to="homepage/", blank=True, null=True)
+    collabo_img_2 = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
     collabo_title_3 = models.CharField(max_length=180, blank=True, null=True)
     collabo_p_3 = models.TextField(blank=True, null=True)
-    collabo_img_3 = models.FileField(upload_to="homepage/", blank=True, null=True)
-    process_image = models.FileField(upload_to="homepage/", blank=True, null=True)
-    
-    @property
-    def get_hit_count(self):
-        if self.hit_count_generic.exists():
-            return self.hit_count_generic.first().hits
-        return 0
+    collabo_img_3 = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
+    process_image = models.FileField(
+        upload_to="homepage/", blank=True, null=True)
 
     def __str__(self):
         return "Home Page"
@@ -99,16 +97,9 @@ class Accordion(models.Model):
 class About(models.Model):
     title = models.CharField(max_length=255, blank=True, null=True)
     content = models.TextField(blank=True, null=True)
-    hit_count_generic = GenericRelation(HitCount, object_id_field='object_pk', related_query_name='hit_count_generic_relation')
-
-    @property
-    def get_hit_count(self):
-        if self.hit_count_generic.exists():
-            return self.hit_count_generic.first().hits
-        return 0
 
     def __str__(self):
-        return "About Us"
+        return "About"
 
 
 class FAQ(models.Model):
