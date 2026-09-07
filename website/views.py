@@ -1,11 +1,12 @@
 from blogs.models import Blog
+from projects.models import Project
 from django.contrib import messages
 from seo_management.models import SEO
 from django.shortcuts import render, redirect
 from .email import send_contact_email, send_testimonial_email
 from .forms import NewsletterForm, TestimonialForm, ContactForm
+from .models import Service, About, Accordion, HomePage, Newsletter, FAQ
 from .get_items import get_testimonials, get_recent_projects, get_project_highlights
-from .models import Testimonial, Service, About, Accordion, HomePage, Newsletter, FAQ
 
 seo = SEO.objects.get(pk=1)
 
@@ -51,13 +52,10 @@ def contact(request):
         contact_form = ContactForm(request.POST)
         if contact_form.is_valid():
             name = contact_form.cleaned_data.get('name')
-            email = contact_form.cleaned_data.get('email')
-            message = contact_form.cleaned_data.get('message')
-            subject = contact_form.cleaned_data.get('subject')
-            phone_number = contact_form.cleaned_data.get('phone_number')
             contact_form.save()
             # send_contact_email(name, subject, email, phone_number, message)
-            messages.success(request, str(f'Thank you {name}! We have received your message!'))
+            messages.success(request, str(
+                f'Thank you {name}! I have received your message!'))
             return redirect('index')
         else:
             if 'captcha' in contact_form.errors:
@@ -83,7 +81,8 @@ def newsletter(request):
         if newsletter_form.is_valid():
             email = newsletter_form.cleaned_data.get('email')
             if Newsletter.objects.filter(email=email).exists():
-                messages.info(request, "Breaking news: Your email is such a trendsetter; it subscribed before subscribing was cool. You're not just on the list; you're the list! 🌟📨")
+                messages.info(
+                    request, "Breaking news: Your email is such a trendsetter; it subscribed before subscribing was cool. You're not just on the list; you're the list! 🌟📨")
             else:
                 newsletter_form.save()
                 messages.success(request, "By hitting that subscribe button, you've just upgraded your inbox to the penthouse suite – 400 miles above the email riffraff. Get ready for a newsletter that's cooler than a polar bear in sunglasses. 😎❄️📧")
@@ -141,8 +140,10 @@ def submit_testimonial(request):
         testimonial_form = TestimonialForm(request.POST, request.FILES)
         if testimonial_form.is_valid():
             testimonial_form.save()
-            message_1 = str("We appreciate you taking the time to share your experience. Your testimonial has been successfully submitted and will be reviewed shortly.")
-            message_2 = str("If approved, your testimonial will be published on our website. We value your feedback and thank you for your support!")
+            message_1 = str(
+                "We appreciate you taking the time to share your experience. Your testimonial has been successfully submitted and will be reviewed shortly.")
+            message_2 = str(
+                "If approved, your testimonial will be published on our website. We value your feedback and thank you for your support!")
             email = testimonial_form.cleaned_data.get('email')
             name = testimonial_form.cleaned_data.get('name')
             if email:
